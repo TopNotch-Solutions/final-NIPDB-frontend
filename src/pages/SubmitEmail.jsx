@@ -23,7 +23,7 @@ function SubmitEmail() {
       if (tokenData.access_token) {
         try {
           setIsSubmitting(true);
-          const response = await fetch("https://dt.mtc.com.na:4000/auth/admin/forgot-password", {
+          const response = await fetch("https://uat-api.erongored.com.na/auth/admin/forgot-password", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

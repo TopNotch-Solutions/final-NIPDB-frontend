@@ -128,7 +128,7 @@ function Bso() {
     const fetchTotalCount = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch("https://dt.mtc.com.na:4000/bso/admin/count", {
+        const response = await fetch("https://uat-api.erongored.com.na/bso/admin/count", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -168,7 +168,7 @@ function Bso() {
     const fetchApprovedCount = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch("https://dt.mtc.com.na:4000/bso/admin/all", {
+        const response = await fetch("https://uat-api.erongored.com.na/bso/admin/all", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -330,7 +330,7 @@ function Bso() {
         formData.append("description", description);
         formData.append("bso-image", file);
         formData.append("website", website);
-        const response = await fetch("https://dt.mtc.com.na:4000/bso/admin/create", {
+        const response = await fetch("https://uat-api.erongored.com.na/bso/admin/create", {
           method: "POST",
           
           headers:{
@@ -453,7 +453,7 @@ function Bso() {
     try {
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `https://dt.mtc.com.na:4000/bso/admin/single/${id}`,
+        `https://uat-api.erongored.com.na/bso/admin/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -519,7 +519,7 @@ function Bso() {
             setIsSubmitting(true);
             dispatch(toggleIsSubmittingTrue());
             const response = await fetch(
-              `https://dt.mtc.com.na:4000/bso/admin/delete/${id}`,
+              `https://uat-api.erongored.com.na/bso/admin/delete/${id}`,
               {
                 method: "DELETE",
                 headers: {
@@ -604,7 +604,7 @@ function Bso() {
           formData.append("bso-image", fileUpdate);
           formData.append("website", websiteDetails);
           const response = await fetch(
-            `https://dt.mtc.com.na:4000/bso/admin/update/${updatingDetails.id}`,
+            `https://uat-api.erongored.com.na/bso/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
               
@@ -775,7 +775,6 @@ function Bso() {
                   <Tooltip title="Total BSOs" className="pointer">
                     <p className="text">Total BSOs</p>
                   </Tooltip>
-                  <ArrowForwardIosIcon />
                 </div>
                 <div className="d-flex justify-content-start">
                   <div className="p-1 border rounded-2 ml-2">
@@ -1357,7 +1356,7 @@ function Bso() {
                           <img
                             src={
                               updatingDetails.logo === logoDetails
-                                ? `https://dt.mtc.com.na:4000/bsos/${logoDetails}`
+                                ? `https://uat-api.erongored.com.na/bsos/${logoDetails}`
                                 : logoDetails
                             }
                             className=" img-responsive img-thumbnail"

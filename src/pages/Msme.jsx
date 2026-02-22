@@ -489,7 +489,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/totalCount",
+          "https://uat-api.erongored.com.na/msme/admin/totalCount",
           {
             method: "GET",
             headers: {
@@ -532,7 +532,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/pendingCount",
+          "https://uat-api.erongored.com.na/msme/admin/pendingCount",
           {
             method: "GET",
             headers: {
@@ -575,7 +575,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/rejectedCount",
+          "https://uat-api.erongored.com.na/msme/admin/rejectedCount",
           {
             method: "GET",
             headers: {
@@ -618,7 +618,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/approvedCount",
+          "https://uat-api.erongored.com.na/msme/admin/approvedCount",
           {
             method: "GET",
             headers: {
@@ -660,7 +660,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/incompleteCount",
+          "https://uat-api.erongored.com.na/msme/admin/incompleteCount",
           {
             method: "GET",
             headers: {
@@ -702,7 +702,7 @@ function Msme() {
     const fetchMsmeAllMSME = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch("https://dt.mtc.com.na:4000/msme/admin/all", {
+        const response = await fetch("https://uat-api.erongored.com.na/msme/admin/all", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -742,7 +742,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/all/pending",
+          "https://uat-api.erongored.com.na/msme/admin/all/pending",
           {
             method: "GET",
             headers: {
@@ -784,7 +784,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/all/rejected",
+          "https://uat-api.erongored.com.na/msme/admin/all/rejected",
           {
             method: "GET",
             headers: {
@@ -827,7 +827,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/all/approved",
+          "https://uat-api.erongored.com.na/msme/admin/all/approved",
           {
             method: "GET",
             headers: {
@@ -870,7 +870,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/all/incomplete",
+          "https://uat-api.erongored.com.na/msme/admin/all/incomplete",
           {
             method: "GET",
             headers: {
@@ -911,7 +911,7 @@ function Msme() {
     const fetchAllRegions = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch("https://dt.mtc.com.na:4000/region/admin/all", {
+        const response = await fetch("https://uat-api.erongored.com.na/region/admin/all", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -951,7 +951,7 @@ function Msme() {
     const fetchAllTowns = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch("https://dt.mtc.com.na:4000/town/admin/all", {
+        const response = await fetch("https://uat-api.erongored.com.na/town/admin/all", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -990,7 +990,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/primaryIndustry/admin/all",
+          "https://uat-api.erongored.com.na/primaryIndustry/admin/all",
           {
             method: "GET",
             headers: {
@@ -1032,7 +1032,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/secondaryIndustry/admin/all",
+          "https://uat-api.erongored.com.na/secondaryIndustry/admin/all",
           {
             method: "GET",
             headers: {
@@ -1074,7 +1074,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/all/user",
+          "https://uat-api.erongored.com.na/msme/admin/all/user",
           {
             method: "GET",
             headers: {
@@ -1795,7 +1795,7 @@ function Msme() {
         console.log("This is my formdata", formData);
 
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/create",
+          "https://uat-api.erongored.com.na/msme/admin/create",
           {
             method: "POST",
             
@@ -1920,7 +1920,7 @@ function Msme() {
     try {
       setIsSubmitting(true);
       const response = await fetch(
-        `https://dt.mtc.com.na:4000/msme/admin/single/${id}`,
+        `https://uat-api.erongored.com.na/msme/admin/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -2343,7 +2343,7 @@ function Msme() {
             try {
               setIsSubmitting(true);
               const response = await fetch(
-                `https://dt.mtc.com.na:4000/msme/admin/status/${updatingDetails.id}`,
+                `https://uat-api.erongored.com.na/msme/admin/status/${updatingDetails.id}`,
                 {
                   method: "PUT",
                   headers: {
@@ -2501,7 +2501,7 @@ function Msme() {
           formData.append("removeImage3", removeImage3);
         }
         const response = await fetch(
-          `https://dt.mtc.com.na:4000/msme/admin/update/${updatingDetails.id}`,
+          `https://uat-api.erongored.com.na/msme/admin/update/${updatingDetails.id}`,
           {
             method: "PUT",
             
@@ -2522,7 +2522,7 @@ function Msme() {
             try {
               setIsSubmitting(true);
               const response = await fetch(
-                `https://dt.mtc.com.na:4000/msme/admin/status/${updatingDetails.id}`,
+                `https://uat-api.erongored.com.na/msme/admin/status/${updatingDetails.id}`,
                 {
                   method: "PUT",
                   headers: {
@@ -2660,7 +2660,7 @@ function Msme() {
           try {
             setIsSubmitting(true);
             const response = await fetch(
-              `https://dt.mtc.com.na:4000/msme/admin/status/${updatingDetails.id}`,
+              `https://uat-api.erongored.com.na/msme/admin/status/${updatingDetails.id}`,
               {
                 method: "PUT",
                 headers: {
@@ -2749,7 +2749,7 @@ function Msme() {
           try {
             setIsSubmitting(true);
             const response = await fetch(
-              `https://dt.mtc.com.na:4000/msme/admin/block/${updatingDetails.id}`,
+              `https://uat-api.erongored.com.na/msme/admin/block/${updatingDetails.id}`,
               {
                 method: "PUT",
                 headers: {
@@ -2837,7 +2837,7 @@ function Msme() {
           try {
             setIsSubmitting(true);
             const response = await fetch(
-              `https://dt.mtc.com.na:4000/msme/admin/block/${updatingDetails.id}`,
+              `https://uat-api.erongored.com.na/msme/admin/block/${updatingDetails.id}`,
               {
                 method: "PUT",
                 headers: {
@@ -2918,7 +2918,7 @@ function Msme() {
         try {
           setsendingNotification(true);
           const response = await fetch(
-            `https://dt.mtc.com.na:4000/notifications/admin/create/single/${updatingDetails.id}`,
+            `https://uat-api.erongored.com.na/notifications/admin/create/single/${updatingDetails.id}`,
             {
               method: "POST",
               headers: {
@@ -3338,8 +3338,6 @@ function Msme() {
                     <Tooltip title="Pending Approvals" className="pointer">
                       <p className="text">Pending Approvals</p>
                     </Tooltip>
-
-                    <ArrowForwardIosIcon />
                   </div>
                   <div className="d-flex align-items-center justify-content-start text-center">
                     <div className="p-1 border rounded-2">
@@ -3368,8 +3366,6 @@ function Msme() {
                     <Tooltip title="Rejected MSMEs" className="pointer">
                       <p className="text">Rejected MSMEs</p>
                     </Tooltip>
-
-                    <ArrowForwardIosIcon />
                   </div>
                   <div className="d-flex align-items-center justify-content-start text-center">
                     <div className="p-1 border rounded-2">
@@ -3396,8 +3392,6 @@ function Msme() {
                     <Tooltip title="Approved Registrations" className="pointer">
                       <p className="text">Approved Registrations</p>
                     </Tooltip>
-
-                    <ArrowForwardIosIcon />
                   </div>
                   <div className="d-flex align-items-center justify-content-start text-center">
                     <div className="p-1 border rounded-2">
@@ -3426,8 +3420,6 @@ function Msme() {
                     >
                       <p className="text">Incomplete Registrations</p>
                     </Tooltip>
-
-                    <ArrowForwardIosIcon />
                   </div>
                   <div className="d-flex align-items-center justify-content-start text-center">
                     <div className="p-1 border rounded-2">
@@ -7096,7 +7088,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo
                                       ?.businessLogo === businessLogoDetails
-                                      ? `https://dt.mtc.com.na:4000/msmes/${businessLogoDetails}`
+                                      ? `https://uat-api.erongored.com.na/msmes/${businessLogoDetails}`
                                       : businessLogoDetails
                                   }
                                   className=" img-responsive img-thumbnail"
@@ -7185,7 +7177,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo?.image1 ===
                                     image1Details
-                                      ? `https://dt.mtc.com.na:4000/msmes/${image1Details}`
+                                      ? `https://uat-api.erongored.com.na/msmes/${image1Details}`
                                       : image1Details
                                   }
                                   className=" img-responsive img-thumbnail"
@@ -7274,7 +7266,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo?.image2 ===
                                     image2Details
-                                      ? `https://dt.mtc.com.na:4000/msmes/${image2Details}`
+                                      ? `https://uat-api.erongored.com.na/msmes/${image2Details}`
                                       : image2Details
                                   }
                                   className=" img-responsive img-thumbnail"
@@ -7363,7 +7355,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo?.image3 ===
                                     image3Details
-                                      ? `https://dt.mtc.com.na:4000/msmes/${image3Details}`
+                                      ? `https://uat-api.erongored.com.na/msmes/${image3Details}`
                                       : image3Details
                                   }
                                   className=" img-responsive img-thumbnail"

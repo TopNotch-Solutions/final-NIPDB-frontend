@@ -80,7 +80,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/monthly/registeration",
+          "https://uat-api.erongored.com.na/msme/admin/monthly/registeration",
           {
             method: "GET",
             headers: {
@@ -118,7 +118,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/totalCount",
+          "https://uat-api.erongored.com.na/msme/admin/totalCount",
           {
             method: "GET",
             headers: {
@@ -161,7 +161,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/pendingCount",
+          "https://uat-api.erongored.com.na/msme/admin/pendingCount",
           {
             method: "GET",
             headers: {
@@ -204,7 +204,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/rejectedCount",
+          "https://uat-api.erongored.com.na/msme/admin/rejectedCount",
           {
             method: "GET",
             headers: {
@@ -247,7 +247,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/approvedCount",
+          "https://uat-api.erongored.com.na/msme/admin/approvedCount",
           {
             method: "GET",
             headers: {
@@ -288,7 +288,7 @@ function Dashboard() {
     const fetchMsmeAllMSME = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch("https://dt.mtc.com.na:4000/msme/admin/all", {
+        const response = await fetch("https://uat-api.erongored.com.na/msme/admin/all", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -328,7 +328,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://dt.mtc.com.na:4000/msme/admin/top5/categories",
+          "https://uat-api.erongored.com.na/msme/admin/top5/categories",
           {
             method: "GET",
             headers: {
@@ -506,7 +506,7 @@ function Dashboard() {
                 <Tooltip title="Registered MSMEs" className="pointer">
                   <p className="text">Registrated MSMEs</p>
                 </Tooltip>
-                <ArrowForwardIosIcon />
+                
               </div>
               <div className="d-flex justify-content-start">
                 <div className="p-1 border rounded-2 ml-2">
@@ -532,7 +532,7 @@ function Dashboard() {
                   <p className="text">Pending Approvals</p>
                 </Tooltip>
 
-                <ArrowForwardIosIcon />
+                
               </div>
               <div className="d-flex align-items-center justify-content-start text-center">
                 <div className="p-1 border rounded-2">
@@ -558,7 +558,7 @@ function Dashboard() {
                   <p className="text">Rejected MSMEs</p>
                 </Tooltip>
 
-                <ArrowForwardIosIcon />
+                
               </div>
               <div className="d-flex align-items-center justify-content-start text-center">
                 <div className="p-1 border rounded-2">
@@ -584,7 +584,7 @@ function Dashboard() {
                   <p className="text">Approved Registrations</p>
                 </Tooltip>
 
-                <ArrowForwardIosIcon />
+                
               </div>
               <div className="d-flex align-items-center justify-content-start text-center">
                 <div className="p-1 border rounded-2">

@@ -9,7 +9,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [https://dt.mtc.com.na:4000](https://dt.mtc.com.na:4000) to view it in your browser.
+Open [https://uat-api.erongored.com.na](https://uat-api.erongored.com.na) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.

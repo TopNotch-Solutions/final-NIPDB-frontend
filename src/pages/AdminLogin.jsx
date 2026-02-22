@@ -96,7 +96,7 @@ const AdminLogin = () => {
           try {
             setIsSubmitting(true);
     
-            const loginResponse = await fetch("https://dt.mtc.com.na:4000/auth/admin/login", {
+            const loginResponse = await fetch("https://uat-api.erongored.com.na/auth/admin/login", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -171,7 +171,7 @@ const AdminLogin = () => {
         try {
           setIsSubmitting(true);
           const response = await fetch(
-            "https://dt.mtc.com.na:4000/auth/admin/verify-otp",
+            "https://uat-api.erongored.com.na/auth/admin/verify-otp",
             {
               method: "POST",
               headers: {
