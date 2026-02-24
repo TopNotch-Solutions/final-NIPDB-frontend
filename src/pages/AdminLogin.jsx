@@ -96,7 +96,7 @@ const AdminLogin = () => {
           try {
             setIsSubmitting(true);
     
-            const loginResponse = await fetch("https://uat-api.erongored.com.na/auth/admin/login", {
+            const loginResponse = await fetch("http://uat-api.erongored.com.na/auth/admin/login", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -171,7 +171,7 @@ const AdminLogin = () => {
         try {
           setIsSubmitting(true);
           const response = await fetch(
-            "https://uat-api.erongored.com.na/auth/admin/verify-otp",
+            "http://uat-api.erongored.com.na/auth/admin/verify-otp",
             {
               method: "POST",
               headers: {

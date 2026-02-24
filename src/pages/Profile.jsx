@@ -126,7 +126,7 @@ function Profile() {
     try {
       setIsSubmitting(true);
       const response = await fetch(
-        `https://uat-api.erongored.com.na/auth/admin/update/profile-image/${currentUser.id}`,
+        `http://uat-api.erongored.com.na/auth/admin/update/profile-image/${currentUser.id}`,
         {
           method: "PUT",
           headers: {
@@ -201,7 +201,7 @@ function Profile() {
       try {
         setIsSubmitting(true);
         const response = await fetch(
-          `https://uat-api.erongored.com.na/auth/admin/change-password`,
+          `http://uat-api.erongored.com.na/auth/admin/change-password`,
           {
             method: "PUT",
             headers: {
@@ -289,7 +289,7 @@ function Profile() {
         try {
           setIsSubmitting(true);
           const response = await fetch(
-            `https://uat-api.erongored.com.na/auth/admin/update/details`,
+            `http://uat-api.erongored.com.na/auth/admin/update/details`,
             {
               method: "PUT",
               headers: {

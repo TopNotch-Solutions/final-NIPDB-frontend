@@ -80,7 +80,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://uat-api.erongored.com.na/msme/admin/monthly/registeration",
+          "http://uat-api.erongored.com.na/msme/admin/monthly/registeration",
           {
             method: "GET",
             headers: {
@@ -118,7 +118,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://uat-api.erongored.com.na/msme/admin/totalCount",
+          "http://uat-api.erongored.com.na/msme/admin/totalCount",
           {
             method: "GET",
             headers: {
@@ -161,7 +161,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://uat-api.erongored.com.na/msme/admin/pendingCount",
+          "http://uat-api.erongored.com.na/msme/admin/pendingCount",
           {
             method: "GET",
             headers: {
@@ -204,7 +204,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://uat-api.erongored.com.na/msme/admin/rejectedCount",
+          "http://uat-api.erongored.com.na/msme/admin/rejectedCount",
           {
             method: "GET",
             headers: {
@@ -247,7 +247,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://uat-api.erongored.com.na/msme/admin/approvedCount",
+          "http://uat-api.erongored.com.na/msme/admin/approvedCount",
           {
             method: "GET",
             headers: {
@@ -288,7 +288,7 @@ function Dashboard() {
     const fetchMsmeAllMSME = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch("https://uat-api.erongored.com.na/msme/admin/all", {
+        const response = await fetch("http://uat-api.erongored.com.na/msme/admin/all", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -328,7 +328,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "https://uat-api.erongored.com.na/msme/admin/top5/categories",
+          "http://uat-api.erongored.com.na/msme/admin/top5/categories",
           {
             method: "GET",
             headers: {
@@ -583,8 +583,6 @@ function Dashboard() {
                 <Tooltip title="Approved Registrations" className="pointer">
                   <p className="text">Approved Registrations</p>
                 </Tooltip>
-
-                
               </div>
               <div className="d-flex align-items-center justify-content-start text-center">
                 <div className="p-1 border rounded-2">

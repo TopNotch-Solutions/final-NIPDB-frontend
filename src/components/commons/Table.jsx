@@ -11,7 +11,7 @@ function Table(){
   const [employeeData, setEmployeeData] = useState([]);
 
   useEffect(() => {
-    fetch("https://uat-api.erongored.com.na/devices/staffHandsets")
+    fetch("http://uat-api.erongored.com.na/devices/staffHandsets")
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((err) => console.log(err));
