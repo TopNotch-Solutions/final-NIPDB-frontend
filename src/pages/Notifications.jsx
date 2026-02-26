@@ -121,7 +121,7 @@ function Notifications() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://uat-api.erongored.com.na/msme/admin/all/user",
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/user`,
           {
             method: "GET",
             headers: {
@@ -164,7 +164,7 @@ function Notifications() {
         dispatch(toggleIsSubmittingTrue());
         setIsSubmitting(true);
         const response = await fetch(
-          `http://uat-api.erongored.com.na/notifications/admin/single/notifications`,
+          `${process.env.REACT_APP_BASE_URL}/notifications/admin/single/notifications`,
           {
             method: "GET",
             headers: {
@@ -207,7 +207,7 @@ function Notifications() {
         dispatch(toggleIsSubmittingTrue());
         setIsSubmitting(true);
         const response = await fetch(
-          `http://uat-api.erongored.com.na/notifications/admin/all/unread-notification`,
+          `${process.env.REACT_APP_BASE_URL}/notifications/admin/all/unread-notification`,
           {
             method: "GET",
             headers: {
@@ -250,7 +250,7 @@ function Notifications() {
         dispatch(toggleIsSubmittingTrue());
         setIsSubmitting(true);
         const response = await fetch(
-          `http://uat-api.erongored.com.na/notifications/admin/all/sent-by-admin`,
+          `${process.env.REACT_APP_BASE_URL}/notifications/admin/all/sent-by-admin`,
           {
             method: "GET",
             headers: {
@@ -293,7 +293,7 @@ function Notifications() {
         dispatch(toggleIsSubmittingTrue());
         setIsSubmitting(true);
         const response = await fetch(
-          `http://uat-api.erongored.com.na/notifications/admin/all/read-notification`,
+          `${process.env.REACT_APP_BASE_URL}/notifications/admin/all/read-notification`,
           {
             method: "GET",
             headers: {
@@ -351,7 +351,7 @@ function Notifications() {
           senderId: currentUser.id,
         };
         const response = await fetch(
-          `http://uat-api.erongored.com.na/notifications/admin/create`,
+          `${process.env.REACT_APP_BASE_URL}/notifications/admin/create`,
           {
             method: "POST",
             headers: {
@@ -428,7 +428,7 @@ function Notifications() {
           senderId: currentUser.id,
         };
         const response = await fetch(
-          `http://uat-api.erongored.com.na/notifications/admin/create`,
+          `${process.env.REACT_APP_BASE_URL}/notifications/admin/create`,
           {
             method: "POST",
             headers: {
@@ -496,7 +496,7 @@ function Notifications() {
       dispatch(toggleIsSubmittingTrue());
       setIsSubmitting(true);
       const response = await fetch(
-        `http://uat-api.erongored.com.na/notifications/admin/single/${id}`,
+        `${process.env.REACT_APP_BASE_URL}/notifications/admin/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -549,7 +549,7 @@ function Notifications() {
       dispatch(toggleIsSubmittingTrue());
       setIsSubmitting(true);
       const response = await fetch(
-        `http://uat-api.erongored.com.na/notifications/admin/single/sent-by-admin/${id}`,
+        `${process.env.REACT_APP_BASE_URL}/notifications/admin/single/sent-by-admin/${id}`,
         {
           method: "GET",
           headers: {
@@ -612,7 +612,7 @@ function Notifications() {
           setIsSubmitting(true);
           dispatch(toggleIsSubmittingTrue());
           const response = await fetch(
-            `http://uat-api.erongored.com.na/notifications/admin/delete/${id}`,
+            `${process.env.REACT_APP_BASE_URL}/notifications/admin/delete/${id}`,
             {
               method: "DELETE",
               headers: {
@@ -671,7 +671,7 @@ function Notifications() {
       setIsSubmitting(true);
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `http://uat-api.erongored.com.na/notifications/admin/delete/${updatedId}`,
+        `${process.env.REACT_APP_BASE_URL}/notifications/admin/delete/${updatedId}`,
         {
           method: "DELETE",
           headers: {
