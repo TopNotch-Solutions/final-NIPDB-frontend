@@ -74,7 +74,7 @@ function ForgotPassword() {
       if (tokenData.access_token) {
         try {
           setIsSubmitting(true);
-          const response = await fetch("http://uat-api.erongored.com.na/auth/admin/newPassword", {
+          const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/admin/newPassword`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",

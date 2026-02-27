@@ -128,7 +128,7 @@ function Bso() {
     const fetchTotalCount = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch("http://uat-api.erongored.com.na/bso/admin/count", {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/bso/admin/count`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -168,7 +168,7 @@ function Bso() {
     const fetchApprovedCount = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch("http://uat-api.erongored.com.na/bso/admin/all", {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/bso/admin/all`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -330,7 +330,7 @@ function Bso() {
         formData.append("description", description);
         formData.append("bso-image", file);
         formData.append("website", website);
-        const response = await fetch("http://uat-api.erongored.com.na/bso/admin/create", {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/bso/admin/create`, {
           method: "POST",
           
           headers:{
@@ -453,7 +453,7 @@ function Bso() {
     try {
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `http://uat-api.erongored.com.na/bso/admin/single/${id}`,
+        `${process.env.REACT_APP_BASE_URL}/bso/admin/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -519,7 +519,7 @@ function Bso() {
             setIsSubmitting(true);
             dispatch(toggleIsSubmittingTrue());
             const response = await fetch(
-              `http://uat-api.erongored.com.na/bso/admin/delete/${id}`,
+              `${process.env.REACT_APP_BASE_URL}/bso/admin/delete/${id}`,
               {
                 method: "DELETE",
                 headers: {
@@ -604,7 +604,7 @@ function Bso() {
           formData.append("bso-image", fileUpdate);
           formData.append("website", websiteDetails);
           const response = await fetch(
-            `http://uat-api.erongored.com.na/bso/admin/update/${updatingDetails.id}`,
+            `${process.env.REACT_APP_BASE_URL}/bso/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
               
@@ -1356,7 +1356,7 @@ function Bso() {
                           <img
                             src={
                               updatingDetails.logo === logoDetails
-                                ? `http://uat-api.erongored.com.na/bsos/${logoDetails}`
+                                ? `${process.env.REACT_APP_BASE_URL}/bsos/${logoDetails}`
                                 : logoDetails
                             }
                             className=" img-responsive img-thumbnail"
