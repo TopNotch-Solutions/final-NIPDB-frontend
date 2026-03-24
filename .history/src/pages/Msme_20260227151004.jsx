@@ -489,7 +489,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/totalCount`,
+          `http://41.219.71.27:4000/msme/admin/totalCount`,
           {
             method: "GET",
             headers: {
@@ -532,7 +532,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/pendingCount`,
+          `http://41.219.71.27:4000/msme/admin/pendingCount`,
           {
             method: "GET",
             headers: {
@@ -575,7 +575,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/rejectedCount`,
+          `http://41.219.71.27:4000/msme/admin/rejectedCount`,
           {
             method: "GET",
             headers: {
@@ -618,7 +618,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/approvedCount`,
+          `http://41.219.71.27:4000/msme/admin/approvedCount`,
           {
             method: "GET",
             headers: {
@@ -660,7 +660,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/incompleteCount`,
+          `http://41.219.71.27:4000/msme/admin/incompleteCount`,
           {
             method: "GET",
             headers: {
@@ -702,7 +702,7 @@ function Msme() {
     const fetchMsmeAllMSME = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/msme/admin/all`, {
+        const response = await fetch(`http://41.219.71.27:4000/msme/admin/all`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -742,7 +742,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/pending`,
+          `http://41.219.71.27:4000/msme/admin/all/pending`,
           {
             method: "GET",
             headers: {
@@ -784,7 +784,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/rejected`,
+          `http://41.219.71.27:4000/msme/admin/all/rejected`,
           {
             method: "GET",
             headers: {
@@ -827,7 +827,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/approved`,
+          `http://41.219.71.27:4000/msme/admin/all/approved`,
           {
             method: "GET",
             headers: {
@@ -870,7 +870,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/incomplete`,
+          `http://41.219.71.27:4000/msme/admin/all/incomplete`,
           {
             method: "GET",
             headers: {
@@ -911,7 +911,7 @@ function Msme() {
     const fetchAllRegions = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/region/admin/all`, {
+        const response = await fetch(`http://41.219.71.27:4000/region/admin/all`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -951,7 +951,7 @@ function Msme() {
     const fetchAllTowns = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/town/admin/all`, {
+        const response = await fetch(`http://41.219.71.27:4000/town/admin/all`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -991,7 +991,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/primaryIndustry/admin/all`,
+          `http://41.219.71.27:4000/primaryIndustry/admin/all`,
           {
             method: "GET",
             headers: {
@@ -1033,7 +1033,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/secondaryIndustry/admin/all`,
+          `http://41.219.71.27:4000/secondaryIndustry/admin/all`,
           {
             method: "GET",
             headers: {
@@ -1075,7 +1075,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/user`,
+          `http://41.219.71.27:4000/msme/admin/all/user`,
           {
             method: "GET",
             headers: {
@@ -1796,7 +1796,7 @@ function Msme() {
         console.log("This is my formdata", formData);
 
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/create`,
+          `http://41.219.71.27:4000/msme/admin/create`,
           {
             method: "POST",
             
@@ -1921,7 +1921,7 @@ function Msme() {
     try {
       setIsSubmitting(true);
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/msme/admin/single/${id}`,
+        `http://41.219.71.27:4000/msme/admin/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -2344,7 +2344,7 @@ function Msme() {
             try {
               setIsSubmitting(true);
               const response = await fetch(
-                `${process.env.REACT_APP_BASE_URL}/msme/admin/status/${updatingDetails.id}`,
+                `http://41.219.71.27:4000/msme/admin/status/${updatingDetails.id}`,
                 {
                   method: "PUT",
                   headers: {
@@ -2502,7 +2502,7 @@ function Msme() {
           formData.append("removeImage3", removeImage3);
         }
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/update/${updatingDetails.id}`,
+          `http://41.219.71.27:4000/msme/admin/update/${updatingDetails.id}`,
           {
             method: "PUT",
             
@@ -2523,7 +2523,7 @@ function Msme() {
             try {
               setIsSubmitting(true);
               const response = await fetch(
-                `${process.env.REACT_APP_BASE_URL}/msme/admin/status/${updatingDetails.id}`,
+                `http://41.219.71.27:4000/msme/admin/status/${updatingDetails.id}`,
                 {
                   method: "PUT",
                   headers: {
@@ -2661,7 +2661,7 @@ function Msme() {
           try {
             setIsSubmitting(true);
             const response = await fetch(
-              `${process.env.REACT_APP_BASE_URL}/msme/admin/status/${updatingDetails.id}`,
+              `http://41.219.71.27:4000/msme/admin/status/${updatingDetails.id}`,
               {
                 method: "PUT",
                 headers: {
@@ -2750,7 +2750,7 @@ function Msme() {
           try {
             setIsSubmitting(true);
             const response = await fetch(
-              `${process.env.REACT_APP_BASE_URL}/msme/admin/block/${updatingDetails.id}`,
+              `http://41.219.71.27:4000/msme/admin/block/${updatingDetails.id}`,
               {
                 method: "PUT",
                 headers: {
@@ -2838,7 +2838,7 @@ function Msme() {
           try {
             setIsSubmitting(true);
             const response = await fetch(
-              `${process.env.REACT_APP_BASE_URL}/msme/admin/block/${updatingDetails.id}`,
+              `http://41.219.71.27:4000/msme/admin/block/${updatingDetails.id}`,
               {
                 method: "PUT",
                 headers: {
@@ -2919,7 +2919,7 @@ function Msme() {
         try {
           setsendingNotification(true);
           const response = await fetch(
-            `${process.env.REACT_APP_BASE_URL}/notifications/admin/create/single/${updatingDetails.id}`,
+            `http://41.219.71.27:4000/notifications/admin/create/single/${updatingDetails.id}`,
             {
               method: "POST",
               headers: {
@@ -7089,7 +7089,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo
                                       ?.businessLogo === businessLogoDetails
-                                      ? `${process.env.REACT_APP_BASE_URL}/msmes/${businessLogoDetails}`
+                                      ? `http://41.219.71.27:4000/msmes/${businessLogoDetails}`
                                       : businessLogoDetails
                                   }
                                   className=" img-responsive img-thumbnail"
@@ -7178,7 +7178,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo?.image1 ===
                                     image1Details
-                                      ? `${process.env.REACT_APP_BASE_URL}/msmes/${image1Details}`
+                                      ? `http://41.219.71.27:4000/msmes/${image1Details}`
                                       : image1Details
                                   }
                                   className=" img-responsive img-thumbnail"
@@ -7267,7 +7267,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo?.image2 ===
                                     image2Details
-                                      ? `${process.env.REACT_APP_BASE_URL}/msmes/${image2Details}`
+                                      ? `http://41.219.71.27:4000/msmes/${image2Details}`
                                       : image2Details
                                   }
                                   className=" img-responsive img-thumbnail"
@@ -7356,7 +7356,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo?.image3 ===
                                     image3Details
-                                      ? `${process.env.REACT_APP_BASE_URL}/msmes/${image3Details}`
+                                      ? `http://41.219.71.27:4000/msmes/${image3Details}`
                                       : image3Details
                                   }
                                   className=" img-responsive img-thumbnail"

@@ -55,6 +55,20 @@ function Profile() {
   const buttonStyle = {
     color: "red",
     borderColor: "red",
+    borderRadius: "10px",
+    fontWeight: 600,
+    letterSpacing: "0.2px",
+    minHeight: "40px",
+    textTransform: "none",
+    paddingInline: "14px",
+  };
+  const outlinedActionButtonSx = {
+    borderRadius: "10px",
+    fontWeight: 600,
+    letterSpacing: "0.2px",
+    minHeight: "40px",
+    textTransform: "none",
+    paddingInline: "14px",
   };
 
   useEffect(() => {
@@ -126,7 +140,7 @@ function Profile() {
     try {
       setIsSubmitting(true);
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/auth/admin/update/profile-image/${currentUser.id}`,
+        `http://41.219.71.27:4000/auth/admin/update/profile-image/${currentUser.id}`,
         {
           method: "PUT",
           headers: {
@@ -201,7 +215,7 @@ function Profile() {
       try {
         setIsSubmitting(true);
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/auth/admin/change-password`,
+          `http://41.219.71.27:4000/auth/admin/change-password`,
           {
             method: "PUT",
             headers: {
@@ -289,7 +303,7 @@ function Profile() {
         try {
           setIsSubmitting(true);
           const response = await fetch(
-            `${process.env.REACT_APP_BASE_URL}/auth/admin/update/details`,
+            `http://41.219.71.27:4000/auth/admin/update/details`,
             {
               method: "PUT",
               headers: {
@@ -443,7 +457,7 @@ function Profile() {
               {selectedFile && (
                 <>
                   <button
-                    className="btn btn-success  p-md-1 p-xl-2 w-100 ptt-top"
+                    className="btn btn-success p-md-1 p-xl-2 w-100 ptt-top profile-action-btn"
                     onClick={handleFileUpload}
                   >
                     {uploadStatus === "select" || uploadStatus === "uploading"
@@ -474,6 +488,7 @@ function Profile() {
                   variant="outlined"
                   size={isSmallScreen ? "small" : "medium"}
                   color="info"
+                  sx={outlinedActionButtonSx}
                   endIcon={<EditIcon />}
                 >
                   Edit
@@ -554,8 +569,11 @@ function Profile() {
                   placeholder="example@nipdb.com.na"
                   autoComplete="off"
                   name="email"
-                  disabled={!isEditing ? true : false}
+                  onFocus={() => {
+                    if (!isEditing) setIsEditing(true);
+                  }}
                   onChange={(e) => {
+                    if (!isEditing) setIsEditing(true);
                     setEmail(e.target.value);
                   }}
                 />
@@ -573,8 +591,11 @@ function Profile() {
                   placeholder="example@nipdb.com.na"
                   autoComplete="off"
                   name="email"
-                  disabled={!isEditing ? true : false}
+                  onFocus={() => {
+                    if (!isEditing) setIsEditing(true);
+                  }}
                   onChange={(e) => {
+                    if (!isEditing) setIsEditing(true);
                     setContactNumber(e.target.value);
                   }}
                 />
@@ -586,10 +607,13 @@ function Profile() {
                   Department:
                 </label>
                 <select
-                  class="form-select"
+                  className="form-select modern-select"
                   value={department}
-                  disabled={!isEditing ? true : false}
+                  onFocus={() => {
+                    if (!isEditing) setIsEditing(true);
+                  }}
                   onChange={(e) => {
+                    if (!isEditing) setIsEditing(true);
                     setDepartment(e.target.value);
                   }}
                 >
@@ -608,7 +632,7 @@ function Profile() {
               <div className="form-group">
                 {isEditing ? (
                   <button
-                    className="btn btn-success w-100 pt-top"
+                    className="btn btn-success w-100 pt-top profile-action-btn"
                     onClick={handleUserDetailsChange}
                   >
                     Submit
@@ -722,7 +746,7 @@ function Profile() {
             <Grid item xs={12} sm={5} md={5}>
               {currentPassword && newPassword && confirmPassword && (
                 <button
-                  className="btn btn-success p-md-2 w-100 pt-top"
+                  className="btn btn-success p-md-2 w-100 pt-top profile-action-btn"
                   onClick={handlePasswordChange}
                 >
                   Change Password

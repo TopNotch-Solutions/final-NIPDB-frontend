@@ -74,7 +74,7 @@ function ForgotPassword() {
       if (tokenData.access_token) {
         try {
           setIsSubmitting(true);
-          const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/admin/newPassword`, {
+          const response = await fetch(`http://41.219.71.27:4000/auth/admin/newPassword`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",

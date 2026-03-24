@@ -168,7 +168,7 @@ function Bso() {
     const fetchApprovedCount = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch("${process.env.REACT_APP_BASE_URL}/bso/admin/all", {
+        const response = await fetch("http://41.219.71.27:4000/bso/admin/all", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

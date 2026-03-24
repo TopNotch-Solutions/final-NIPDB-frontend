@@ -97,7 +97,7 @@ const AdminLogin = () => {
             setIsSubmitting(true);
     
             const loginResponse = await fetch(`/auth/admin/login`, {
-              method: "POST",${process.env.REACT_APP_BASE_URL}
+              method: "POST",http://41.219.71.27:4000
               headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${tokenData.access_token}`,

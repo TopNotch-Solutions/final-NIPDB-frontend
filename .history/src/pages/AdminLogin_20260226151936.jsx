@@ -100,7 +100,7 @@ const AdminLogin = () => {
             setIsSubmitting(true);
 
             const loginResponse = await fetch(
-              "${process.env.REACT_APP_BASE_URL}/auth/admin/login",
+              "http://41.219.71.27:4000/auth/admin/login",
               {
                 method: "POST",
                 headers: {
@@ -177,7 +177,7 @@ const AdminLogin = () => {
         try {
           setIsSubmitting(true);
           const response = await fetch(
-            "${process.env.REACT_APP_BASE_URL}/auth/admin/verify-otp",
+            "http://41.219.71.27:4000/auth/admin/verify-otp",
             {
               method: "POST",
               headers: {

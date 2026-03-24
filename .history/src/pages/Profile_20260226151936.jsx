@@ -129,7 +129,7 @@ function Profile() {
     try {
       setIsSubmitting(true);
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/auth/admin/update/profile-image/${currentUser.id}`,
+        `http://41.219.71.27:4000/auth/admin/update/profile-image/${currentUser.id}`,
         {
           method: "PUT",
           headers: {
@@ -202,7 +202,7 @@ function Profile() {
       try {
         setIsSubmitting(true);
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/auth/admin/change-password`,
+          `http://41.219.71.27:4000/auth/admin/change-password`,
           {
             method: "PUT",
             headers: {
@@ -289,7 +289,7 @@ function Profile() {
         try {
           setIsSubmitting(true);
           const response = await fetch(
-            `${process.env.REACT_APP_BASE_URL}/auth/admin/update/details`,
+            `http://41.219.71.27:4000/auth/admin/update/details`,
             {
               method: "PUT",
               headers: {

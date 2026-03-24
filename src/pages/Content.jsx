@@ -139,7 +139,7 @@ function Content() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/opportunities/admin/all`,
+          `http://41.219.71.27:4000/opportunities/admin/all`,
           {
             method: "GET",
             headers: {
@@ -181,7 +181,7 @@ function Content() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/admin/mobile-images/all`,
+          `http://41.219.71.27:4000/admin/mobile-images/all`,
           {
             method: "GET",
             headers: {
@@ -235,7 +235,7 @@ function Content() {
         formData.append("link", link);
 
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/opportunities/admin/create`,
+          `http://41.219.71.27:4000/opportunities/admin/create`,
           {
             method: "POST",
             headers:{
@@ -287,7 +287,7 @@ function Content() {
         formData.append("description", descriptionImage);
         formData.append("mobile-image", fileMobileImage);
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/admin/mobile-images/create`,
+          `http://41.219.71.27:4000/admin/mobile-images/create`,
           {
             method: "POST",
             
@@ -340,7 +340,7 @@ function Content() {
     try {
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/opportunities/admin/single/${id}`,
+        `http://41.219.71.27:4000/opportunities/admin/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -393,7 +393,7 @@ function Content() {
     try {
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/admin/mobile-images/single/${id}`,
+        `http://41.219.71.27:4000/admin/mobile-images/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -458,7 +458,7 @@ function Content() {
           setIsSubmitting(true);
           dispatch(toggleIsSubmittingTrue());
           const response = await fetch(
-            `${process.env.REACT_APP_BASE_URL}/opportunities/admin/delete/${id}`,
+            `http://41.219.71.27:4000/opportunities/admin/delete/${id}`,
             {
               method: "DELETE",
               headers: {
@@ -531,7 +531,7 @@ function Content() {
           dispatch(toggleIsSubmittingTrue());
 
           const response = await fetch(
-            `${process.env.REACT_APP_BASE_URL}/admin/mobile-images/delete/${id}`,
+            `http://41.219.71.27:4000/admin/mobile-images/delete/${id}`,
             {
               method: "DELETE",
               headers: {
@@ -927,7 +927,7 @@ const validateFields1 = () => {
           formData.append("opportunity-image", fileMobileImage);
           formData.append("link", linkDetails);
           const response = await fetch(
-            `${process.env.REACT_APP_BASE_URL}/opportunities/admin/update/${updatingDetails.id}`,
+            `http://41.219.71.27:4000/opportunities/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
               
@@ -989,7 +989,7 @@ const validateFields1 = () => {
           formData.append("mobile-image", fileMobileImageDetails);
           console.log("yo", descriptionDetails, fileMobileImageDetails);
           const response = await fetch(
-            `${process.env.REACT_APP_BASE_URL}/admin/mobile-images/update/${updatingImageDetails.id}`,
+            `http://41.219.71.27:4000/admin/mobile-images/update/${updatingImageDetails.id}`,
             {
               method: "PUT",
               
@@ -1055,7 +1055,7 @@ const validateFields1 = () => {
           formData.append("link", linkDetails);
 
           const response = await fetch(
-            `${process.env.REACT_APP_BASE_URL}/opportunities/admin/update/${updatingDetails.id}`,
+            `http://41.219.71.27:4000/opportunities/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
               
@@ -1165,19 +1165,18 @@ const validateFields1 = () => {
                   <>
                     <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
                       <Box
+                        className="app-search-bar"
                         display="flex"
-                        backgroundColor="rgba(245, 246, 248, 1)"
-                        borderRadius="3px"
-                        width="300px"
+                        width="320px"
                         marginRight="10px"
                       >
-                        {/* rgba(245, 246, 248, 1) */}
                         <InputBase
-                          sx={{ ml: 2, flex: 1 }}
+                          className="app-search-input"
+                          sx={{ ml: 1.5, flex: 1 }}
                           placeholder="Search for an Opportunity"
                           onChange={(e) => setSearchQuery(e.target.value)}
                         />
-                        <IconButton type="button" sx={{ p: 1 }}>
+                        <IconButton type="button" className="app-search-btn" sx={{ p: 1 }}>
                           <SearchIcon />
                         </IconButton>
                       </Box>
@@ -1259,19 +1258,18 @@ const validateFields1 = () => {
                   <>
                     <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
                       <Box
+                        className="app-search-bar"
                         display="flex"
-                        backgroundColor="rgba(245, 246, 248, 1)"
-                        borderRadius="3px"
-                        width="300px"
+                        width="320px"
                         marginRight="10px"
                       >
-                        {/* rgba(245, 246, 248, 1) */}
                         <InputBase
-                          sx={{ ml: 2, flex: 1 }}
+                          className="app-search-input"
+                          sx={{ ml: 1.5, flex: 1 }}
                           placeholder="Search for Mobile Image"
                           onChange={(e) => setSearchQuery1(e.target.value)}
                         />
-                        <IconButton type="button" sx={{ p: 1 }}>
+                        <IconButton type="button" className="app-search-btn" sx={{ p: 1 }}>
                           <SearchIcon />
                         </IconButton>
                       </Box>
@@ -1440,6 +1438,7 @@ const validateFields1 = () => {
                       <textarea
                         type="text"
                         rows={4}
+                        maxLength="350"
                         value={description}
                         className="form-control place-holder"
                         placeholder="Opportunity description......"
@@ -1450,6 +1449,10 @@ const validateFields1 = () => {
                           setDescription(e.target.value);
                         }}
                       />
+                      <div className="float-end text-counter">
+                        <span>{description?.length || 0}</span>
+                        <span>/350</span>
+                      </div>
                       {descriptionError && (
                         <>
                           <p className="error-message">{descriptionError}</p>
@@ -1570,6 +1573,7 @@ const validateFields1 = () => {
                       <textarea
                         type="text"
                         rows={4}
+                        maxLength="350"
                         value={description}
                         className="form-control place-holder"
                         placeholder="Opportunity description......"
@@ -1580,6 +1584,10 @@ const validateFields1 = () => {
                           setDescription(e.target.value);
                         }}
                       />
+                      <div className="float-end text-counter">
+                        <span>{description?.length || 0}</span>
+                        <span>/350</span>
+                      </div>
                       {descriptionError && (
                         <>
                           <p className="error-message">{descriptionError}</p>
@@ -1730,8 +1738,9 @@ const validateFields1 = () => {
                   <label htmlFor="email" className="pb-2 text-boldd">
                     Description: <span>*</span>
                   </label>
-                  <input
-                    type="text"
+                  <textarea
+                    rows={4}
+                    maxLength="350"
                     className="form-control place-holder"
                     placeholder="Opportunity description"
                     autoComplete="off"
@@ -1741,6 +1750,10 @@ const validateFields1 = () => {
                       setDescriptionImage(e.target.value);
                     }}
                   />
+                  <div className="float-end text-counter">
+                    <span>{descriptionImage?.length || 0}</span>
+                    <span>/350</span>
+                  </div>
                   {descriptionImageError && (
                     <>
                       <p className="error-message">{descriptionImageError}</p>
@@ -1926,6 +1939,7 @@ const validateFields1 = () => {
                       <textarea
                         type="text"
                         rows={4}
+                        maxLength="350"
                         value={descriptionDetails}
                         className="form-control place-holder"
                         placeholder="Opportunity description"
@@ -1937,6 +1951,10 @@ const validateFields1 = () => {
                           setDescriptionDetails(e.target.value);
                         }}
                       />
+                      <div className="float-end text-counter">
+                        <span>{descriptionDetails?.length || 0}</span>
+                        <span>/350</span>
+                      </div>
                       {descriptionDetailsError && (
                         <>
                           <p className="error-message">
@@ -2005,7 +2023,7 @@ const validateFields1 = () => {
                               <img
                                 src={
                                   updatingDetails.image === imageDetails
-                                    ? `${process.env.REACT_APP_BASE_URL}/opportunities/` +
+                                    ? `http://41.219.71.27:4000/opportunities/` +
                                       imageDetails
                                     : imageDetails
                                 }
@@ -2067,6 +2085,7 @@ const validateFields1 = () => {
                       <textarea
                         type="text"
                         rows={4}
+                        maxLength="350"
                         value={descriptionDetails}
                         className="form-control place-holder"
                         placeholder="Opportunity description"
@@ -2078,6 +2097,10 @@ const validateFields1 = () => {
                           setDescriptionDetails(e.target.value);
                         }}
                       />
+                      <div className="float-end text-counter">
+                        <span>{descriptionDetails?.length || 0}</span>
+                        <span>/350</span>
+                      </div>
                       {descriptionDetailsError && (
                         <>
                           <p className="error-message">
@@ -2147,7 +2170,7 @@ const validateFields1 = () => {
                               <img
                                 src={
                                   updatingDetails.image === imageDetails
-                                    ? `${process.env.REACT_APP_BASE_URL}/opportunities/` +
+                                    ? `http://41.219.71.27:4000/opportunities/` +
                                       imageDetails
                                     : imageDetails
                                 }
@@ -2247,9 +2270,10 @@ const validateFields1 = () => {
                   <label htmlFor="email" className="pb-2 text-boldd">
                     Description: <span>*</span>
                   </label>
-                  <input
-                    type="text"
+                  <textarea
+                    rows={4}
                     value={descriptionImageDetails}
+                    maxLength="350"
                     className="form-control place-holder"
                     placeholder="Opportunity description"
                     autoComplete="off"
@@ -2260,6 +2284,10 @@ const validateFields1 = () => {
                       setDescriptionImageDetails(e.target.value);
                     }}
                   />
+                  <div className="float-end text-counter">
+                    <span>{descriptionImageDetails?.length || 0}</span>
+                    <span>/350</span>
+                  </div>
                   {descriptionImageDetailsError && (
                     <>
                       <p className="error-message">
@@ -2307,7 +2335,7 @@ const validateFields1 = () => {
                             src={
                               updatingImageDetails.mobileImage ===
                               imageImageDetails
-                                ? `${process.env.REACT_APP_BASE_URL}/mobile-images/${imageImageDetails}`
+                                ? `http://41.219.71.27:4000/mobile-images/${imageImageDetails}`
                                 : imageImageDetails
                             }
                             className="img-responsive img-thumbnail"

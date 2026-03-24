@@ -24,7 +24,7 @@ function SubmitEmail() {
         try {
           setIsSubmitting(true);
           const response = await fetch(
-            "${process.env.REACT_APP_BASE_URL}/auth/admin/forgot-password",
+            "http://41.219.71.27:4000/auth/admin/forgot-password",
             {
               method: "POST",
               headers: {

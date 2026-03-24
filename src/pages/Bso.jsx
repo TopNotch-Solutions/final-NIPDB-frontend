@@ -128,7 +128,7 @@ function Bso() {
     const fetchTotalCount = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/bso/admin/count`, {
+        const response = await fetch(`http://41.219.71.27:4000/bso/admin/count`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -168,7 +168,7 @@ function Bso() {
     const fetchApprovedCount = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/bso/admin/all`, {
+        const response = await fetch(`http://41.219.71.27:4000/bso/admin/all`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -330,7 +330,7 @@ function Bso() {
         formData.append("description", description);
         formData.append("bso-image", file);
         formData.append("website", website);
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/bso/admin/create`, {
+        const response = await fetch(`http://41.219.71.27:4000/bso/admin/create`, {
           method: "POST",
           
           headers:{
@@ -453,7 +453,7 @@ function Bso() {
     try {
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/bso/admin/single/${id}`,
+        `http://41.219.71.27:4000/bso/admin/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -519,7 +519,7 @@ function Bso() {
             setIsSubmitting(true);
             dispatch(toggleIsSubmittingTrue());
             const response = await fetch(
-              `${process.env.REACT_APP_BASE_URL}/bso/admin/delete/${id}`,
+              `http://41.219.71.27:4000/bso/admin/delete/${id}`,
               {
                 method: "DELETE",
                 headers: {
@@ -604,7 +604,7 @@ function Bso() {
           formData.append("bso-image", fileUpdate);
           formData.append("website", websiteDetails);
           const response = await fetch(
-            `${process.env.REACT_APP_BASE_URL}/bso/admin/update/${updatingDetails.id}`,
+            `http://41.219.71.27:4000/bso/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
               
@@ -794,19 +794,18 @@ function Bso() {
               <div className="col-12 mb-4 listing-msme p-4 shadow rounded-3 mb-4">
                 <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
                   <Box
+                    className="app-search-bar"
                     display="flex"
-                    backgroundColor="rgba(245, 246, 248, 1)"
-                    borderRadius="3px"
-                    width="300px"
+                    width="320px"
                     marginRight="10px"
                   >
-                    {/* rgba(245, 246, 248, 1) */}
                     <InputBase
-                      sx={{ ml: 2, flex: 1 }}
+                      className="app-search-input"
+                      sx={{ ml: 1.5, flex: 1 }}
                       placeholder="Search for a BSO"
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                    <IconButton type="button" sx={{ p: 1 }}>
+                    <IconButton type="button" className="app-search-btn" sx={{ p: 1 }}>
                       <SearchIcon />
                     </IconButton>
                   </Box>
@@ -953,7 +952,7 @@ function Bso() {
                     Type: <span>*</span>
                   </label>
                   <select
-                    class="form-select"
+                    className="form-select modern-select"
                     onChange={(e) => {
                       setTypeError("");
                       setType(e.target.value);
@@ -1123,6 +1122,7 @@ function Bso() {
                   <textarea
                     type="text"
                     rows={5}
+                    maxLength="350"
                     className="form-control place-holder"
                     placeholder="Enter bso description"
                     autoComplete="off"
@@ -1132,6 +1132,10 @@ function Bso() {
                       setDesciption(e.target.value);
                     }}
                   />
+                  <div className="float-end text-counter">
+                    <span>{description?.length || 0}</span>
+                    <span>/350</span>
+                  </div>
                   {descriptionError && (
                     <>
                       <p className="error-message">{descriptionError}</p>
@@ -1223,7 +1227,7 @@ function Bso() {
                     Type: <span>*</span>
                   </label>
                   <select
-                    class="form-select"
+                    className="form-select modern-select"
                     value={typeDetails}
                     onChange={(e) => {
                       setTypeDetailsError("");
@@ -1356,7 +1360,7 @@ function Bso() {
                           <img
                             src={
                               updatingDetails.logo === logoDetails
-                                ? `${process.env.REACT_APP_BASE_URL}/bsos/${logoDetails}`
+                                ? `http://41.219.71.27:4000/bsos/${logoDetails}`
                                 : logoDetails
                             }
                             className=" img-responsive img-thumbnail"
@@ -1405,6 +1409,7 @@ function Bso() {
                   <textarea
                     type="text"
                     rows={5}
+                    maxLength="350"
                     value={descriptionDetails}
                     className="form-control place-holder"
                     placeholder="Enter bso description"
@@ -1416,6 +1421,10 @@ function Bso() {
                       setDesciptionDetails(e.target.value);
                     }}
                   />
+                  <div className="float-end text-counter">
+                    <span>{descriptionDetails?.length || 0}</span>
+                    <span>/350</span>
+                  </div>
                   {descriptionDetailsError && (
                     <>
                       <p className="error-message">{descriptionDetailsError}</p>

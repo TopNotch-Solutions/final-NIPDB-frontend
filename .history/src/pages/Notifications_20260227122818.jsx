@@ -121,7 +121,7 @@ function Notifications() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/user`,
+          `http://41.219.71.27:4000/msme/admin/all/user`,
           {
             method: "GET",
             headers: {
@@ -164,7 +164,7 @@ function Notifications() {
         dispatch(toggleIsSubmittingTrue());
         setIsSubmitting(true);
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/notifications/admin/single/notifications`,
+          `http://41.219.71.27:4000/notifications/admin/single/notifications`,
           {
             method: "GET",
             headers: {
@@ -207,7 +207,7 @@ function Notifications() {
         dispatch(toggleIsSubmittingTrue());
         setIsSubmitting(true);
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/notifications/admin/all/unread-notification`,
+          `http://41.219.71.27:4000/notifications/admin/all/unread-notification`,
           {
             method: "GET",
             headers: {
@@ -250,7 +250,7 @@ function Notifications() {
         dispatch(toggleIsSubmittingTrue());
         setIsSubmitting(true);
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/notifications/admin/all/sent-by-admin`,
+          `http://41.219.71.27:4000/notifications/admin/all/sent-by-admin`,
           {
             method: "GET",
             headers: {
@@ -296,7 +296,7 @@ function Notifications() {
         dispatch(toggleIsSubmittingTrue());
         setIsSubmitting(true);
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/notifications/admin/all/read-notification`,
+          `http://41.219.71.27:4000/notifications/admin/all/read-notification`,
           {
             method: "GET",
             headers: {
@@ -354,7 +354,7 @@ function Notifications() {
           senderId: currentUser.id,
         };
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/notifications/admin/create`,
+          `http://41.219.71.27:4000/notifications/admin/create`,
           {
             method: "POST",
             headers: {
@@ -431,7 +431,7 @@ function Notifications() {
           senderId: currentUser.id,
         };
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/notifications/admin/create`,
+          `http://41.219.71.27:4000/notifications/admin/create`,
           {
             method: "POST",
             headers: {
@@ -499,7 +499,7 @@ function Notifications() {
       dispatch(toggleIsSubmittingTrue());
       setIsSubmitting(true);
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/notifications/admin/single/${id}`,
+        `http://41.219.71.27:4000/notifications/admin/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -552,7 +552,7 @@ function Notifications() {
       dispatch(toggleIsSubmittingTrue());
       setIsSubmitting(true);
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/notifications/admin/single/sent-by-admin/${id}`,
+        `http://41.219.71.27:4000/notifications/admin/single/sent-by-admin/${id}`,
         {
           method: "GET",
           headers: {
@@ -615,7 +615,7 @@ function Notifications() {
           setIsSubmitting(true);
           dispatch(toggleIsSubmittingTrue());
           const response = await fetch(
-            `${process.env.REACT_APP_BASE_URL}/notifications/admin/delete/${id}`,
+            `http://41.219.71.27:4000/notifications/admin/delete/${id}`,
             {
               method: "DELETE",
               headers: {
@@ -674,7 +674,7 @@ function Notifications() {
       setIsSubmitting(true);
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/notifications/admin/delete/${updatedId}`,
+        `http://41.219.71.27:4000/notifications/admin/delete/${updatedId}`,
         {
           method: "DELETE",
           headers: {

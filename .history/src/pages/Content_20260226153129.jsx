@@ -181,7 +181,7 @@ function Content() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/admin/mobile-images/all`,
+          `http://41.219.71.27:4000/admin/mobile-images/all`,
           {
             method: "GET",
             headers: {

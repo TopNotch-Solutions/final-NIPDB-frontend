@@ -35,7 +35,7 @@ function Reporting() {
     const fetchMsmeAllMSME = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/msme/admin/all/approved`, {
+        const response = await fetch(`http://41.219.71.27:4000/msme/admin/all/approved`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -73,7 +73,7 @@ function Reporting() {
     const fetchMsmeAllMSMEPending = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/msme/admin/all/pending`, {
+        const response = await fetch(`http://41.219.71.27:4000/msme/admin/all/pending`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -111,7 +111,7 @@ function Reporting() {
     const fetchMsmeAllMSMERejected = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/msme/admin/all/rejected`, {
+        const response = await fetch(`http://41.219.71.27:4000/msme/admin/all/rejected`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -149,7 +149,7 @@ function Reporting() {
     const fetchMsmeAllMSMEBlocked = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/msme/admin/all/blocked`, {
+        const response = await fetch(`http://41.219.71.27:4000/msme/admin/all/blocked`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -187,7 +187,7 @@ function Reporting() {
     const fetchMsmeAllBSO = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/bso/admin/all/download`, {
+        const response = await fetch(`http://41.219.71.27:4000/bso/admin/all/download`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -199,6 +199,7 @@ function Reporting() {
       );
 
       const data = await response.json();
+      console.log("Here is the data error ",data)
       const newTokenHeader = response.headers.get('x-access-token');
      
       if(newTokenHeader){
@@ -225,7 +226,7 @@ function Reporting() {
     const fetchMsmeAllUsers = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/system/all/admin/list/download`, {
+        const response = await fetch(`http://41.219.71.27:4000/system/all/admin/list/download`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

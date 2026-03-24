@@ -132,7 +132,7 @@ function Bso() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/bso/admin/count",
+          "http://41.219.71.27:4000/bso/admin/count",
           {
             method: "GET",
             headers: {
@@ -174,7 +174,7 @@ function Bso() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/bso/admin/all",
+          "http://41.219.71.27:4000/bso/admin/all",
           {
             method: "GET",
             headers: {
@@ -333,7 +333,7 @@ function Bso() {
         formData.append("bso-image", file);
         formData.append("website", website);
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/bso/admin/create",
+          "http://41.219.71.27:4000/bso/admin/create",
           {
             method: "POST",
 
@@ -454,7 +454,7 @@ function Bso() {
     try {
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/bso/admin/single/${id}`,
+        `http://41.219.71.27:4000/bso/admin/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -519,7 +519,7 @@ function Bso() {
             setIsSubmitting(true);
             dispatch(toggleIsSubmittingTrue());
             const response = await fetch(
-              `${process.env.REACT_APP_BASE_URL}/bso/admin/delete/${id}`,
+              `http://41.219.71.27:4000/bso/admin/delete/${id}`,
               {
                 method: "DELETE",
                 headers: {
@@ -601,7 +601,7 @@ function Bso() {
           formData.append("bso-image", fileUpdate);
           formData.append("website", websiteDetails);
           const response = await fetch(
-            `${process.env.REACT_APP_BASE_URL}/bso/admin/update/${updatingDetails.id}`,
+            `http://41.219.71.27:4000/bso/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
 
@@ -1352,7 +1352,7 @@ function Bso() {
                           <img
                             src={
                               updatingDetails.logo === logoDetails
-                                ? `${process.env.REACT_APP_BASE_URL}/bsos/${logoDetails}`
+                                ? `http://41.219.71.27:4000/bsos/${logoDetails}`
                                 : logoDetails
                             }
                             className=" img-responsive img-thumbnail"

@@ -80,7 +80,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/msme/admin/monthly/registeration",
+          "http://41.219.71.27:4000/msme/admin/monthly/registeration",
           {
             method: "GET",
             headers: {
@@ -118,7 +118,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/msme/admin/totalCount",
+          "http://41.219.71.27:4000/msme/admin/totalCount",
           {
             method: "GET",
             headers: {
@@ -161,7 +161,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/msme/admin/pendingCount",
+          "http://41.219.71.27:4000/msme/admin/pendingCount",
           {
             method: "GET",
             headers: {
@@ -204,7 +204,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/msme/admin/rejectedCount",
+          "http://41.219.71.27:4000/msme/admin/rejectedCount",
           {
             method: "GET",
             headers: {
@@ -247,7 +247,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/msme/admin/approvedCount",
+          "http://41.219.71.27:4000/msme/admin/approvedCount",
           {
             method: "GET",
             headers: {
@@ -289,7 +289,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/msme/admin/all",
+          "http://41.219.71.27:4000/msme/admin/all",
           {
             method: "GET",
             headers: {
@@ -331,7 +331,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/msme/admin/top5/categories",
+          "http://41.219.71.27:4000/msme/admin/top5/categories",
           {
             method: "GET",
             headers: {

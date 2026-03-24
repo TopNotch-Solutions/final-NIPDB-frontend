@@ -128,7 +128,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/system/all/system-users`,
+          `http://41.219.71.27:4000/system/all/system-users`,
           {
             method: "GET",
             headers: {
@@ -171,7 +171,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/system/all/super-admin-count`,
+          `http://41.219.71.27:4000/system/all/super-admin-count`,
           {
             method: "GET",
             headers: {
@@ -214,7 +214,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/system/all/admin-count`,
+          `http://41.219.71.27:4000/system/all/admin-count`,
           {
             method: "GET",
             headers: {
@@ -257,7 +257,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/system/all/app-user-count`,
+          `http://41.219.71.27:4000/system/all/app-user-count`,
           {
             method: "GET",
             headers: {
@@ -299,7 +299,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/system/all/admin/list`,
+          `http://41.219.71.27:4000/system/all/admin/list`,
           {
             method: "GET",
             headers: {
@@ -341,7 +341,7 @@ function User() {
   const handleUpdate = async (email) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/auth/admin/update/email`,
+        `http://41.219.71.27:4000/auth/admin/update/email`,
         {
           method: "POST",
           headers: {
@@ -410,7 +410,7 @@ function User() {
             setIsSubmitting(true);
 
             const response = await fetch(
-              `${process.env.REACT_APP_BASE_URL}/auth/admin/delete`,
+              `http://41.219.71.27:4000/auth/admin/delete`,
               {
                 method: "DELETE",
                 headers: {
@@ -475,7 +475,7 @@ function User() {
             setIsSubmitting(true);
 
             const response = await fetch(
-              `${process.env.REACT_APP_BASE_URL}/auth/admin/delete`,
+              `http://41.219.71.27:4000/auth/admin/delete`,
               {
                 method: "DELETE",
                 headers: {
@@ -736,7 +736,7 @@ function User() {
             role: roleDetails,
           };
           const response = await fetch(
-            `${process.env.REACT_APP_BASE_URL}/auth/admin/update/user/details/${updatingDetails.id}`,
+            `http://41.219.71.27:4000/auth/admin/update/user/details/${updatingDetails.id}`,
             {
               method: "PUT",
               headers: {
@@ -817,7 +817,7 @@ function User() {
         };
 
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/auth/admin/signup`,
+          `http://41.219.71.27:4000/auth/admin/signup`,
           {
             method: "POST",
             headers: {
@@ -1012,19 +1012,18 @@ function User() {
                 <div className="col-12 mb-4 listing-msme p-4 shadow rounded-3 mb-4">
                   <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
                     <Box
+                      className="app-search-bar"
                       display="flex"
-                      backgroundColor="rgba(245, 246, 248, 1)"
-                      borderRadius="3px"
-                      width="300px"
+                      width="320px"
                       marginRight="10px"
                     >
-                      {/* rgba(245, 246, 248, 1) */}
                       <InputBase
-                        sx={{ ml: 2, flex: 1 }}
+                        className="app-search-input"
+                        sx={{ ml: 1.5, flex: 1 }}
                         placeholder="Search for an Admin"
                         onChange={(e) => setSearchQuery(e.target.value)}
                       />
-                      <IconButton type="button" sx={{ p: 1 }}>
+                      <IconButton type="button" className="app-search-btn" sx={{ p: 1 }}>
                         <SearchIcon />
                       </IconButton>
                     </Box>
@@ -1221,7 +1220,7 @@ function User() {
                       Department: <span>*</span>
                     </label>
                     <select
-                      class="form-select"
+                      className="form-select modern-select"
                       value={department}
                       onChange={(e) => {
                         setDepartmentError("");
@@ -1250,7 +1249,7 @@ function User() {
                       Role: <span>*</span>
                     </label>
                     <select
-                      class="form-select"
+                      className="form-select modern-select"
                       value={role}
                       onChange={(e) => {
                         setRoleError("");
@@ -1437,7 +1436,7 @@ function User() {
                       Department: <span>*</span>
                     </label>
                     <select
-                      class="form-select"
+                      className="form-select modern-select"
                       value={departmentDetails}
                       onChange={(e) => {
                         setDepartmentDetailsError("");
@@ -1467,7 +1466,7 @@ function User() {
                       Role: <span>*</span>
                     </label>
                     <select
-                      class="form-select"
+                      className="form-select modern-select"
                       value={roleDetails}
                       onChange={(e) => {
                         setRoleDetailsError("");

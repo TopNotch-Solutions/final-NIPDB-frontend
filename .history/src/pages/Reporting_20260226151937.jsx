@@ -39,7 +39,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/msme/admin/all/approved",
+          "http://41.219.71.27:4000/msme/admin/all/approved",
           {
             method: "GET",
             headers: {
@@ -80,7 +80,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/msme/admin/all/pending",
+          "http://41.219.71.27:4000/msme/admin/all/pending",
           {
             method: "GET",
             headers: {
@@ -121,7 +121,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/msme/admin/all/rejected",
+          "http://41.219.71.27:4000/msme/admin/all/rejected",
           {
             method: "GET",
             headers: {
@@ -162,7 +162,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/msme/admin/all/blocked",
+          "http://41.219.71.27:4000/msme/admin/all/blocked",
           {
             method: "GET",
             headers: {
@@ -203,7 +203,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/bso/admin/all/download",
+          "http://41.219.71.27:4000/bso/admin/all/download",
           {
             method: "GET",
             headers: {
@@ -244,7 +244,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "${process.env.REACT_APP_BASE_URL}/system/all/admin/list/download",
+          "http://41.219.71.27:4000/system/all/admin/list/download",
           {
             method: "GET",
             headers: {

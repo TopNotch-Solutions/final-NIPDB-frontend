@@ -270,6 +270,28 @@
   .ptt-top{
     margin-top: 3px;
   }
+  .profile-action-btn{
+    background-color: #009548 !important;
+    border-color: #009548 !important;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    min-height: 42px;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 6px 14px rgba(0, 149, 72, 0.25);
+  }
+  .profile-action-btn:hover{
+    background-color: #009548 !important;
+    border-color: #009548 !important;
+    filter: brightness(0.96);
+    transform: translateY(-1px);
+  }
+  .profile-action-btn:active{
+    transform: translateY(0);
+  }
+  .profile-action-btn:focus{
+    box-shadow: 0 0 0 0.2rem rgba(0, 149, 72, 0.22), 0 6px 14px rgba(0, 149, 72, 0.2);
+  }
   .role{
     margin-top: -5px;
   }

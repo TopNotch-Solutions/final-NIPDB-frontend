@@ -34,7 +34,7 @@ const Topbar = ({ OpenSidebar }) => {
     const fetchAllAdminNotificationsCount = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/notifications/admin/totalNotificationCount`,
+          `http://41.219.71.27:4000/notifications/admin/totalNotificationCount`,
           {
             method: "GET",
             headers: {
@@ -63,7 +63,7 @@ const Topbar = ({ OpenSidebar }) => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/admin/logout`, {
+      const response = await fetch(`http://41.219.71.27:4000/auth/admin/logout`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
