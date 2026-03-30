@@ -80,7 +80,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://41.219.71.27:4000/msme/admin/monthly/registeration",
+          "http://uat-api.erongored.com.na/msme/admin/monthly/registeration",
           {
             method: "GET",
             headers: {
@@ -118,7 +118,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://41.219.71.27:4000/msme/admin/totalCount",
+          "http://uat-api.erongored.com.na/msme/admin/totalCount",
           {
             method: "GET",
             headers: {
@@ -161,7 +161,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://41.219.71.27:4000/msme/admin/pendingCount",
+          "http://uat-api.erongored.com.na/msme/admin/pendingCount",
           {
             method: "GET",
             headers: {
@@ -204,7 +204,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://41.219.71.27:4000/msme/admin/rejectedCount",
+          "http://uat-api.erongored.com.na/msme/admin/rejectedCount",
           {
             method: "GET",
             headers: {
@@ -247,7 +247,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://41.219.71.27:4000/msme/admin/approvedCount",
+          "http://uat-api.erongored.com.na/msme/admin/approvedCount",
           {
             method: "GET",
             headers: {
@@ -289,7 +289,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://41.219.71.27:4000/msme/admin/all",
+          "http://uat-api.erongored.com.na/msme/admin/all",
           {
             method: "GET",
             headers: {
@@ -331,7 +331,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://41.219.71.27:4000/msme/admin/top5/categories",
+          "http://uat-api.erongored.com.na/msme/admin/top5/categories",
           {
             method: "GET",
             headers: {

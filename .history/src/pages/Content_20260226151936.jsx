@@ -142,7 +142,7 @@ function Content() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/opportunities/admin/all`,
+          `http://uat-api.erongored.com.na/opportunities/admin/all`,
           {
             method: "GET",
             headers: {
@@ -183,7 +183,7 @@ function Content() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/admin/mobile-images/all`,
+          `http://uat-api.erongored.com.na/admin/mobile-images/all`,
           {
             method: "GET",
             headers: {
@@ -236,7 +236,7 @@ function Content() {
         formData.append("link", link);
 
         const response = await fetch(
-          `http://41.219.71.27:4000/opportunities/admin/create`,
+          `http://uat-api.erongored.com.na/opportunities/admin/create`,
           {
             method: "POST",
             headers: {
@@ -288,7 +288,7 @@ function Content() {
         formData.append("description", descriptionImage);
         formData.append("mobile-image", fileMobileImage);
         const response = await fetch(
-          `http://41.219.71.27:4000/admin/mobile-images/create`,
+          `http://uat-api.erongored.com.na/admin/mobile-images/create`,
           {
             method: "POST",
 
@@ -340,7 +340,7 @@ function Content() {
     try {
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `http://41.219.71.27:4000/opportunities/admin/single/${id}`,
+        `http://uat-api.erongored.com.na/opportunities/admin/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -392,7 +392,7 @@ function Content() {
     try {
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `http://41.219.71.27:4000/admin/mobile-images/single/${id}`,
+        `http://uat-api.erongored.com.na/admin/mobile-images/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -455,7 +455,7 @@ function Content() {
           setIsSubmitting(true);
           dispatch(toggleIsSubmittingTrue());
           const response = await fetch(
-            `http://41.219.71.27:4000/opportunities/admin/delete/${id}`,
+            `http://uat-api.erongored.com.na/opportunities/admin/delete/${id}`,
             {
               method: "DELETE",
               headers: {
@@ -526,7 +526,7 @@ function Content() {
           dispatch(toggleIsSubmittingTrue());
 
           const response = await fetch(
-            `http://41.219.71.27:4000/admin/mobile-images/delete/${id}`,
+            `http://uat-api.erongored.com.na/admin/mobile-images/delete/${id}`,
             {
               method: "DELETE",
               headers: {
@@ -929,7 +929,7 @@ function Content() {
           formData.append("opportunity-image", fileMobileImage);
           formData.append("link", linkDetails);
           const response = await fetch(
-            `http://41.219.71.27:4000/opportunities/admin/update/${updatingDetails.id}`,
+            `http://uat-api.erongored.com.na/opportunities/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
 
@@ -991,7 +991,7 @@ function Content() {
           formData.append("mobile-image", fileMobileImageDetails);
           console.log("yo", descriptionDetails, fileMobileImageDetails);
           const response = await fetch(
-            `http://41.219.71.27:4000/admin/mobile-images/update/${updatingImageDetails.id}`,
+            `http://uat-api.erongored.com.na/admin/mobile-images/update/${updatingImageDetails.id}`,
             {
               method: "PUT",
 
@@ -1056,7 +1056,7 @@ function Content() {
           formData.append("link", linkDetails);
 
           const response = await fetch(
-            `http://41.219.71.27:4000/opportunities/admin/update/${updatingDetails.id}`,
+            `http://uat-api.erongored.com.na/opportunities/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
 
@@ -2003,7 +2003,7 @@ function Content() {
                               <img
                                 src={
                                   updatingDetails.image === imageDetails
-                                    ? `http://41.219.71.27:4000/opportunities/` +
+                                    ? `http://uat-api.erongored.com.na/opportunities/` +
                                       imageDetails
                                     : imageDetails
                                 }
@@ -2147,7 +2147,7 @@ function Content() {
                               <img
                                 src={
                                   updatingDetails.image === imageDetails
-                                    ? `http://41.219.71.27:4000/opportunities/` +
+                                    ? `http://uat-api.erongored.com.na/opportunities/` +
                                       imageDetails
                                     : imageDetails
                                 }
@@ -2309,7 +2309,7 @@ function Content() {
                             src={
                               updatingImageDetails.mobileImage ===
                               imageImageDetails
-                                ? `http://41.219.71.27:4000/mobile-images/${imageImageDetails}`
+                                ? `http://uat-api.erongored.com.na/mobile-images/${imageImageDetails}`
                                 : imageImageDetails
                             }
                             className="img-responsive img-thumbnail"

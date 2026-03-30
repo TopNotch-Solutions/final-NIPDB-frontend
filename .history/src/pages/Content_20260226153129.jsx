@@ -5,7 +5,10 @@ import InputBase from "@mui/material/InputBase";
 import { CgCloseR } from "react-icons/cg";
 import "../assets/css/msme.css";
 import CircularProgress from "@mui/material/CircularProgress";
-import { toggleIsSubmittingTrue,toggleIsSubmittingfalse } from "../redux/reducers/submittingReducer";
+import {
+  toggleIsSubmittingTrue,
+  toggleIsSubmittingfalse,
+} from "../redux/reducers/submittingReducer";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
@@ -25,22 +28,22 @@ import { login } from "../redux/reducers/authReducer";
 import handleAuthFailure from "../utils/handleAuthFailure";
 
 const modalStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: {
-    xs: '95%',
-    sm: '90%', 
-    md: '70%',
-    xl: '50%',
-    xxl: '30%'
+    xs: "95%",
+    sm: "90%",
+    md: "70%",
+    xl: "50%",
+    xxl: "30%",
   },
   height: "80%",
-  bgcolor: 'background.paper',
-  boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+  bgcolor: "background.paper",
+  boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
   p: 4,
-  overflowY: 'auto'
+  overflowY: "auto",
 };
 
 function Content() {
@@ -128,7 +131,7 @@ function Content() {
   };
   const handleCloseEdit1 = () => {
     setDescriptionImageDetails("");
-    setImageImageDetails("")
+    setImageImageDetails("");
     setLinkDetailsError("");
     setUpdatingFail("");
     setOpenModelEdit1(false);
@@ -145,10 +148,9 @@ function Content() {
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -158,7 +160,7 @@ function Content() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -181,16 +183,15 @@ function Content() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/admin/mobile-images/all`,
+          `http://uat-api.erongored.com.na/admin/mobile-images/all`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -200,7 +201,7 @@ function Content() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -230,7 +231,7 @@ function Content() {
         formData.append("opportunity-image", file);
         formData.append(
           "user",
-          opportunityActive === 1 ? "General User" : "Business User"
+          opportunityActive === 1 ? "General User" : "Business User",
         );
         formData.append("link", link);
 
@@ -238,11 +239,11 @@ function Content() {
           `http://uat-api.erongored.com.na/opportunities/admin/create`,
           {
             method: "POST",
-            headers:{
+            headers: {
               Authorization: `${serverToken}`,
             },
             body: formData,
-          }
+          },
         );
 
         const data = await response.json();
@@ -290,12 +291,12 @@ function Content() {
           `http://uat-api.erongored.com.na/admin/mobile-images/create`,
           {
             method: "POST",
-            
-            headers:{
+
+            headers: {
               Authorization: `${serverToken}`,
             },
             body: formData,
-          }
+          },
         );
         const data = await response.json();
 
@@ -325,7 +326,6 @@ function Content() {
           });
           setDescriptionImage("");
           setImageImage("");
-          
         }
       } catch (error) {
         dispatch(toggleIsSubmittingfalse());
@@ -346,22 +346,21 @@ function Content() {
           headers: {
             "Content-Type": "application/json",
             Authorization: `${serverToken}`,
-            'x-access-token': `${tokenHeader}`
+            "x-access-token": `${tokenHeader}`,
           },
-          
-        }
+        },
       );
 
       const data = await response.json();
       const newTokenHeader = response.headers.get("x-access-token");
-      
+
       if (newTokenHeader) {
         dispatch(
           updateToken({
             token: newTokenHeader,
-          })
+          }),
         );
-      }else{
+      } else {
         handleAuthFailure({ dispatch, navigate, type: "auth" });
       }
 
@@ -399,22 +398,21 @@ function Content() {
           headers: {
             "Content-Type": "application/json",
             Authorization: `${serverToken}`,
-            'x-access-token': `${tokenHeader}`
+            "x-access-token": `${tokenHeader}`,
           },
-          
-        }
+        },
       );
 
       const data = await response.json();
       const newTokenHeader = response.headers.get("x-access-token");
-      
+
       if (newTokenHeader) {
         dispatch(
           updateToken({
             token: newTokenHeader,
-          })
+          }),
         );
-      }else{
+      } else {
         handleAuthFailure({ dispatch, navigate, type: "auth" });
       }
 
@@ -436,7 +434,6 @@ function Content() {
           showConfirmButton: false,
           timer: 4000,
         });
-        
       }
     } catch (error) {
       dispatch(toggleIsSubmittingfalse());
@@ -464,22 +461,21 @@ function Content() {
               headers: {
                 "Content-Type": "application/json",
                 Authorization: `${serverToken}`,
-                'x-access-token': `${tokenHeader}`
+                "x-access-token": `${tokenHeader}`,
               },
-              
-            }
+            },
           );
 
           const data = await response.json();
           const newTokenHeader = response.headers.get("x-access-token");
-         
+
           if (newTokenHeader) {
             dispatch(
               updateToken({
                 token: newTokenHeader,
-              })
+              }),
             );
-          }else{
+          } else {
             handleAuthFailure({ dispatch, navigate, type: "auth" });
           }
 
@@ -503,7 +499,6 @@ function Content() {
               showConfirmButton: false,
               timer: 4000,
             });
-            
           }
         } catch (error) {
           dispatch(toggleIsSubmittingfalse());
@@ -537,22 +532,21 @@ function Content() {
               headers: {
                 "Content-Type": "application/json",
                 Authorization: `${serverToken}`,
-                'x-access-token': `${tokenHeader}`
+                "x-access-token": `${tokenHeader}`,
               },
-              
-            }
+            },
           );
 
           const data = await response.json();
           const newTokenHeader = response.headers.get("x-access-token");
-          
+
           if (newTokenHeader) {
             dispatch(
               updateToken({
                 token: newTokenHeader,
-              })
+              }),
             );
-          }else{
+          } else {
             handleAuthFailure({ dispatch, navigate, type: "auth" });
           }
 
@@ -612,15 +606,13 @@ function Content() {
       field: "action",
       headerName: "",
       width: isSmallScreen ? 200 : 350,
-      renderCell: (params) => (
+      renderCell: (params) =>
         currentUser.role === "Super admin" ? (
           <>
-          <UpdateButton onClick={() => handleUpdate(params.row.id)} />
-          <DeleteButton onClick={() => handleDeletion(params.row.id)} />
-        </>
-        ) : null
-       
-      ),
+            <UpdateButton onClick={() => handleUpdate(params.row.id)} />
+            <DeleteButton onClick={() => handleDeletion(params.row.id)} />
+          </>
+        ) : null,
     },
   ];
 
@@ -634,8 +626,8 @@ function Content() {
 
   const filteredRows = rows.filter((row) =>
     Object.values(row).some((value) =>
-      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
-    )
+      value.toString().toLowerCase().includes(searchQuery.toLowerCase()),
+    ),
   );
 
   const columns1 = [
@@ -648,15 +640,13 @@ function Content() {
       field: "action",
       headerName: "",
       width: isSmallScreen ? 200 : 350,
-      renderCell: (params) => (
+      renderCell: (params) =>
         currentUser.role === "Super admin" ? (
           <>
-          <UpdateButton onClick={() => handleUpdateImage(params.row.id)} />
-          <DeleteButton onClick={() => handleDeletionImage(params.row.id)} />
-        </>
-        ) : null
-        
-      ),
+            <UpdateButton onClick={() => handleUpdateImage(params.row.id)} />
+            <DeleteButton onClick={() => handleDeletionImage(params.row.id)} />
+          </>
+        ) : null,
     },
   ];
 
@@ -667,29 +657,35 @@ function Content() {
 
   const filteredRows1 = rows1.filter((row) =>
     Object.values(row).some((value) =>
-      value.toString().toLowerCase().includes(searchQuery1.toLowerCase())
-    )
+      value.toString().toLowerCase().includes(searchQuery1.toLowerCase()),
+    ),
   );
   const fields1 = [
     { value: description, setError: setDescriptionError, name: "Description" },
     { value: image, setError: setImageError, name: "Image" },
-    { value: link, setError: setLinkError, name: "Link", optional: true, isUrl: true }, // Link is optional
-];
+    {
+      value: link,
+      setError: setLinkError,
+      name: "Link",
+      optional: true,
+      isUrl: true,
+    }, // Link is optional
+  ];
 
-const validateFields1 = () => {
+  const validateFields1 = () => {
     let isValid = true;
     fields1.forEach((field) => {
-        field.setError(""); 
-        if (!field.optional && !field.value) {
-            field.setError(`${field.name} is required.`);
-            isValid = false;
-        } else if (field.isUrl && field.value && !urlRegex.test(field.value)) {
-            field.setError(`Invalid ${field.name}. Please provide a valid URL.`);
-            isValid = false;
-        }
+      field.setError("");
+      if (!field.optional && !field.value) {
+        field.setError(`${field.name} is required.`);
+        isValid = false;
+      } else if (field.isUrl && field.value && !urlRegex.test(field.value)) {
+        field.setError(`Invalid ${field.name}. Please provide a valid URL.`);
+        isValid = false;
+      }
     });
     return isValid;
-};
+  };
   const fields2 = [
     {
       value: descriptionDetails,
@@ -697,7 +693,13 @@ const validateFields1 = () => {
       name: "Description",
     },
     { value: imageDetails, setError: setImageDetailsError, name: "Image" },
-    { value: linkDetails, setError: setLinkDetailsError, name: "Link", optional: true, isUrl: true }, 
+    {
+      value: linkDetails,
+      setError: setLinkDetailsError,
+      name: "Link",
+      optional: true,
+      isUrl: true,
+    },
   ];
   const validateFields2 = () => {
     let isValid = true;
@@ -706,10 +708,10 @@ const validateFields1 = () => {
       if (!field.optional && !field.value) {
         field.setError(`${field.name} is required.`);
         isValid = false;
-    } else if (field.isUrl && field.value && !urlRegex.test(field.value)) {
+      } else if (field.isUrl && field.value && !urlRegex.test(field.value)) {
         field.setError(`Invalid ${field.name}. Please provide a valid URL.`);
         isValid = false;
-    }
+      }
     });
     return isValid;
   };
@@ -766,7 +768,7 @@ const validateFields1 = () => {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setImageError(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setImage(null);
         return;
@@ -774,7 +776,7 @@ const validateFields1 = () => {
 
       if (!validMimeTypes.includes(selectedFile.type)) {
         setImageError(
-          "Invalid image type. Please upload a .jpg or .png image."
+          "Invalid image type. Please upload a .jpg or .png image.",
         );
         setImage(null);
         return;
@@ -804,7 +806,7 @@ const validateFields1 = () => {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setImageImageError(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setImageImage(null);
         return;
@@ -812,7 +814,7 @@ const validateFields1 = () => {
 
       if (!validMimeTypes.includes(selectedFile.type)) {
         setImageImageError(
-          "Invalid image type. Please upload a .jpg or .png image."
+          "Invalid image type. Please upload a .jpg or .png image.",
         );
         setImageImage(null);
         return;
@@ -842,7 +844,7 @@ const validateFields1 = () => {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setImageDetailsError(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setImageDetails(null);
         return;
@@ -850,7 +852,7 @@ const validateFields1 = () => {
 
       if (!validMimeTypes.includes(selectedFile.type)) {
         setImageDetailsError(
-          "Invalid image type. Please upload a .jpg or .png image."
+          "Invalid image type. Please upload a .jpg or .png image.",
         );
         setImageDetails(null);
         return;
@@ -879,7 +881,7 @@ const validateFields1 = () => {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setImageImageDetailsError(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setImageImageDetails(null);
         return;
@@ -887,7 +889,7 @@ const validateFields1 = () => {
 
       if (!validMimeTypes.includes(selectedFile.type)) {
         setImageImageDetailsError(
-          "Invalid image type. Please upload a .jpg or .png image."
+          "Invalid image type. Please upload a .jpg or .png image.",
         );
         setImageImageDetails(null);
         return;
@@ -930,12 +932,12 @@ const validateFields1 = () => {
             `http://uat-api.erongored.com.na/opportunities/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
-              
-              headers:{
+
+              headers: {
                 Authorization: `${serverToken}`,
               },
               body: formData,
-            }
+            },
           );
 
           const data = await response.json();
@@ -970,7 +972,7 @@ const validateFields1 = () => {
           setIsSubmitting(false);
           setOpenModelEdit(false);
           handleAuthFailure({ dispatch, navigate, type: "network" });
-          }
+        }
       }
     }
   };
@@ -992,12 +994,12 @@ const validateFields1 = () => {
             `http://uat-api.erongored.com.na/admin/mobile-images/update/${updatingImageDetails.id}`,
             {
               method: "PUT",
-              
-              headers:{
+
+              headers: {
                 Authorization: `${serverToken}`,
               },
               body: formData,
-            }
+            },
           );
           const data = await response.json();
 
@@ -1025,13 +1027,12 @@ const validateFields1 = () => {
             });
             setDescriptionImageDetails("");
             setImageImageDetails("");
-            
           }
         } catch (error) {
           setIsSubmitting(false);
           setOpenModelEdit1(false);
           handleAuthFailure({ dispatch, navigate, type: "network" });
-          }
+        }
       }
     }
   };
@@ -1058,12 +1059,12 @@ const validateFields1 = () => {
             `http://uat-api.erongored.com.na/opportunities/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
-              
-              headers:{
+
+              headers: {
                 Authorization: `${serverToken}`,
               },
               body: formData,
-            }
+            },
           );
           const data = await response.json();
 
@@ -1093,7 +1094,6 @@ const validateFields1 = () => {
             setDescriptionDetails("");
             setUserDetails("");
             setImageDetails("");
-            
           }
         } catch (error) {
           setIsSubmitting(false);
@@ -1182,13 +1182,12 @@ const validateFields1 = () => {
                         </IconButton>
                       </Box>
                       {currentUser.role === "Super admin" && (
-                      <>
-                       <div onClick={handleOpen}>
-                        <MyButton text="Add Opportunity" />
-                      </div>
-                      </>
-                    )}
-                      
+                        <>
+                          <div onClick={handleOpen}>
+                            <MyButton text="Add Opportunity" />
+                          </div>
+                        </>
+                      )}
                     </div>
                     <div className="col-12 mt-1">
                       <p className="list-groupp">Opportunity List</p>
@@ -1227,7 +1226,7 @@ const validateFields1 = () => {
                               initialState={{
                                 pagination: {
                                   paginationModel: {
-                                    pageSize: 25, 
+                                    pageSize: 25,
                                   },
                                 },
                               }}
@@ -1276,13 +1275,12 @@ const validateFields1 = () => {
                         </IconButton>
                       </Box>
                       {currentUser.role === "Super admin" && (
-                      <>
-                       <div onClick={handleOpen1}>
-                        <MyButton text="Add Image" />
-                      </div>
-                      </>
-                    )}
-                      
+                        <>
+                          <div onClick={handleOpen1}>
+                            <MyButton text="Add Image" />
+                          </div>
+                        </>
+                      )}
                     </div>
                     <div className="col-12 mt-1">
                       <p className="list-groupp">Image List</p>
@@ -1321,7 +1319,7 @@ const validateFields1 = () => {
                               initialState={{
                                 pagination: {
                                   paginationModel: {
-                                    pageSize: 25, 
+                                    pageSize: 25,
                                   },
                                 },
                               }}
@@ -2040,7 +2038,9 @@ const validateFields1 = () => {
                           />
                           {imageDetailsError && (
                             <>
-                              <p className="error-message">{imageDetailsError}</p>
+                              <p className="error-message">
+                                {imageDetailsError}
+                              </p>
                             </>
                           )}
                         </div>
@@ -2182,7 +2182,9 @@ const validateFields1 = () => {
                           />
                           {imageDetailsError && (
                             <>
-                              <p className="error-message">{imageDetailsError}</p>
+                              <p className="error-message">
+                                {imageDetailsError}
+                              </p>
                             </>
                           )}
                         </div>
@@ -2341,7 +2343,9 @@ const validateFields1 = () => {
                       />
                       {imageImageDetailsError && (
                         <>
-                          <p className="error-message">{imageImageDetailsError}</p>
+                          <p className="error-message">
+                            {imageImageDetailsError}
+                          </p>
                         </>
                       )}
                     </div>

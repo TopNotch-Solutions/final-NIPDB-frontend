@@ -49,7 +49,7 @@ import { validateTimeRangeOrClosed } from "../utils/validateTime";
 //   transform: "translate(-50%, -50%)",
 //   width: {
 //     xs: '95%',
-//     sm: '80%', 
+//     sm: '80%',
 //     md: '70%'
 //   },
 //   height: "80%",
@@ -67,7 +67,7 @@ import { validateTimeRangeOrClosed } from "../utils/validateTime";
 //   transform: "translate(-50%, -50%)",
 //   width: {
 //     xs: '95%',
-//     sm: '80%', 
+//     sm: '80%',
 //     md: '70%'
 //   },
 //   height: "80%",
@@ -78,22 +78,22 @@ import { validateTimeRangeOrClosed } from "../utils/validateTime";
 //   p: 4,
 // };
 const modalStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: {
-    xs: '95%',
-    sm: '90%', 
-    md: '70%',
-    xl: '50%',
-    xxl: '30%'
+    xs: "95%",
+    sm: "90%",
+    md: "70%",
+    xl: "50%",
+    xxl: "30%",
   },
   height: "80%",
-  bgcolor: 'background.paper',
-  boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+  bgcolor: "background.paper",
+  boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
   p: 4,
-  overflowY: 'auto'
+  overflowY: "auto",
 };
 
 const steps = [
@@ -489,16 +489,15 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/msme/admin/totalCount`,
+          `http://uat-api.erongored.com.na/msme/admin/totalCount`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -508,7 +507,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -532,16 +531,15 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/msme/admin/pendingCount`,
+          `http://uat-api.erongored.com.na/msme/admin/pendingCount`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -551,7 +549,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -575,16 +573,15 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/msme/admin/rejectedCount`,
+          `http://uat-api.erongored.com.na/msme/admin/rejectedCount`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -594,7 +591,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -618,16 +615,15 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/msme/admin/approvedCount`,
+          `http://uat-api.erongored.com.na/msme/admin/approvedCount`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -637,7 +633,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -660,16 +656,15 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/msme/admin/incompleteCount`,
+          `http://uat-api.erongored.com.na/msme/admin/incompleteCount`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -679,7 +674,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -702,15 +697,17 @@ function Msme() {
     const fetchMsmeAllMSME = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`http://41.219.71.27:4000/msme/admin/all`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${serverToken}`,
-            'x-access-token': `${tokenHeader}`
+        const response = await fetch(
+          `http://uat-api.erongored.com.na/msme/admin/all`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${serverToken}`,
+              "x-access-token": `${tokenHeader}`,
+            },
           },
-          
-        });
+        );
 
         const data = await response.json();
         const newTokenHeader = response.headers.get("x-access-token");
@@ -719,7 +716,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -742,16 +739,15 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/msme/admin/all/pending`,
+          `http://uat-api.erongored.com.na/msme/admin/all/pending`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -760,7 +756,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -784,16 +780,15 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/msme/admin/all/rejected`,
+          `http://uat-api.erongored.com.na/msme/admin/all/rejected`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -803,7 +798,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -827,16 +822,15 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/msme/admin/all/approved`,
+          `http://uat-api.erongored.com.na/msme/admin/all/approved`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -846,7 +840,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -870,16 +864,15 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/msme/admin/all/incomplete`,
+          `http://uat-api.erongored.com.na/msme/admin/all/incomplete`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -889,7 +882,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -911,15 +904,17 @@ function Msme() {
     const fetchAllRegions = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`http://41.219.71.27:4000/region/admin/all`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${serverToken}`,
-            'x-access-token': `${tokenHeader}`
+        const response = await fetch(
+          `http://uat-api.erongored.com.na/region/admin/all`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${serverToken}`,
+              "x-access-token": `${tokenHeader}`,
+            },
           },
-          
-        });
+        );
 
         const data = await response.json();
         const newTokenHeader = response.headers.get("x-access-token");
@@ -928,7 +923,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -951,25 +946,27 @@ function Msme() {
     const fetchAllTowns = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`http://41.219.71.27:4000/town/admin/all`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${serverToken}`,
-            'x-access-token': `${tokenHeader}`
+        const response = await fetch(
+          `http://uat-api.erongored.com.na/town/admin/all`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${serverToken}`,
+              "x-access-token": `${tokenHeader}`,
+            },
           },
-          
-        });
+        );
 
         const data = await response.json();
         const newTokenHeader = response.headers.get("x-access-token");
-        cons
+        cons;
 
         if (newTokenHeader) {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
         if (response.ok) {
@@ -991,16 +988,15 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/primaryIndustry/admin/all`,
+          `http://uat-api.erongored.com.na/primaryIndustry/admin/all`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -1010,7 +1006,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -1033,16 +1029,15 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/secondaryIndustry/admin/all`,
+          `http://uat-api.erongored.com.na/secondaryIndustry/admin/all`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -1052,7 +1047,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -1075,16 +1070,15 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/msme/admin/all/user`,
+          `http://uat-api.erongored.com.na/msme/admin/all/user`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -1094,7 +1088,7 @@ function Msme() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -1521,7 +1515,7 @@ function Msme() {
 
     if (!isBusinessOpenAtLeastOneDay) {
       setNumberOfDaysOpenError(
-        "The business has to be open for at least one day."
+        "The business has to be open for at least one day.",
       );
       isValid = false;
     } else {
@@ -1621,7 +1615,7 @@ function Msme() {
       } else {
         if (!validateTimeRangeOrClosed(field.value)) {
           field.setError(
-            `${field.name} has an invalid time format. Expected format is 12-hour formate(e.g. 8:00 AM - 12:00 PM) or "Closed".`
+            `${field.name} has an invalid time format. Expected format is 12-hour formate(e.g. 8:00 AM - 12:00 PM) or "Closed".`,
           );
           isValid = false;
         } else {
@@ -1657,7 +1651,7 @@ function Msme() {
         "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" +
         "(\\?[;&a-z\\d%_.~+=-]*)?" +
         "(\\#[-a-z\\d_]*)?$",
-      "i"
+      "i",
     );
     return !!regex.test(url);
   };
@@ -1710,17 +1704,17 @@ function Msme() {
         tuesday: !isTuesdayClosed
           ? "Closed"
           : `${convert24To12Hour(tuesdayFrom)} - ${convert24To12Hour(
-              tuesdayTo
+              tuesdayTo,
             )}`,
         wednesday: !isWednesdayClosed
           ? "Closed"
           : `${convert24To12Hour(wednesdayFrom)} - ${convert24To12Hour(
-              wednesdayTo
+              wednesdayTo,
             )}`,
         thursday: !isThursdayClosed
           ? "Closed"
           : `${convert24To12Hour(thursdayFrom)} - ${convert24To12Hour(
-              thursdayTo
+              thursdayTo,
             )}`,
         friday: !isFridayClosed
           ? "Closed"
@@ -1728,7 +1722,7 @@ function Msme() {
         saturday: !isSaturdayClosed
           ? "Closed"
           : `${convert24To12Hour(saturdayFrom)} - ${convert24To12Hour(
-              saturdayTo
+              saturdayTo,
             )}`,
         sunday: !isSundayClosed
           ? "Closed"
@@ -1749,7 +1743,7 @@ function Msme() {
         formData.append("businessRegistrationName", businessRegistrationName);
         formData.append(
           "businessRegistrationNumber",
-          businessRegistrationNumber
+          businessRegistrationNumber,
         );
         formData.append("businessDisplayName", businessDisplayName);
         formData.append("typeOfBusiness", typeOfBusiness);
@@ -1796,15 +1790,15 @@ function Msme() {
         console.log("This is my formdata", formData);
 
         const response = await fetch(
-          `http://41.219.71.27:4000/msme/admin/create`,
+          `http://uat-api.erongored.com.na/msme/admin/create`,
           {
             method: "POST",
-            
-            headers:{
+
+            headers: {
               Authorization: `${serverToken}`,
             },
             body: formData,
-          }
+          },
         );
 
         const data = await response.json();
@@ -1921,16 +1915,15 @@ function Msme() {
     try {
       setIsSubmitting(true);
       const response = await fetch(
-        `http://41.219.71.27:4000/msme/admin/single/${id}`,
+        `http://uat-api.erongored.com.na/msme/admin/single/${id}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `${serverToken}`,
-            'x-access-token': `${tokenHeader}`
+            "x-access-token": `${tokenHeader}`,
           },
-          
-        }
+        },
       );
 
       const data = await response.json();
@@ -1940,7 +1933,7 @@ function Msme() {
         dispatch(
           updateToken({
             token: newTokenHeader,
-          })
+          }),
         );
       } else {
         handleAuthFailure({ dispatch, navigate, type: "auth" });
@@ -1952,7 +1945,7 @@ function Msme() {
         setBusinessAddressDetails(data.data.businessRegistrationName);
         setBusinessRegistrationNameDetails(data.data.businessRegistrationName);
         setBusinessRegistrationNumberDetails(
-          data.data.businessRegistrationNumber
+          data.data.businessRegistrationNumber,
         );
         setBusinessDisplayNameDetails(data.data.businessDisplayName);
         setDescriptionDetails(data.data.description);
@@ -1984,7 +1977,7 @@ function Msme() {
         setSaturdayDetails(data.data.businessHours?.saturday);
         setSundayDetails(data.data.businessHours?.sunday);
         setNumberOfEmployeesDeDetails(
-          data.data.additionalInfo?.numberOfEmployees
+          data.data.additionalInfo?.numberOfEmployees,
         );
         setBusinessLogoDetails(data.data.additionalInfo?.businessLogo);
         setImage1Details(data.data.additionalInfo?.image1);
@@ -2026,8 +2019,8 @@ function Msme() {
     Object.values(row).some((value) =>
       (value ? value.toString() : "")
         .toLowerCase()
-        .includes(searchQueryIncomplete.toLowerCase())
-    )
+        .includes(searchQueryIncomplete.toLowerCase()),
+    ),
   );
 
   const columns = [
@@ -2124,8 +2117,8 @@ function Msme() {
     Object.values(row).some((value) =>
       (value ? value.toString() : "")
         .toLowerCase()
-        .includes(searchQuery.toLowerCase())
-    )
+        .includes(searchQuery.toLowerCase()),
+    ),
   );
   const rowsPending = pendingMSMEList.map((msme) => ({
     id: msme.id,
@@ -2144,8 +2137,8 @@ function Msme() {
     Object.values(row).some((value) =>
       (value ? value.toString() : "")
         .toLowerCase()
-        .includes(searchQueryPending.toLowerCase())
-    )
+        .includes(searchQueryPending.toLowerCase()),
+    ),
   );
 
   const rowsRejected = rejectedMSMEList.map((msme) => ({
@@ -2165,8 +2158,8 @@ function Msme() {
     Object.values(row).some((value) =>
       (value ? value.toString() : "")
         .toLowerCase()
-        .includes(searchQueryRejected.toLowerCase())
-    )
+        .includes(searchQueryRejected.toLowerCase()),
+    ),
   );
 
   const rowsApproved = approvedMSMEList.map((msme) => ({
@@ -2186,8 +2179,8 @@ function Msme() {
     Object.values(row).some((value) =>
       (value ? value.toString() : "")
         .toLowerCase()
-        .includes(searchQueryApproved.toLowerCase())
-    )
+        .includes(searchQueryApproved.toLowerCase()),
+    ),
   );
 
   const typeOfBusinessOptions = [
@@ -2344,19 +2337,19 @@ function Msme() {
             try {
               setIsSubmitting(true);
               const response = await fetch(
-                `http://41.219.71.27:4000/msme/admin/status/${updatingDetails.id}`,
+                `http://uat-api.erongored.com.na/msme/admin/status/${updatingDetails.id}`,
                 {
                   method: "PUT",
                   headers: {
                     "Content-Type": "application/json",
                     Authorization: `${serverToken}`,
-                    'x-access-token': `${tokenHeader}`
+                    "x-access-token": `${tokenHeader}`,
                   },
-                  
+
                   body: JSON.stringify({
                     status: "Approved",
                   }),
-                }
+                },
               );
 
               const data = await response.json();
@@ -2366,7 +2359,7 @@ function Msme() {
                 dispatch(
                   updateToken({
                     token: newTokenHeader,
-                  })
+                  }),
                 );
               } else {
                 handleAuthFailure({ dispatch, navigate, type: "auth" });
@@ -2411,7 +2404,7 @@ function Msme() {
         const formData = new FormData();
         formData.append(
           "businessRegistrationName",
-          businessRegistrationNameDetails
+          businessRegistrationNameDetails,
         );
         if (
           typeOfBusinessDetails === "Close Corporation (CC)" ||
@@ -2419,7 +2412,7 @@ function Msme() {
         ) {
           formData.append(
             "businessRegistrationNumber",
-            businessRegistrationNumberDetails
+            businessRegistrationNumberDetails,
           );
         } else {
           formData.append("businessRegistrationNumber", "");
@@ -2502,15 +2495,15 @@ function Msme() {
           formData.append("removeImage3", removeImage3);
         }
         const response = await fetch(
-          `http://41.219.71.27:4000/msme/admin/update/${updatingDetails.id}`,
+          `http://uat-api.erongored.com.na/msme/admin/update/${updatingDetails.id}`,
           {
             method: "PUT",
-            
-            headers:{
+
+            headers: {
               Authorization: `${serverToken}`,
             },
             body: formData,
-          }
+          },
         );
 
         const data = await response.json();
@@ -2523,19 +2516,19 @@ function Msme() {
             try {
               setIsSubmitting(true);
               const response = await fetch(
-                `http://41.219.71.27:4000/msme/admin/status/${updatingDetails.id}`,
+                `http://uat-api.erongored.com.na/msme/admin/status/${updatingDetails.id}`,
                 {
                   method: "PUT",
                   headers: {
                     "Content-Type": "application/json",
                     Authorization: `${serverToken}`,
-                    'x-access-token': `${tokenHeader}`
+                    "x-access-token": `${tokenHeader}`,
                   },
-                  
+
                   body: JSON.stringify({
                     status: "Approved",
                   }),
-                }
+                },
               );
 
               const data = await response.json();
@@ -2545,7 +2538,7 @@ function Msme() {
                 dispatch(
                   updateToken({
                     token: newTokenHeader,
-                  })
+                  }),
                 );
               } else {
                 handleAuthFailure({ dispatch, navigate, type: "auth" });
@@ -2560,8 +2553,8 @@ function Msme() {
                     updatingDetails.status === "Incomplete"
                       ? "MSME Successfully Approved"
                       : update
-                      ? "MSME Successfully Updated"
-                      : "MSME Successfully Approved",
+                        ? "MSME Successfully Updated"
+                        : "MSME Successfully Approved",
                   showConfirmButton: false,
                   timer: 4000,
                 });
@@ -2605,8 +2598,8 @@ function Msme() {
                 updatingDetails.status === "Pending"
                   ? "MSME Successfully Approved"
                   : update
-                  ? "MSME Successfully Updated"
-                  : "MSME Successfully Approved",
+                    ? "MSME Successfully Updated"
+                    : "MSME Successfully Approved",
               showConfirmButton: false,
               timer: 4000,
             });
@@ -2661,19 +2654,19 @@ function Msme() {
           try {
             setIsSubmitting(true);
             const response = await fetch(
-              `http://41.219.71.27:4000/msme/admin/status/${updatingDetails.id}`,
+              `http://uat-api.erongored.com.na/msme/admin/status/${updatingDetails.id}`,
               {
                 method: "PUT",
                 headers: {
                   "Content-Type": "application/json",
                   Authorization: `${serverToken}`,
-                  'x-access-token': `${tokenHeader}`
+                  "x-access-token": `${tokenHeader}`,
                 },
-                
+
                 body: JSON.stringify({
                   status: "Rejected",
                 }),
-              }
+              },
             );
 
             const data = await response.json();
@@ -2683,7 +2676,7 @@ function Msme() {
               dispatch(
                 updateToken({
                   token: newTokenHeader,
-                })
+                }),
               );
             } else {
               handleAuthFailure({ dispatch, navigate, type: "auth" });
@@ -2750,19 +2743,19 @@ function Msme() {
           try {
             setIsSubmitting(true);
             const response = await fetch(
-              `http://41.219.71.27:4000/msme/admin/block/${updatingDetails.id}`,
+              `http://uat-api.erongored.com.na/msme/admin/block/${updatingDetails.id}`,
               {
                 method: "PUT",
                 headers: {
                   "Content-Type": "application/json",
                   Authorization: `${serverToken}`,
-                  'x-access-token': `${tokenHeader}`
+                  "x-access-token": `${tokenHeader}`,
                 },
-                
+
                 body: JSON.stringify({
                   block: true,
                 }),
-              }
+              },
             );
 
             const data = await response.json();
@@ -2772,7 +2765,7 @@ function Msme() {
               dispatch(
                 updateToken({
                   token: newTokenHeader,
-                })
+                }),
               );
             } else {
               handleAuthFailure({ dispatch, navigate, type: "auth" });
@@ -2838,19 +2831,19 @@ function Msme() {
           try {
             setIsSubmitting(true);
             const response = await fetch(
-              `http://41.219.71.27:4000/msme/admin/block/${updatingDetails.id}`,
+              `http://uat-api.erongored.com.na/msme/admin/block/${updatingDetails.id}`,
               {
                 method: "PUT",
                 headers: {
                   "Content-Type": "application/json",
                   Authorization: `${serverToken}`,
-                  'x-access-token': `${tokenHeader}`
+                  "x-access-token": `${tokenHeader}`,
                 },
-                
+
                 body: JSON.stringify({
                   block: false,
                 }),
-              }
+              },
             );
 
             const data = await response.json();
@@ -2860,7 +2853,7 @@ function Msme() {
               dispatch(
                 updateToken({
                   token: newTokenHeader,
-                })
+                }),
               );
             } else {
               handleAuthFailure({ dispatch, navigate, type: "auth" });
@@ -2919,20 +2912,20 @@ function Msme() {
         try {
           setsendingNotification(true);
           const response = await fetch(
-            `http://41.219.71.27:4000/notifications/admin/create/single/${updatingDetails.id}`,
+            `http://uat-api.erongored.com.na/notifications/admin/create/single/${updatingDetails.id}`,
             {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
                 Authorization: `${serverToken}`,
-                'x-access-token': `${tokenHeader}`
+                "x-access-token": `${tokenHeader}`,
               },
-              
+
               body: JSON.stringify({
                 notification: notificationDescription,
                 title: notificationTitle,
               }),
-            }
+            },
           );
 
           const data = await response.json();
@@ -2942,7 +2935,7 @@ function Msme() {
             dispatch(
               updateToken({
                 token: newTokenHeader,
-              })
+              }),
             );
           } else {
             handleAuthFailure({ dispatch, navigate, type: "auth" });
@@ -2981,7 +2974,7 @@ function Msme() {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setBusinessLogoError(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setBusinessLogo(null);
         return;
@@ -2989,7 +2982,7 @@ function Msme() {
 
       if (!validMimeTypes.includes(selectedFile.type)) {
         setBusinessLogoError(
-          "Invalid image type. Please upload a .jpg or .png image."
+          "Invalid image type. Please upload a .jpg or .png image.",
         );
         setBusinessLogo(null);
         return;
@@ -3010,7 +3003,7 @@ function Msme() {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setBusinessLogoDetailsError(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setBusinessLogoDetails(null);
         return;
@@ -3018,7 +3011,7 @@ function Msme() {
 
       if (!validMimeTypes.includes(selectedFile.type)) {
         setBusinessLogoDetailsError(
-          "Invalid image type. Please upload a .jpg or .png image."
+          "Invalid image type. Please upload a .jpg or .png image.",
         );
         setBusinessLogoDetails(null);
         return;
@@ -3041,7 +3034,7 @@ function Msme() {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setImage1Error(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setImage1(null);
         return;
@@ -3049,7 +3042,7 @@ function Msme() {
 
       if (!validMimeTypes.includes(selectedFile.type)) {
         setImage1Error(
-          "Invalid image type. Please upload a .jpg or .png image."
+          "Invalid image type. Please upload a .jpg or .png image.",
         );
         setImage1(null);
         return;
@@ -3070,7 +3063,7 @@ function Msme() {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setImage2Error(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setImage2(null);
         return;
@@ -3078,7 +3071,7 @@ function Msme() {
 
       if (!validMimeTypes.includes(selectedFile.type)) {
         setImage2Error(
-          "Invalid image type. Please upload a .jpg or .png image."
+          "Invalid image type. Please upload a .jpg or .png image.",
         );
         setImage2(null);
         return;
@@ -3099,7 +3092,7 @@ function Msme() {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setImage3Error(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setImage3(null);
         return;
@@ -3107,7 +3100,7 @@ function Msme() {
 
       if (!validMimeTypes.includes(selectedFile.type)) {
         setImage3Error(
-          "Invalid image type. Please upload a .jpg or .png image."
+          "Invalid image type. Please upload a .jpg or .png image.",
         );
         setImage3(null);
         return;
@@ -3128,7 +3121,7 @@ function Msme() {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setImage1DetailsError(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setImage1Details(null);
         return;
@@ -3136,7 +3129,7 @@ function Msme() {
 
       if (!validMimeTypes.includes(selectedFile.type)) {
         setImage1DetailsError(
-          "Invalid image type. Please upload a .jpg or .png image."
+          "Invalid image type. Please upload a .jpg or .png image.",
         );
         setImage1Details(null);
         return;
@@ -3159,7 +3152,7 @@ function Msme() {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setImage2DetailsError(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setImage2Details(null);
         return;
@@ -3167,7 +3160,7 @@ function Msme() {
 
       if (!validMimeTypes.includes(selectedFile.type)) {
         setImage2DetailsError(
-          "Invalid image type. Please upload a .jpg or .png image."
+          "Invalid image type. Please upload a .jpg or .png image.",
         );
         setImage2Details(null);
         return;
@@ -3190,7 +3183,7 @@ function Msme() {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setImage3DetailsError(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setImage3Details(null);
         return;
@@ -3198,7 +3191,7 @@ function Msme() {
 
       if (!validMimeTypes.includes(selectedFile.type)) {
         setImage3DetailsError(
-          "Invalid image type. Please upload a .jpg or .png image."
+          "Invalid image type. Please upload a .jpg or .png image.",
         );
         setImage3Details(null);
         return;
@@ -4150,7 +4143,9 @@ function Msme() {
                         </select>
                         {typeOfBusinessError && (
                           <>
-                            <p className="error-message">{typeOfBusinessError}</p>
+                            <p className="error-message">
+                              {typeOfBusinessError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -4251,32 +4246,35 @@ function Msme() {
                         typeOfBusiness !== "Close Corporation (CC)" && (
                           <>
                             <div className="form-group pb-3">
-                            <label htmlFor="email" className="pb-2 text-boldd">
-                              User Name: <span>*</span>
-                            </label>
-                            <Select
-                              value={userOptions.find(
-                                (option) => option.value === userId
+                              <label
+                                htmlFor="email"
+                                className="pb-2 text-boldd"
+                              >
+                                User Name: <span>*</span>
+                              </label>
+                              <Select
+                                value={userOptions.find(
+                                  (option) => option.value === userId,
+                                )}
+                                onChange={(selectedOption) => {
+                                  setUserIdError("");
+                                  setUserId(
+                                    selectedOption ? selectedOption.value : "",
+                                  );
+                                }}
+                                options={userOptions}
+                                placeholder="Select user"
+                                isSearchable
+                                isClearable
+                                classNamePrefix="react-select"
+                                components={{ DropdownIndicator }}
+                              />
+                              {userIdError && (
+                                <>
+                                  <p className="error-message">{userIdError}</p>
+                                </>
                               )}
-                              onChange={(selectedOption) => {
-                                setUserIdError("");
-                                setUserId(
-                                  selectedOption ? selectedOption.value : ""
-                                );
-                              }}
-                              options={userOptions}
-                              placeholder="Select user"
-                              isSearchable
-                              isClearable
-                              classNamePrefix="react-select"
-                              components={{ DropdownIndicator }}
-                            />
-                            {userIdError && (
-                              <>
-                                <p className="error-message">{userIdError}</p>
-                              </>
-                            )}
-                          </div>
+                            </div>
                           </>
                         )}
                     </Grid>
@@ -4325,12 +4323,12 @@ function Msme() {
                             </label>
                             <Select
                               value={userOptions.find(
-                                (option) => option.value === userId
+                                (option) => option.value === userId,
                               )}
                               onChange={(selectedOption) => {
                                 setUserIdError("");
                                 setUserId(
-                                  selectedOption ? selectedOption.value : ""
+                                  selectedOption ? selectedOption.value : "",
                                 );
                               }}
                               options={userOptions}
@@ -4433,7 +4431,9 @@ function Msme() {
                         </select>
                         {primaryIndustryError && (
                           <>
-                            <p className="error-message">{primaryIndustryError}</p>
+                            <p className="error-message">
+                              {primaryIndustryError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -4521,7 +4521,9 @@ function Msme() {
                         </select>
                         {annualTurnoverError && (
                           <>
-                            <p className="error-message">{annualTurnoverError}</p>
+                            <p className="error-message">
+                              {annualTurnoverError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -4588,7 +4590,9 @@ function Msme() {
                         </select>
                         {foundersGenderError && (
                           <>
-                            <p className="error-message">{foundersGenderError}</p>
+                            <p className="error-message">
+                              {foundersGenderError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -4664,7 +4668,9 @@ function Msme() {
                         />
                         {businessAddressError && (
                           <>
-                            <p className="error-message">{businessAddressError}</p>
+                            <p className="error-message">
+                              {businessAddressError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -4718,7 +4724,9 @@ function Msme() {
                         />
                         {whatsAppNumberError && (
                           <>
-                            <p className="error-message">{whatsAppNumberError}</p>
+                            <p className="error-message">
+                              {whatsAppNumberError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -4745,7 +4753,9 @@ function Msme() {
                         />
                         {businessEmailError && (
                           <>
-                            <p className="error-message">{businessEmailError}</p>
+                            <p className="error-message">
+                              {businessEmailError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -4841,7 +4851,9 @@ function Msme() {
                         />
                         {instagramLinkError && (
                           <>
-                            <p className="error-message">{instagramLinkError}</p>
+                            <p className="error-message">
+                              {instagramLinkError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -6007,11 +6019,11 @@ function Msme() {
                                 setUpdate(true);
                                 setBusinessRegistrationNumberDetailsError("");
                                 setBusinessRegistrationNumberDetails(
-                                  e.target.value
+                                  e.target.value,
                                 );
                                 console.log(
                                   "After update",
-                                  businessRegistrationNumberDetails
+                                  businessRegistrationNumberDetails,
                                 );
                               }}
                               name="email"
@@ -6165,7 +6177,9 @@ function Msme() {
                         </select>
                         {regionDetailsError && (
                           <>
-                            <p className="error-message">{regionDetailsError}</p>
+                            <p className="error-message">
+                              {regionDetailsError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -6376,7 +6390,7 @@ function Msme() {
                         onClick={() => {
                           console.log(
                             "Registration number msme-information: ",
-                            businessRegistrationNumberDetails
+                            businessRegistrationNumberDetails,
                           );
                           handleStep1Review();
                         }}
@@ -6498,7 +6512,7 @@ function Msme() {
                         onClick={() => {
                           console.log(
                             "registration number after founder information: ",
-                            businessRegistrationNumberDetails
+                            businessRegistrationNumberDetails,
                           );
                           handleStep2Review();
                         }}
@@ -6847,7 +6861,9 @@ function Msme() {
                         />
                         {mondayDetailsError && (
                           <>
-                            <p className="error-message">{mondayDetailsError}</p>
+                            <p className="error-message">
+                              {mondayDetailsError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -6875,7 +6891,9 @@ function Msme() {
                         />
                         {tuesdayDetailsError && (
                           <>
-                            <p className="error-message">{tuesdayDetailsError}</p>
+                            <p className="error-message">
+                              {tuesdayDetailsError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -6933,7 +6951,9 @@ function Msme() {
                         />
                         {thursdayDetailsError && (
                           <>
-                            <p className="error-message">{thursdayDetailsError}</p>
+                            <p className="error-message">
+                              {thursdayDetailsError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -6961,7 +6981,9 @@ function Msme() {
                         />
                         {fridayDetailsError && (
                           <>
-                            <p className="error-message">{fridayDetailsError}</p>
+                            <p className="error-message">
+                              {fridayDetailsError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -6989,7 +7011,9 @@ function Msme() {
                         />
                         {saturdayDetailsError && (
                           <>
-                            <p className="error-message">{saturdayDetailsError}</p>
+                            <p className="error-message">
+                              {saturdayDetailsError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -7017,7 +7041,9 @@ function Msme() {
                         />
                         {sundayDetailsError && (
                           <>
-                            <p className="error-message">{sundayDetailsError}</p>
+                            <p className="error-message">
+                              {sundayDetailsError}
+                            </p>
                           </>
                         )}
                       </div>
@@ -7089,7 +7115,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo
                                       ?.businessLogo === businessLogoDetails
-                                      ? `http://41.219.71.27:4000/msmes/${businessLogoDetails}`
+                                      ? `http://uat-api.erongored.com.na/msmes/${businessLogoDetails}`
                                       : businessLogoDetails
                                   }
                                   className=" img-responsive img-thumbnail"
@@ -7178,7 +7204,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo?.image1 ===
                                     image1Details
-                                      ? `http://41.219.71.27:4000/msmes/${image1Details}`
+                                      ? `http://uat-api.erongored.com.na/msmes/${image1Details}`
                                       : image1Details
                                   }
                                   className=" img-responsive img-thumbnail"
@@ -7267,7 +7293,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo?.image2 ===
                                     image2Details
-                                      ? `http://41.219.71.27:4000/msmes/${image2Details}`
+                                      ? `http://uat-api.erongored.com.na/msmes/${image2Details}`
                                       : image2Details
                                   }
                                   className=" img-responsive img-thumbnail"
@@ -7356,7 +7382,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo?.image3 ===
                                     image3Details
-                                      ? `http://41.219.71.27:4000/msmes/${image3Details}`
+                                      ? `http://uat-api.erongored.com.na/msmes/${image3Details}`
                                       : image3Details
                                   }
                                   className=" img-responsive img-thumbnail"
@@ -7590,7 +7616,7 @@ function Msme() {
                                   onClick={() => {
                                     console.log(
                                       "registration number before sending: ",
-                                      businessRegistrationNumberDetails
+                                      businessRegistrationNumberDetails,
                                     );
                                     approve();
                                   }}

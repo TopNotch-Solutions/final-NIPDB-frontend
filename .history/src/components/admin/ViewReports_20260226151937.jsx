@@ -13,7 +13,7 @@ const ViewReports = ({ selectedRow }) => {
     useEffect(() => {
       if (selectedRow) {
         const fetchData = async () => {
-          fetch("http://41.219.71.27:4000/contracts/staffContracts")
+          fetch("http://uat-api.erongored.com.na/contracts/staffContracts")
             .then((res) => res.json())
             .then((data) => setData(data))
             .catch((err) => console.log(err));

@@ -7,16 +7,18 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { toast } from "react-toastify";
 import { toggleSidebarTrue } from "../redux/reducers/sidebarReducer";
 import { toggleSidebarfalse } from "../redux/reducers/sidebarReducer";
-import {toggleAuthenticationTrue, toggleAuthenticationfalse} from "../redux/reducers/twoFactorReducer";
+import {
+  toggleAuthenticationTrue,
+  toggleAuthenticationfalse,
+} from "../redux/reducers/twoFactorReducer";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateToken} from "../redux/reducers/authReducer";
-import {updateServerToken } from "../redux/reducers/serverReducer";
+import { updateToken } from "../redux/reducers/authReducer";
+import { updateServerToken } from "../redux/reducers/serverReducer";
 import { login } from "../redux/reducers/authReducer";
 import { toggleActiveTab } from "../redux/reducers/tabsReducer";
 import { fetchOAuthToken } from "../utils/fectchOAuthToken";
 import { setUserId, clearUserId } from "../redux/reducers/userIdReducer";
-
 
 const AdminLogin = () => {
   const [passwordShown, setPasswordShown] = useState(false);
@@ -29,7 +31,9 @@ const AdminLogin = () => {
   const [twoFactorDigitsError, setTwoFactorDigitsError] = useState("");
   const [rememberPassword, setRememberPassword] = useState(false);
   const currentUser = useSelector((state) => state.auth.user);
-  const isUserAuthenticated = useSelector((state) => state.authentication.isAuthenticated);
+  const isUserAuthenticated = useSelector(
+    (state) => state.authentication.isAuthenticated,
+  );
   const userId = useSelector((state) => state.userId.userId);
 
   const navigate = useNavigate();
@@ -38,13 +42,13 @@ const AdminLogin = () => {
   useEffect(() => {
     dispatch(toggleSidebarfalse());
     dispatch(toggleActiveTab({ activeTab: 1 }));
-    dispatch(updateServerToken({serverToken: ''}))
+    dispatch(updateServerToken({ serverToken: "" }));
   }, []);
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("rememberedEmail");
     const savedPassword = localStorage.getItem("rememberedPassword");
-  
+
     if (savedEmail && savedPassword) {
       setEmail(savedEmail);
       setPassword(savedPassword);
@@ -87,33 +91,35 @@ const AdminLogin = () => {
     }
 
     if (validateForm()) {
-
       try {
         // Fetch OAuth token
         const tokenData = await fetchOAuthToken();
-      
+
         if (tokenData.access_token) {
           try {
             setIsSubmitting(true);
-    
-            const loginResponse = await fetch("http://41.219.71.27:4000/auth/admin/login", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${tokenData.access_token}`,
+
+            const loginResponse = await fetch(
+              "http://uat-api.erongored.com.na/auth/admin/login",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${tokenData.access_token}`,
+                },
+                body: JSON.stringify({
+                  email: email,
+                  password: password,
+                }),
               },
-              body: JSON.stringify({
-                email: email,
-                password: password,
-              }),
-            });
-      
+            );
+
             const loginData = await loginResponse.json();
-      
+
             if (loginResponse.ok) {
               setIsSubmitting(false);
               dispatch(setUserId(loginData.userId));
-              setTwoFactorDigits(""); 
+              setTwoFactorDigits("");
               dispatch(toggleAuthenticationTrue());
             } else {
               setIsSubmitting(false);
@@ -124,22 +130,22 @@ const AdminLogin = () => {
             setIsSubmitting(false);
             toast.error(
               "Network error.",
-              "Please check your network connection and try again.Please check your network connection and try again"
+              "Please check your network connection and try again.Please check your network connection and try again",
             );
           }
         } else {
           toast.error(
             "Network error.",
-            "Please check your network connection and try again.Please check your network connection and try again"
+            "Please check your network connection and try again.Please check your network connection and try again",
           );
         }
       } catch (error) {
         // Handle error during token fetch
         console.error("Error fetching OAuth token:", error);
-        toast.error("Unableto fetch token. Please check your network and try again.");
+        toast.error(
+          "Unableto fetch token. Please check your network and try again.",
+        );
       }
-      
-      
     }
   };
 
@@ -153,9 +159,9 @@ const AdminLogin = () => {
       valid = false;
     } else if (!userId) {
       toast.error(
-        `Something went wrong during the authentication process. Try again`
+        `Something went wrong during the authentication process. Try again`,
       );
-      dispatch(toggleAuthenticationfalse())
+      dispatch(toggleAuthenticationfalse());
       valid = false;
     }
     return valid;
@@ -166,7 +172,7 @@ const AdminLogin = () => {
     setTwoFactorDigitsError("");
     if (validateTwoFactor()) {
       const tokenData = await fetchOAuthToken();
-      
+
       if (tokenData.access_token) {
         try {
           setIsSubmitting(true);
@@ -176,35 +182,38 @@ const AdminLogin = () => {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${tokenData.access_token}`,
+                Authorization: `Bearer ${tokenData.access_token}`,
               },
               //
               body: JSON.stringify({
                 userId,
                 otp: twoFactorDigits,
               }),
-            }
+            },
           );
-  
+
           const data = await response.json();
-  
+
           if (response.ok) {
-  
             dispatch(toggleSidebarTrue());
             dispatch(clearUserId());
             dispatch(
               login({
                 user: data.currentUser,
-              })
+              }),
             );
-            dispatch(updateServerToken({
-              serverToken: `Bearer ${tokenData.access_token}`
-            }));
-            dispatch(updateToken({
-              token: `Bearer ${data.currentUser.token}`
-            }));
+            dispatch(
+              updateServerToken({
+                serverToken: `Bearer ${tokenData.access_token}`,
+              }),
+            );
+            dispatch(
+              updateToken({
+                token: `Bearer ${data.currentUser.token}`,
+              }),
+            );
             dispatch(toggleAuthenticationfalse());
-           
+
             navigate("/Dashboard");
           } else {
             setIsSubmitting(false);
@@ -214,11 +223,10 @@ const AdminLogin = () => {
           setIsSubmitting(false);
           toast.error(
             "Network error. Please check your network connection and try again",
-            "Please check your network connection and try again"
+            "Please check your network connection and try again",
           );
         }
       }
-      
     }
   };
   return (
@@ -233,7 +241,7 @@ const AdminLogin = () => {
         <div className="login-form-section">
           <div className="login-form-wrapper">
             <h1 className="login-title">IN4MSME Portal</h1>
-            
+
             <div className="login-card">
               {isUserAuthenticated ? (
                 // Two Factor Authentication Form
@@ -242,7 +250,7 @@ const AdminLogin = () => {
                   <p className="auth-subtitle">
                     Enter the 4-digit code sent to your email
                   </p>
-                  
+
                   <div className="form-field">
                     <label>2FA Code</label>
                     <input
@@ -256,16 +264,22 @@ const AdminLogin = () => {
                       className={twoFactorDigitsError ? "error-input" : ""}
                     />
                     {twoFactorDigitsError && (
-                      <span className="error-message">{twoFactorDigitsError}</span>
+                      <span className="error-message">
+                        {twoFactorDigitsError}
+                      </span>
                     )}
                   </div>
 
-                  <button 
+                  <button
                     onClick={handleTwoFactorAuthentication}
                     className="submit-button"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? <div className="loader"></div> : "Verify Code"}
+                    {isSubmitting ? (
+                      <div className="loader"></div>
+                    ) : (
+                      "Verify Code"
+                    )}
                   </button>
 
                   <button
@@ -284,7 +298,9 @@ const AdminLogin = () => {
                 // Main Login Form
                 <form className="auth-form">
                   <h2>Sign in to account</h2>
-                  <p className="auth-subtitle">Welcome back! Please sign in to continue</p>
+                  <p className="auth-subtitle">
+                    Welcome back! Please sign in to continue
+                  </p>
 
                   <div className="form-field">
                     <label>Username</label>
@@ -298,7 +314,9 @@ const AdminLogin = () => {
                       }}
                       className={emailError ? "error-input" : ""}
                     />
-                    {emailError && <span className="error-message">{emailError}</span>}
+                    {emailError && (
+                      <span className="error-message">{emailError}</span>
+                    )}
                   </div>
 
                   <div className="form-field">
@@ -314,15 +332,21 @@ const AdminLogin = () => {
                         }}
                         className={passwordError ? "error-input" : ""}
                       />
-                      <button 
+                      <button
                         type="button"
                         className="toggle-password"
                         onClick={togglePassword}
                       >
-                        {passwordShown ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                        {passwordShown ? (
+                          <VisibilityIcon />
+                        ) : (
+                          <VisibilityOffIcon />
+                        )}
                       </button>
                     </div>
-                    {passwordError && <span className="error-message">{passwordError}</span>}
+                    {passwordError && (
+                      <span className="error-message">{passwordError}</span>
+                    )}
                   </div>
 
                   <div className="form-actions">
@@ -334,7 +358,7 @@ const AdminLogin = () => {
                       />
                       <span>Remember me</span>
                     </label>
-                    <button 
+                    <button
                       type="button"
                       className="forgot-password"
                       onClick={() => navigate("/Submit")}

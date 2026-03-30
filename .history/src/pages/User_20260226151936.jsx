@@ -131,7 +131,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://41.219.71.27:4000/system/all/system-users",
+          "http://uat-api.erongored.com.na/system/all/system-users",
           {
             method: "GET",
             headers: {
@@ -173,7 +173,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://41.219.71.27:4000/system/all/super-admin-count",
+          "http://uat-api.erongored.com.na/system/all/super-admin-count",
           {
             method: "GET",
             headers: {
@@ -215,7 +215,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://41.219.71.27:4000/system/all/admin-count",
+          "http://uat-api.erongored.com.na/system/all/admin-count",
           {
             method: "GET",
             headers: {
@@ -257,7 +257,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://41.219.71.27:4000/system/all/app-user-count",
+          "http://uat-api.erongored.com.na/system/all/app-user-count",
           {
             method: "GET",
             headers: {
@@ -298,7 +298,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://41.219.71.27:4000/system/all/admin/list",
+          "http://uat-api.erongored.com.na/system/all/admin/list",
           {
             method: "GET",
             headers: {
@@ -339,7 +339,7 @@ function User() {
   const handleUpdate = async (email) => {
     try {
       const response = await fetch(
-        "http://41.219.71.27:4000/auth/admin/update/email",
+        "http://uat-api.erongored.com.na/auth/admin/update/email",
         {
           method: "POST",
           headers: {
@@ -407,7 +407,7 @@ function User() {
             setIsSubmitting(true);
 
             const response = await fetch(
-              "http://41.219.71.27:4000/auth/admin/delete",
+              "http://uat-api.erongored.com.na/auth/admin/delete",
               {
                 method: "DELETE",
                 headers: {
@@ -471,7 +471,7 @@ function User() {
             setIsSubmitting(true);
 
             const response = await fetch(
-              "http://41.219.71.27:4000/auth/admin/delete",
+              "http://uat-api.erongored.com.na/auth/admin/delete",
               {
                 method: "DELETE",
                 headers: {
@@ -731,7 +731,7 @@ function User() {
             role: roleDetails,
           };
           const response = await fetch(
-            `http://41.219.71.27:4000/auth/admin/update/user/details/${updatingDetails.id}`,
+            `http://uat-api.erongored.com.na/auth/admin/update/user/details/${updatingDetails.id}`,
             {
               method: "PUT",
               headers: {
@@ -812,7 +812,7 @@ function User() {
         };
 
         const response = await fetch(
-          "http://41.219.71.27:4000/auth/admin/signup",
+          "http://uat-api.erongored.com.na/auth/admin/signup",
           {
             method: "POST",
             headers: {

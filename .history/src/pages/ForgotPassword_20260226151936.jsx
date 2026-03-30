@@ -75,7 +75,7 @@ function ForgotPassword() {
         try {
           setIsSubmitting(true);
           const response = await fetch(
-            "http://41.219.71.27:4000/auth/admin/newPassword",
+            "http://uat-api.erongored.com.na/auth/admin/newPassword",
             {
               method: "PUT",
               headers: {

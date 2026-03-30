@@ -24,7 +24,7 @@ function SubmitEmail() {
         try {
           setIsSubmitting(true);
           const response = await fetch(
-            "http://41.219.71.27:4000/auth/admin/forgot-password",
+            "http://uat-api.erongored.com.na/auth/admin/forgot-password",
             {
               method: "POST",
               headers: {

@@ -7,7 +7,10 @@ import "../assets/css/bso.css";
 import StickyNote2Icon from "@mui/icons-material/StickyNote2";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
-import { toggleIsSubmittingTrue,toggleIsSubmittingfalse } from "../redux/reducers/submittingReducer";
+import {
+  toggleIsSubmittingTrue,
+  toggleIsSubmittingfalse,
+} from "../redux/reducers/submittingReducer";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Grid from "@mui/material/Grid";
 import Backdrop from "@mui/material/Backdrop";
@@ -29,22 +32,22 @@ import { toggleSidebarfalse } from "../redux/reducers/sidebarReducer";
 import handleAuthFailure from "../utils/handleAuthFailure";
 
 const modalStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: {
-    xs: '95%',
-    sm: '90%', 
-    md: '70%',
-    xl: '50%',
-    xxl: '30%'
+    xs: "95%",
+    sm: "90%",
+    md: "70%",
+    xl: "50%",
+    xxl: "30%",
   },
   height: "80%",
-  bgcolor: 'background.paper',
-  boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+  bgcolor: "background.paper",
+  boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
   p: 4,
-  overflowY: 'auto'
+  overflowY: "auto",
 };
 
 function Bso() {
@@ -128,15 +131,17 @@ function Bso() {
     const fetchTotalCount = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch("http://uat-api.erongored.com.na/bso/admin/count", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${serverToken}`,
-            'x-access-token': `${tokenHeader}`
+        const response = await fetch(
+          "http://uat-api.erongored.com.na/bso/admin/count",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${serverToken}`,
+              "x-access-token": `${tokenHeader}`,
+            },
           },
-          
-        });
+        );
 
         const data = await response.json();
         const newTokenHeader = response.headers.get("x-access-token");
@@ -145,7 +150,7 @@ function Bso() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -168,15 +173,17 @@ function Bso() {
     const fetchApprovedCount = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch(`http://41.219.71.27:4000/bso/admin/all`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${serverToken}`,
-            'x-access-token': `${tokenHeader}`
+        const response = await fetch(
+          `http://uat-api.erongored.com.na/bso/admin/all`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${serverToken}`,
+              "x-access-token": `${tokenHeader}`,
+            },
           },
-          
-        });
+        );
 
         const data = await response.json();
         const newTokenHeader = response.headers.get("x-access-token");
@@ -185,7 +192,7 @@ function Bso() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -220,29 +227,28 @@ function Bso() {
   ];
   const validateFields1 = () => {
     let isValid = true;
-  
+
     fields1.forEach((field) => {
       field.setError("");
-  
+
       if (!field.value) {
         field.setError(`${field.name} is required.`);
         isValid = false;
       } else {
-
         if (field.name === "Email" && field.value) {
           if (!emailRegex.test(field.value)) {
             field.setError("Invalid email format.");
             isValid = false;
           }
         }
-  
+
         if (field.name === "Contact Number" && field.value) {
           if (!namibiaPhoneRegex.test(field.value)) {
             field.setError("Invalid phone number.");
             isValid = false;
           }
         }
-  
+
         if (field.name === "Website" && field.value) {
           if (!urlRegex.test(field.value)) {
             field.setError("Invalid website URL.");
@@ -251,11 +257,10 @@ function Bso() {
         }
       }
     });
-  
+
     return isValid;
   };
-  
-  
+
   const fields2 = [
     { value: nameDetails, setError: setNameDetailsError, name: "Name" },
     { value: typeDetails, setError: setTypeDetailsError, name: "Type" },
@@ -280,7 +285,7 @@ function Bso() {
   ];
   const validateFields2 = () => {
     let isValid = true;
-  
+
     fields2.forEach((field) => {
       field.setError("");
 
@@ -288,21 +293,20 @@ function Bso() {
         field.setError(`${field.name} is required.`);
         isValid = false;
       } else {
-
         if (field.name === "Email" && field.value) {
           if (!emailRegex.test(field.value)) {
             field.setError("Invalid email format.");
             isValid = false;
           }
         }
-  
+
         if (field.name === "Contact Number" && field.value) {
           if (!namibiaPhoneRegex.test(field.value)) {
             field.setError("Invalid phone number.");
             isValid = false;
           }
         }
-  
+
         if (field.name === "Website" && field.value) {
           if (!urlRegex.test(field.value)) {
             field.setError("Invalid website URL.");
@@ -311,11 +315,9 @@ function Bso() {
         }
       }
     });
-  
+
     return isValid;
   };
-  
-  
 
   const handleStep5 = async () => {
     if (validateFields1()) {
@@ -330,17 +332,19 @@ function Bso() {
         formData.append("description", description);
         formData.append("bso-image", file);
         formData.append("website", website);
-        const response = await fetch("http://uat-api.erongored.com.na/bso/admin/create", {
-          method: "POST",
-          
-          headers:{
-            Authorization: `${serverToken}`,
-          
+        const response = await fetch(
+          "http://uat-api.erongored.com.na/bso/admin/create",
+          {
+            method: "POST",
+
+            headers: {
+              Authorization: `${serverToken}`,
+            },
+            body: formData,
           },
-          body: formData,
-        });
+        );
         const data = await response.json();
-        
+
         if (response.ok) {
           setOpenModel(false);
           setIsSubmitting(false);
@@ -377,7 +381,6 @@ function Bso() {
           setEmail("");
           setWebsite("");
           setLogo("");
-          
         }
       } catch (error) {
         setIsSubmitting(false);
@@ -415,15 +418,13 @@ function Bso() {
       field: "action",
       headerName: "",
       width: isSmallScreen ? 230 : 350,
-      renderCell: (params) => (
+      renderCell: (params) =>
         currentUser.role === "Super admin" ? (
           <>
-          <UpdateButton onClick={() => handleUpdate(params.row.id)} />
-          <DeleteButton onClick={() => handleDeletion(params.row.id)} />
-        </>
-        ) : null
-        
-      ),
+            <UpdateButton onClick={() => handleUpdate(params.row.id)} />
+            <DeleteButton onClick={() => handleDeletion(params.row.id)} />
+          </>
+        ) : null,
     },
   ];
 
@@ -438,8 +439,8 @@ function Bso() {
   }));
   const filteredRows = rows.filter((row) =>
     Object.values(row).some((value) =>
-      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
-    )
+      value.toString().toLowerCase().includes(searchQuery.toLowerCase()),
+    ),
   );
 
   const typeOptions = [
@@ -459,22 +460,21 @@ function Bso() {
           headers: {
             "Content-Type": "application/json",
             Authorization: `${serverToken}`,
-            'x-access-token': `${tokenHeader}`
+            "x-access-token": `${tokenHeader}`,
           },
-          
-        }
+        },
       );
 
       const data = await response.json();
       const newTokenHeader = response.headers.get("x-access-token");
-      
+
       if (newTokenHeader) {
         dispatch(
           updateToken({
             token: newTokenHeader,
-          })
+          }),
         );
-      }else{
+      } else {
         handleAuthFailure({ dispatch, navigate, type: "auth" });
       }
 
@@ -525,10 +525,9 @@ function Bso() {
                 headers: {
                   "Content-Type": "application/json",
                   Authorization: `${serverToken}`,
-                  'x-access-token': `${tokenHeader}`
+                  "x-access-token": `${tokenHeader}`,
                 },
-                
-              }
+              },
             );
 
             const data = await response.json();
@@ -537,9 +536,9 @@ function Bso() {
               dispatch(
                 updateToken({
                   token: newTokenHeader,
-                })
+                }),
               );
-            }else{
+            } else {
               handleAuthFailure({ dispatch, navigate, type: "auth" });
             }
 
@@ -552,7 +551,6 @@ function Bso() {
                 showConfirmButton: false,
                 timer: 4000,
               });
-              
             } else {
               dispatch(toggleIsSubmittingfalse());
               await Swal.fire({
@@ -562,7 +560,6 @@ function Bso() {
                 showConfirmButton: false,
                 timer: 4000,
               });
-
             }
           } catch (error) {
             dispatch(toggleIsSubmittingfalse());
@@ -607,12 +604,12 @@ function Bso() {
             `http://uat-api.erongored.com.na/bso/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
-              
-              headers:{
+
+              headers: {
                 Authorization: `${serverToken}`,
               },
               body: formData,
-            }
+            },
           );
           const data = await response.json();
 
@@ -652,7 +649,6 @@ function Bso() {
             setDesciptionDetails("");
             setWebsiteDetails("");
             setLogoDetails("");
-            
           }
         } catch (error) {
           dispatch(toggleIsSubmittingfalse());
@@ -673,7 +669,7 @@ function Bso() {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setLogoError(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setLogo(null);
         return;
@@ -701,7 +697,7 @@ function Bso() {
 
       if (!allowedExtensions.exec(selectedFile.name)) {
         setLogoDetailsError(
-          "Please upload a valid image file with .jpg, .jpeg, or .png extension."
+          "Please upload a valid image file with .jpg, .jpeg, or .png extension.",
         );
         setLogoDetails(null);
         return;
@@ -709,7 +705,7 @@ function Bso() {
 
       if (!validMimeTypes.includes(selectedFile.type)) {
         setLogoDetailsError(
-          "Invalid image type. Please upload a .jpg or .png image."
+          "Invalid image type. Please upload a .jpg or .png image.",
         );
         setLogoDetails(null);
         return;
@@ -811,13 +807,12 @@ function Bso() {
                     </IconButton>
                   </Box>
                   {currentUser.role === "Super admin" && (
-                      <>
-                       <div onClick={handleOpen}>
-                    <MyButton text="Add BSO" />
-                  </div>
-                      </>
-                    )}
-                  
+                    <>
+                      <div onClick={handleOpen}>
+                        <MyButton text="Add BSO" />
+                      </div>
+                    </>
+                  )}
                 </div>
                 <div className="col-12 mt-1">
                   <p className="list-groupp">BSO List</p>
@@ -856,7 +851,7 @@ function Bso() {
                           initialState={{
                             pagination: {
                               paginationModel: {
-                                pageSize: 25, 
+                                pageSize: 25,
                               },
                             },
                           }}
@@ -897,23 +892,23 @@ function Bso() {
               <div></div>
               <h1 className="text-center">Add New BSO</h1>
               <Tooltip title="Close">
-              <CgCloseR
-                style={{
-                  color: "red",
-                  fontSize: "32px",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  setNameError("");
-                  setTypeError("");
-                  setEmailError("");
-                  setWebsiteError("");
-                  setContactNumberError("");
-                  setDesciptionError("");
-                  setLogoError("");
-                  setOpenModel(false);
-                }}
-              />
+                <CgCloseR
+                  style={{
+                    color: "red",
+                    fontSize: "32px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setNameError("");
+                    setTypeError("");
+                    setEmailError("");
+                    setWebsiteError("");
+                    setContactNumberError("");
+                    setDesciptionError("");
+                    setLogoError("");
+                    setOpenModel(false);
+                  }}
+                />
               </Tooltip>
             </div>
 
@@ -1158,26 +1153,25 @@ function Bso() {
               <div></div>
               <h1 className="text-center">Update BSO</h1>
               <Tooltip title="Close">
-              <CgCloseR
-                style={{
-                  color: "red",
-                  fontSize: "32px",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  setNameDetailsError("");
-                  setTypeDetailsError("");
-                  setEmailDetailsError("");
-                  setWebsiteDetailsError("");
-                  setContactNumberDetailsError("");
-                  setDesciptionDetailsError("");
-                  setLogoDetailsError("");
-                  setUpdatingFail("");
-                  setOpenModelEdit(false);
-                }}
-              />
+                <CgCloseR
+                  style={{
+                    color: "red",
+                    fontSize: "32px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setNameDetailsError("");
+                    setTypeDetailsError("");
+                    setEmailDetailsError("");
+                    setWebsiteDetailsError("");
+                    setContactNumberDetailsError("");
+                    setDesciptionDetailsError("");
+                    setLogoDetailsError("");
+                    setUpdatingFail("");
+                    setOpenModelEdit(false);
+                  }}
+                />
               </Tooltip>
-             
             </div>
             {updatingFail && (
               <>
@@ -1267,7 +1261,9 @@ function Bso() {
                   />
                   {contactNumberDetailsError && (
                     <>
-                      <p className="error-message">{contactNumberDetailsError}</p>
+                      <p className="error-message">
+                        {contactNumberDetailsError}
+                      </p>
                     </>
                   )}
                 </div>

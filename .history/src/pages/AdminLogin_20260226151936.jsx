@@ -100,7 +100,7 @@ const AdminLogin = () => {
             setIsSubmitting(true);
 
             const loginResponse = await fetch(
-              "http://41.219.71.27:4000/auth/admin/login",
+              "http://uat-api.erongored.com.na/auth/admin/login",
               {
                 method: "POST",
                 headers: {
@@ -177,7 +177,7 @@ const AdminLogin = () => {
         try {
           setIsSubmitting(true);
           const response = await fetch(
-            "http://41.219.71.27:4000/auth/admin/verify-otp",
+            "http://uat-api.erongored.com.na/auth/admin/verify-otp",
             {
               method: "POST",
               headers: {

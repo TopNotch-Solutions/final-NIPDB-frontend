@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { IconButton, useTheme, useMediaQuery } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { toggleIsSubmittingTrue,toggleIsSubmittingfalse } from "../redux/reducers/submittingReducer";
+import {
+  toggleIsSubmittingTrue,
+  toggleIsSubmittingfalse,
+} from "../redux/reducers/submittingReducer";
 import InputBase from "@mui/material/InputBase";
 import Select from "react-select";
 import "../assets/css/notifications.css";
@@ -121,16 +124,15 @@ function Notifications() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://41.219.71.27:4000/msme/admin/all/user`,
+          `http://uat-api.erongored.com.na/msme/admin/all/user`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -140,7 +142,7 @@ function Notifications() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -164,16 +166,15 @@ function Notifications() {
         dispatch(toggleIsSubmittingTrue());
         setIsSubmitting(true);
         const response = await fetch(
-          `http://41.219.71.27:4000/notifications/admin/single/notifications`,
+          `http://uat-api.erongored.com.na/notifications/admin/single/notifications`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -183,7 +184,7 @@ function Notifications() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -207,16 +208,15 @@ function Notifications() {
         dispatch(toggleIsSubmittingTrue());
         setIsSubmitting(true);
         const response = await fetch(
-          `http://41.219.71.27:4000/notifications/admin/all/unread-notification`,
+          `http://uat-api.erongored.com.na/notifications/admin/all/unread-notification`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -226,7 +226,7 @@ function Notifications() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -250,16 +250,15 @@ function Notifications() {
         dispatch(toggleIsSubmittingTrue());
         setIsSubmitting(true);
         const response = await fetch(
-          `http://41.219.71.27:4000/notifications/admin/all/sent-by-admin`,
+          `http://uat-api.erongored.com.na/notifications/admin/all/sent-by-admin`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -271,7 +270,7 @@ function Notifications() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -296,16 +295,15 @@ function Notifications() {
         dispatch(toggleIsSubmittingTrue());
         setIsSubmitting(true);
         const response = await fetch(
-          `http://41.219.71.27:4000/notifications/admin/all/read-notification`,
+          `http://uat-api.erongored.com.na/notifications/admin/all/read-notification`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
-          }
+          },
         );
 
         const data = await response.json();
@@ -315,7 +313,7 @@ function Notifications() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -354,28 +352,28 @@ function Notifications() {
           senderId: currentUser.id,
         };
         const response = await fetch(
-          `http://41.219.71.27:4000/notifications/admin/create`,
+          `http://uat-api.erongored.com.na/notifications/admin/create`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
+
             body: JSON.stringify(requestData),
-          }
+          },
         );
         const data = await response.json();
         const newTokenHeader = response.headers.get("x-access-token");
-        
+
         if (newTokenHeader) {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
-        }else{
+        } else {
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
 
@@ -407,7 +405,6 @@ function Notifications() {
           setTitle("");
           setPriority("");
           setNotification("");
-          
         }
       } catch (error) {
         dispatch(toggleIsSubmittingfalse());
@@ -431,28 +428,28 @@ function Notifications() {
           senderId: currentUser.id,
         };
         const response = await fetch(
-          `http://41.219.71.27:4000/notifications/admin/create`,
+          `http://uat-api.erongored.com.na/notifications/admin/create`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-            
+
             body: JSON.stringify(requestData),
-          }
+          },
         );
         const data = await response.json();
         const newTokenHeader = response.headers.get("x-access-token");
-        
+
         if (newTokenHeader) {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
-        }else{
+        } else {
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
 
@@ -484,7 +481,6 @@ function Notifications() {
           setTitle("");
           setPriority("");
           setNotification("");
-          
         }
       } catch (error) {
         dispatch(toggleIsSubmittingfalse());
@@ -499,28 +495,27 @@ function Notifications() {
       dispatch(toggleIsSubmittingTrue());
       setIsSubmitting(true);
       const response = await fetch(
-        `http://41.219.71.27:4000/notifications/admin/single/${id}`,
+        `http://uat-api.erongored.com.na/notifications/admin/single/${id}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `${serverToken}`,
-            'x-access-token': `${tokenHeader}`
+            "x-access-token": `${tokenHeader}`,
           },
-          
-        }
+        },
       );
 
       const data = await response.json();
       const newTokenHeader = response.headers.get("x-access-token");
-      
+
       if (newTokenHeader) {
         dispatch(
           updateToken({
             token: newTokenHeader,
-          })
+          }),
         );
-      }else{
+      } else {
         handleAuthFailure({ dispatch, navigate, type: "auth" });
       }
       if (response.ok) {
@@ -538,7 +533,6 @@ function Notifications() {
           showConfirmButton: false,
           timer: 3000,
         });
-        
       }
     } catch (error) {
       dispatch(toggleIsSubmittingfalse());
@@ -552,28 +546,27 @@ function Notifications() {
       dispatch(toggleIsSubmittingTrue());
       setIsSubmitting(true);
       const response = await fetch(
-        `http://41.219.71.27:4000/notifications/admin/single/sent-by-admin/${id}`,
+        `http://uat-api.erongored.com.na/notifications/admin/single/sent-by-admin/${id}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `${serverToken}`,
-            'x-access-token': `${tokenHeader}`
+            "x-access-token": `${tokenHeader}`,
           },
-          
-        }
+        },
       );
 
       const data = await response.json();
       const newTokenHeader = response.headers.get("x-access-token");
-      
+
       if (newTokenHeader) {
         dispatch(
           updateToken({
             token: newTokenHeader,
-          })
+          }),
         );
-      }else{
+      } else {
         handleAuthFailure({ dispatch, navigate, type: "auth" });
       }
       if (response.ok) {
@@ -591,7 +584,6 @@ function Notifications() {
           showConfirmButton: false,
           timer: 3000,
         });
-        
       }
     } catch (error) {
       dispatch(toggleIsSubmittingfalse());
@@ -615,28 +607,27 @@ function Notifications() {
           setIsSubmitting(true);
           dispatch(toggleIsSubmittingTrue());
           const response = await fetch(
-            `http://41.219.71.27:4000/notifications/admin/delete/${id}`,
+            `http://uat-api.erongored.com.na/notifications/admin/delete/${id}`,
             {
               method: "DELETE",
               headers: {
                 "Content-Type": "application/json",
                 Authorization: `${serverToken}`,
-                'x-access-token': `${tokenHeader}`
+                "x-access-token": `${tokenHeader}`,
               },
-              
-            }
+            },
           );
 
           const data = await response.json();
           const newTokenHeader = response.headers.get("x-access-token");
-          
+
           if (newTokenHeader) {
             dispatch(
               updateToken({
                 token: newTokenHeader,
-              })
+              }),
             );
-          }else{
+          } else {
             handleAuthFailure({ dispatch, navigate, type: "auth" });
           }
           if (response.ok) {
@@ -658,7 +649,6 @@ function Notifications() {
               showConfirmButton: false,
               timer: 3000,
             });
-            
           }
         } catch (error) {
           dispatch(toggleIsSubmittingfalse());
@@ -674,28 +664,27 @@ function Notifications() {
       setIsSubmitting(true);
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `http://41.219.71.27:4000/notifications/admin/delete/${updatedId}`,
+        `http://uat-api.erongored.com.na/notifications/admin/delete/${updatedId}`,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
             Authorization: `${serverToken}`,
-            'x-access-token': `${tokenHeader}`
+            "x-access-token": `${tokenHeader}`,
           },
-          
-        }
+        },
       );
 
       const data = await response.json();
       const newTokenHeader = response.headers.get("x-access-token");
-      
+
       if (newTokenHeader) {
         dispatch(
           updateToken({
             token: newTokenHeader,
-          })
+          }),
         );
-      }else{
+      } else {
         handleAuthFailure({ dispatch, navigate, type: "auth" });
       }
       if (response.ok) {
@@ -712,7 +701,7 @@ function Notifications() {
       } else {
         dispatch(toggleIsSubmittingfalse());
         setIsSubmitting(false);
-             }
+      }
     } catch (error) {
       dispatch(toggleIsSubmittingfalse());
       setIsSubmitting(false);
@@ -788,8 +777,8 @@ function Notifications() {
   }));
   const filteredRows = rows.filter((row) =>
     Object.values(row).some((value) =>
-      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
-    )
+      value.toString().toLowerCase().includes(searchQuery.toLowerCase()),
+    ),
   );
   const rowsUnread = allUnread.map((admin) => ({
     id: admin.id,
@@ -801,8 +790,8 @@ function Notifications() {
   }));
   const filteredRowsUnread = rowsUnread.filter((row) =>
     Object.values(row).some((value) =>
-      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
-    )
+      value.toString().toLowerCase().includes(searchQuery.toLowerCase()),
+    ),
   );
   const rowsRead = allRead.map((admin) => ({
     id: admin.id,
@@ -814,8 +803,8 @@ function Notifications() {
   }));
   const filteredRowsRead = rowsRead.filter((row) =>
     Object.values(row).some((value) =>
-      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
-    )
+      value.toString().toLowerCase().includes(searchQuery.toLowerCase()),
+    ),
   );
   const rowsSent = allSent.map((admin) => ({
     id: admin.id,
@@ -826,8 +815,8 @@ function Notifications() {
   }));
   const filteredRowsSent = rowsSent.filter((row) =>
     Object.values(row).some((value) =>
-      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
-    )
+      value.toString().toLowerCase().includes(searchQuery.toLowerCase()),
+    ),
   );
 
   const notificationsOptions = [
@@ -908,7 +897,6 @@ function Notifications() {
               <div className="container-fluid">
                 <div className="row justify-content-center">
                   <div className="col-12 col-lg-12 col-xxl-9 mx-auto border d-flex flex-wrap justify-content-between p-1">
-                    
                     <button
                       className={
                         buttonActive === 4
@@ -946,10 +934,7 @@ function Notifications() {
                 </div>
               </div>
 
-              {buttonActive === 1 && (
-                <></>
-                
-              )}
+              {buttonActive === 1 && <></>}
               {buttonActive === 2 && (
                 <>
                   <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
@@ -973,11 +958,10 @@ function Notifications() {
                     {currentUser.role === "Super admin" && (
                       <>
                         <div onClick={handleOpen}>
-                      <MyButton text="New Notification" />
-                    </div>
+                          <MyButton text="New Notification" />
+                        </div>
                       </>
                     )}
-                   
                   </div>
                   <div className="col-12 mt-1">
                     <p className="list-groupp">All Read Notification List</p>
@@ -1016,7 +1000,7 @@ function Notifications() {
                             initialState={{
                               pagination: {
                                 paginationModel: {
-                                  pageSize: 25, 
+                                  pageSize: 25,
                                 },
                               },
                             }}
@@ -1066,12 +1050,11 @@ function Notifications() {
                     </Box>
                     {currentUser.role === "Super admin" && (
                       <>
-                      <div onClick={handleOpen}>
-                      <MyButton text="New Notification" />
-                    </div>
+                        <div onClick={handleOpen}>
+                          <MyButton text="New Notification" />
+                        </div>
                       </>
                     )}
-                    
                   </div>
                   <div className="col-12 mt-1">
                     <p className="list-groupp">Sent Notification List</p>
@@ -1110,7 +1093,7 @@ function Notifications() {
                             initialState={{
                               pagination: {
                                 paginationModel: {
-                                  pageSize: 25, 
+                                  pageSize: 25,
                                 },
                               },
                             }}
@@ -1160,9 +1143,9 @@ function Notifications() {
                     </Box>
                     {currentUser.role === "Super admin" && (
                       <>
-                      <div onClick={handleOpen}>
-                      <MyButton text="New Notification" />
-                    </div>
+                        <div onClick={handleOpen}>
+                          <MyButton text="New Notification" />
+                        </div>
                       </>
                     )}
                   </div>
@@ -1203,7 +1186,7 @@ function Notifications() {
                             initialState={{
                               pagination: {
                                 paginationModel: {
-                                  pageSize: 25, 
+                                  pageSize: 25,
                                 },
                               },
                             }}
@@ -1308,112 +1291,8 @@ function Notifications() {
               </div>
             </div>
           </div>
-          {
-            (notificationActive === "All" || notificationActive === "Business") ? (
-              <Grid
-            container
-            spacing={{ xs: 1, md: 1 }}
-            columns={{ xs: 12, sm: 12, md: 12 }}
-            style={{ marginTop: "10px" }}
-          >
-            <Grid item xs={12} sm={6} md={6}>
-              <div className="form-group pb-3">
-                <label htmlFor="email" className="pb-2 text-boldd">
-                  Subject: <span>*</span>
-                </label>
-                <input
-                  type="text"
-                  value={title}
-                  className="form-control place-holder"
-                  placeholder="Enter title"
-                  autoComplete="off"
-                  name="email"
-                  onChange={(e) => {
-                    setTitleError("");
-                    setTitle(e.target.value);
-                  }}
-                />
-                {titleError && (
-                  <>
-                    <p className="error-message">{titleError}</p>
-                  </>
-                )}
-              </div>
-              <div className="form-group pb-3">
-                <label htmlFor="email" className="pb-2 text-boldd">
-                  Prority: <span>*</span>
-                </label>
-                <select
-                  class="form-select"
-                  value={priority}
-                  //disabled={!isEditing ? true : false}
-                  onChange={(e) => {
-                    setPriorityError("");
-                    setPriority(e.target.value);
-                  }}
-                >
-                  <option value="" disabled selected={!priority}>
-                    Select priority
-                  </option>
-                  {notificationsOptions.map((option) => (
-                    <option value={option.value} key={option.value}>
-                      {option.value}
-                    </option>
-                  ))}
-                </select>
-                {priorityError && (
-                  <>
-                    <p className="error-message">{priorityError}</p>
-                  </>
-                )}
-              </div>
-            </Grid>
-            <Grid item xs={12} sm={6} md={6}>
-              <div className="form-group pb-3">
-                <label htmlFor="email" className="pb-2 text-boldd">
-                  Notification: <span>*</span>
-                </label>
-                <textarea
-                  type="textArea"
-                  rows="5"
-                  cols="50"
-                  value={notification}
-                  className="form-control place-holder"
-                  maxlength="1500"
-                  placeholder="Type here.........."
-                  autoComplete="off"
-                  name="email"
-                  onChange={(e) => {
-                    setTextCounter(e.target.value.length);
-                    setNotificationError("");
-                    setNotification(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="float-end text-counter">
-                <span>{textCounter}</span>
-                <span>/1500</span>
-              </div>
-              {notificationError && (
-                <>
-                  <p className="error-message">{notificationError}</p>
-                </>
-              )}
-            </Grid>
-
-            <Grid item xs={12}>
-              <div className="float-end">
-                <button
-                  className="btn btn-success m-1 p-2 modelButton text-boldd"
-                  onClick={handleStep5}
-                >
-                  Send
-                </button>
-              </div>
-            </Grid>
-          </Grid>
-            ) : (
-              <Grid
+          {notificationActive === "All" || notificationActive === "Business" ? (
+            <Grid
               container
               spacing={{ xs: 1, md: 1 }}
               columns={{ xs: 12, sm: 12, md: 12 }}
@@ -1443,34 +1322,135 @@ function Notifications() {
                   )}
                 </div>
                 <div className="form-group pb-3">
-                              <label htmlFor="email" className="pb-2 text-boldd">
-                                User Name: <span>*</span>
-                              </label>
-                              <Select
-                                value={userOptions.find(
-                                  (option) => option.value === userId
-                                )}
-                                onChange={(selectedOption) => {
-                                  setUserIdError("");
-                                  setUserId(
-                                    selectedOption ? selectedOption.value : ""
-                                  );
-                                  if(!setUserId){
-                                    setUserId("")
-                                  }
-                                }}
-                                options={userOptions}
-                                placeholder="Select user"
-                                isSearchable
-                                classNamePrefix="react-select"
-                                components={{ DropdownIndicator }}
-                              />
-                              {userIdError && (
-                                <>
-                                  <p className="error-message">{userIdError}</p>
-                                </>
-                              )}
-                            </div>
+                  <label htmlFor="email" className="pb-2 text-boldd">
+                    Prority: <span>*</span>
+                  </label>
+                  <select
+                    class="form-select"
+                    value={priority}
+                    //disabled={!isEditing ? true : false}
+                    onChange={(e) => {
+                      setPriorityError("");
+                      setPriority(e.target.value);
+                    }}
+                  >
+                    <option value="" disabled selected={!priority}>
+                      Select priority
+                    </option>
+                    {notificationsOptions.map((option) => (
+                      <option value={option.value} key={option.value}>
+                        {option.value}
+                      </option>
+                    ))}
+                  </select>
+                  {priorityError && (
+                    <>
+                      <p className="error-message">{priorityError}</p>
+                    </>
+                  )}
+                </div>
+              </Grid>
+              <Grid item xs={12} sm={6} md={6}>
+                <div className="form-group pb-3">
+                  <label htmlFor="email" className="pb-2 text-boldd">
+                    Notification: <span>*</span>
+                  </label>
+                  <textarea
+                    type="textArea"
+                    rows="5"
+                    cols="50"
+                    value={notification}
+                    className="form-control place-holder"
+                    maxlength="1500"
+                    placeholder="Type here.........."
+                    autoComplete="off"
+                    name="email"
+                    onChange={(e) => {
+                      setTextCounter(e.target.value.length);
+                      setNotificationError("");
+                      setNotification(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="float-end text-counter">
+                  <span>{textCounter}</span>
+                  <span>/1500</span>
+                </div>
+                {notificationError && (
+                  <>
+                    <p className="error-message">{notificationError}</p>
+                  </>
+                )}
+              </Grid>
+
+              <Grid item xs={12}>
+                <div className="float-end">
+                  <button
+                    className="btn btn-success m-1 p-2 modelButton text-boldd"
+                    onClick={handleStep5}
+                  >
+                    Send
+                  </button>
+                </div>
+              </Grid>
+            </Grid>
+          ) : (
+            <Grid
+              container
+              spacing={{ xs: 1, md: 1 }}
+              columns={{ xs: 12, sm: 12, md: 12 }}
+              style={{ marginTop: "10px" }}
+            >
+              <Grid item xs={12} sm={6} md={6}>
+                <div className="form-group pb-3">
+                  <label htmlFor="email" className="pb-2 text-boldd">
+                    Subject: <span>*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={title}
+                    className="form-control place-holder"
+                    placeholder="Enter title"
+                    autoComplete="off"
+                    name="email"
+                    onChange={(e) => {
+                      setTitleError("");
+                      setTitle(e.target.value);
+                    }}
+                  />
+                  {titleError && (
+                    <>
+                      <p className="error-message">{titleError}</p>
+                    </>
+                  )}
+                </div>
+                <div className="form-group pb-3">
+                  <label htmlFor="email" className="pb-2 text-boldd">
+                    User Name: <span>*</span>
+                  </label>
+                  <Select
+                    value={userOptions.find(
+                      (option) => option.value === userId,
+                    )}
+                    onChange={(selectedOption) => {
+                      setUserIdError("");
+                      setUserId(selectedOption ? selectedOption.value : "");
+                      if (!setUserId) {
+                        setUserId("");
+                      }
+                    }}
+                    options={userOptions}
+                    placeholder="Select user"
+                    isSearchable
+                    classNamePrefix="react-select"
+                    components={{ DropdownIndicator }}
+                  />
+                  {userIdError && (
+                    <>
+                      <p className="error-message">{userIdError}</p>
+                    </>
+                  )}
+                </div>
               </Grid>
               <Grid item xs={12} sm={6} md={6}>
                 <div className="form-group pb-3">
@@ -1504,7 +1484,7 @@ function Notifications() {
                   </>
                 )}
               </Grid>
-  
+
               <Grid item xs={12}>
                 <div className="float-end">
                   <button
@@ -1516,8 +1496,7 @@ function Notifications() {
                 </div>
               </Grid>
             </Grid>
-            )
-          }
+          )}
         </Box>
       </Modal>
       <Modal
