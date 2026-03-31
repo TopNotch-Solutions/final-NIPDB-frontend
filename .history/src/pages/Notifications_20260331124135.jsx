@@ -1332,7 +1332,7 @@ function Notifications() {
                 </div>
                 <div className="form-group pb-3">
                   <label htmlFor="email" className="pb-2 text-boldd">
-                    Priority: <span>*</span>
+                    Prrity: <span>*</span>
                   </label>
                   <select
                     className="form-select modern-select"
