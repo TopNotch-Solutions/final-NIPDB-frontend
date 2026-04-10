@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, IconButton, Avatar, Tooltip } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
@@ -12,72 +12,49 @@ import "../../assets/css/TopBar.css";
 import { CapitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { toggleSidebarfalse } from "../../redux/reducers/sidebarReducer";
 import { login } from "../../redux/reducers/authReducer";
-import { toggleAuthenticationfalse} from "../../redux/reducers/twoFactorReducer";
+import { toggleAuthenticationfalse } from "../../redux/reducers/twoFactorReducer";
 import { updateToken } from "../../redux/reducers/authReducer";
-import { updateServerToken } from "../../redux/reducers/serverReducer";
 import { toggleActiveTab } from "../../redux/reducers/tabsReducer";
-import Swal from "sweetalert2";
+import useNotificationPoller from "../../hooks/useNotificationPoller";
 
 const Topbar = ({ OpenSidebar }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.auth.user);
-  const serverToken = useSelector((state) => state.server.serverToken);
-  const updatingState = useSelector((state) => state.submitting.isSubmitting);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   let fullName = currentUser?.firstName + currentUser?.lastName;
-  const tokenHeader = currentUser.token;
-  const [allNotificationsCount,setAllNotificationsCount] = useState(0);
+  const [allNotificationsCount, setAllNotificationsCount] = useState(0);
   let firstLetter = CapitalizeFirstLetter(currentUser?.firstName);
   let secondLetter = CapitalizeFirstLetter(currentUser?.lastName);
-  useEffect(() => {
-    const fetchAllAdminNotificationsCount = async () => {
-      try {
-        const response = await fetch(
-          `http://uat-api.erongored.com.na/notifications/admin/totalNotificationCount`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
-            },
-            //
-          }
-        );
-        
-        const data = await response.json();
-        const newTokenHeader = response.headers.get('x-access-token');
-        dispatch(updateToken({
-          token: newTokenHeader
-        }));
-        if (response.ok) {
-          setAllNotificationsCount(data.count);
-        } else {
-        }
-      } catch (error) {}
-    };
 
-    fetchAllAdminNotificationsCount();
-  }, [isSubmitting, updatingState]);
+  // Polling hook — replaces the old one-shot fetch.
+  // Fires every 2s, updates badge count via callback, and triggers
+  // instant toasts for new notifications via the emitter.
+  useNotificationPoller({
+    onCountUpdated: setAllNotificationsCount,
+  });
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://uat-api.erongored.com.na/auth/admin/logout", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${tokenHeader}`,
-          'x-access-token': `${tokenHeader}`
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/auth/admin/logout`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${tokenHeader}`,
+            "x-access-token": `${tokenHeader}`,
+          },
+          //
         },
-        //
-      });
+      );
 
       const data = await response.json();
-        const newTokenHeader = response.headers.get('x-access-token');
-        dispatch(updateToken({
-          token: newTokenHeader
-        }));
+      const newTokenHeader = response.headers.get("x-access-token");
+      dispatch(
+        updateToken({
+          token: newTokenHeader,
+        }),
+      );
 
       if (response.ok) {
         dispatch(toggleAuthenticationfalse());
@@ -85,17 +62,17 @@ const Topbar = ({ OpenSidebar }) => {
         dispatch(
           login({
             user: {},
-          })
+          }),
         );
         navigate("/");
       } else {
-        dispatch(toggleAuthenticationfalse())
+        dispatch(toggleAuthenticationfalse());
         dispatch(toggleSidebarfalse());
-        
+
         dispatch(
           login({
             user: {},
-          })
+          }),
         );
         navigate("/");
       }
@@ -118,23 +95,16 @@ const Topbar = ({ OpenSidebar }) => {
         boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
         position: "sticky",
         top: 0,
-        zIndex: 1000
+        zIndex: 1000,
       }}
     >
       <div className="topbar-left">
         <Box display="flex" alignItems="center" gap={2}>
           <div className="d-none d-lg-block">
-            <img 
-              src={logo} 
-              alt="logo" 
-              className="topbar-logo"
-            />
+            <img src={logo} alt="logo" className="topbar-logo" />
           </div>
           <div className="d-block d-lg-none">
-            <IconButton 
-              onClick={OpenSidebar}
-              sx={{ color: "#009547" }}
-            >
+            <IconButton onClick={OpenSidebar} sx={{ color: "#009547" }}>
               <MenuIcon />
             </IconButton>
           </div>
@@ -143,13 +113,20 @@ const Topbar = ({ OpenSidebar }) => {
 
       <Box display="flex" alignItems="center" gap={2}>
         <Tooltip title="Notifications">
-          <div className="notification-icon" onClick={() => {
-            dispatch(toggleActiveTab({ activeTab: 6 }));
-            navigate('/notifications');
-          }}>
+          <div
+            className="notification-icon"
+            onClick={() => {
+              dispatch(toggleActiveTab({ activeTab: 6 }));
+              navigate("/notifications");
+            }}
+          >
             <IconButton sx={{ color: "#666" }}>
               {allNotificationsCount > 0 ? (
-                <Badge badgeContent={allNotificationsCount} max={99} color="primary">
+                <Badge
+                  badgeContent={allNotificationsCount}
+                  max={99}
+                  color="primary"
+                >
                   <NotificationsOutlinedIcon />
                 </Badge>
               ) : (
@@ -172,28 +149,31 @@ const Topbar = ({ OpenSidebar }) => {
 
         <div className="user-avatar">
           {currentUser?.profileImage ? (
-            <Avatar 
-              alt="User Profile" 
+            <Avatar
+              alt="User Profile"
               src={currentUser?.profileImage}
               sx={{ width: 40, height: 40 }}
             />
           ) : (
             <Avatar
-              sx={{ 
+              sx={{
                 bgcolor: "#1976d2",
                 width: 40,
-                height: 40
+                height: 40,
               }}
             >{`${firstLetter}${secondLetter}`}</Avatar>
           )}
         </div>
 
         <Dropdown className="user-dropdown" autoClose="outside">
-          <Dropdown.Toggle variant="" id="dropdown-basic" className="dropdown-toggle">
-          </Dropdown.Toggle>
+          <Dropdown.Toggle
+            variant=""
+            id="dropdown-basic"
+            className="dropdown-toggle"
+          ></Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu">
-            <Dropdown.Item 
-              href="/profile" 
+            <Dropdown.Item
+              href="/profile"
               onClick={() => dispatch(toggleActiveTab({ activeTab: 8 }))}
               className="dropdown-item"
             >

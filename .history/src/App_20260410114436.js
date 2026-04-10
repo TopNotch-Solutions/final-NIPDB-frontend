@@ -28,7 +28,7 @@ function App() {
   };
   let sidebar = useSelector((state) => state.sidebar.isSidebarOpen);
   let currentUser = useSelector((state) => state.auth.user);
-  const isAuthenticated = currentUser ? true : false;
+  const isAuthenticated = currentUser ? true: false;
 
   return (
     <Router>
@@ -52,7 +52,9 @@ function App() {
               }}
             >
               <div>{sidebar && <Topbar OpenSidebar={OpenSidebar} />}</div>
-              <div style={{ flexGrow: 1, overflow: "auto" }}>
+              <div
+                style={{ flexGrow: 1, overflow: "auto" }}
+              >
                 <Routes>
                   <Route path="/" element={<AdminLogin />} />
                   <Route element={<AdminRoute />}>
