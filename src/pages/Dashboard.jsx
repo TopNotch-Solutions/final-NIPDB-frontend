@@ -80,7 +80,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/monthly/registeration`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/monthly/registeration`,
           {
             method: "GET",
             headers: {
@@ -118,7 +118,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/totalCount`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/totalCount`,
           {
             method: "GET",
             headers: {
@@ -161,7 +161,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/pendingCount`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/pendingCount`,
           {
             method: "GET",
             headers: {
@@ -204,7 +204,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/rejectedCount`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/rejectedCount`,
           {
             method: "GET",
             headers: {
@@ -247,7 +247,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/approvedCount`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/approvedCount`,
           {
             method: "GET",
             headers: {
@@ -289,7 +289,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/all`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all`,
           {
             method: "GET",
             headers: {
@@ -331,7 +331,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/top5/categories`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/top5/categories`,
           {
             method: "GET",
             headers: {

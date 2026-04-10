@@ -142,7 +142,7 @@ function Content() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/opportunities/admin/all`,
+          `${process.env.REACT_APP_BASE_URL}/opportunities/admin/all`,
           {
             method: "GET",
             headers: {
@@ -183,7 +183,7 @@ function Content() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/admin/mobile-images/all`,
+          `${process.env.REACT_APP_BASE_URL}/admin/mobile-images/all`,
           {
             method: "GET",
             headers: {
@@ -236,7 +236,7 @@ function Content() {
         formData.append("link", link);
 
         const response = await fetch(
-          `http://uat-api.erongored.com.na/opportunities/admin/create`,
+          `${process.env.REACT_APP_BASE_URL}/opportunities/admin/create`,
           {
             method: "POST",
             headers: {
@@ -288,7 +288,7 @@ function Content() {
         formData.append("description", descriptionImage);
         formData.append("mobile-image", fileMobileImage);
         const response = await fetch(
-          `http://uat-api.erongored.com.na/admin/mobile-images/create`,
+          `${process.env.REACT_APP_BASE_URL}/admin/mobile-images/create`,
           {
             method: "POST",
 
@@ -340,7 +340,7 @@ function Content() {
     try {
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `http://uat-api.erongored.com.na/opportunities/admin/single/${id}`,
+        `${process.env.REACT_APP_BASE_URL}/opportunities/admin/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -392,7 +392,7 @@ function Content() {
     try {
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `http://uat-api.erongored.com.na/admin/mobile-images/single/${id}`,
+        `${process.env.REACT_APP_BASE_URL}/admin/mobile-images/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -455,7 +455,7 @@ function Content() {
           setIsSubmitting(true);
           dispatch(toggleIsSubmittingTrue());
           const response = await fetch(
-            `http://uat-api.erongored.com.na/opportunities/admin/delete/${id}`,
+            `${process.env.REACT_APP_BASE_URL}/opportunities/admin/delete/${id}`,
             {
               method: "DELETE",
               headers: {
@@ -526,7 +526,7 @@ function Content() {
           dispatch(toggleIsSubmittingTrue());
 
           const response = await fetch(
-            `http://uat-api.erongored.com.na/admin/mobile-images/delete/${id}`,
+            `${process.env.REACT_APP_BASE_URL}/admin/mobile-images/delete/${id}`,
             {
               method: "DELETE",
               headers: {
@@ -929,7 +929,7 @@ function Content() {
           formData.append("opportunity-image", fileMobileImage);
           formData.append("link", linkDetails);
           const response = await fetch(
-            `http://uat-api.erongored.com.na/opportunities/admin/update/${updatingDetails.id}`,
+            `${process.env.REACT_APP_BASE_URL}/opportunities/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
 
@@ -991,7 +991,7 @@ function Content() {
           formData.append("mobile-image", fileMobileImageDetails);
           console.log("yo", descriptionDetails, fileMobileImageDetails);
           const response = await fetch(
-            `http://uat-api.erongored.com.na/admin/mobile-images/update/${updatingImageDetails.id}`,
+            `${process.env.REACT_APP_BASE_URL}/admin/mobile-images/update/${updatingImageDetails.id}`,
             {
               method: "PUT",
 
@@ -1056,7 +1056,7 @@ function Content() {
           formData.append("link", linkDetails);
 
           const response = await fetch(
-            `http://uat-api.erongored.com.na/opportunities/admin/update/${updatingDetails.id}`,
+            `${process.env.REACT_APP_BASE_URL}/opportunities/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
 
@@ -2029,7 +2029,7 @@ function Content() {
                               <img
                                 src={
                                   updatingDetails.image === imageDetails
-                                    ? `http://uat-api.erongored.com.na/opportunities/` +
+                                    ? `${process.env.REACT_APP_BASE_URL}/opportunities/` +
                                       imageDetails
                                     : imageDetails
                                 }
@@ -2178,7 +2178,7 @@ function Content() {
                               <img
                                 src={
                                   updatingDetails.image === imageDetails
-                                    ? `http://uat-api.erongored.com.na/opportunities/` +
+                                    ? `${process.env.REACT_APP_BASE_URL}/opportunities/` +
                                       imageDetails
                                     : imageDetails
                                 }
@@ -2345,7 +2345,7 @@ function Content() {
                             src={
                               updatingImageDetails.mobileImage ===
                               imageImageDetails
-                                ? `http://uat-api.erongored.com.na/mobile-images/${imageImageDetails}`
+                                ? `${process.env.REACT_APP_BASE_URL}/mobile-images/${imageImageDetails}`
                                 : imageImageDetails
                             }
                             className="img-responsive img-thumbnail"

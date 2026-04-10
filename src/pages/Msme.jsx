@@ -489,7 +489,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/totalCount`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/totalCount`,
           {
             method: "GET",
             headers: {
@@ -531,7 +531,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/pendingCount`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/pendingCount`,
           {
             method: "GET",
             headers: {
@@ -573,7 +573,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/rejectedCount`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/rejectedCount`,
           {
             method: "GET",
             headers: {
@@ -615,7 +615,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/approvedCount`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/approvedCount`,
           {
             method: "GET",
             headers: {
@@ -656,7 +656,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/incompleteCount`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/incompleteCount`,
           {
             method: "GET",
             headers: {
@@ -698,7 +698,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/all`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all`,
           {
             method: "GET",
             headers: {
@@ -739,7 +739,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/all/pending`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/pending`,
           {
             method: "GET",
             headers: {
@@ -780,7 +780,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/all/rejected`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/rejected`,
           {
             method: "GET",
             headers: {
@@ -822,7 +822,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/all/approved`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/approved`,
           {
             method: "GET",
             headers: {
@@ -864,7 +864,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/all/incomplete`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/incomplete`,
           {
             method: "GET",
             headers: {
@@ -905,7 +905,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/region/admin/all`,
+          `${process.env.REACT_APP_BASE_URL}/region/admin/all`,
           {
             method: "GET",
             headers: {
@@ -947,7 +947,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/town/admin/all`,
+          `${process.env.REACT_APP_BASE_URL}/town/admin/all`,
           {
             method: "GET",
             headers: {
@@ -987,7 +987,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/primaryIndustry/admin/all`,
+          `${process.env.REACT_APP_BASE_URL}/primaryIndustry/admin/all`,
           {
             method: "GET",
             headers: {
@@ -1028,7 +1028,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/secondaryIndustry/admin/all`,
+          `${process.env.REACT_APP_BASE_URL}/secondaryIndustry/admin/all`,
           {
             method: "GET",
             headers: {
@@ -1069,7 +1069,7 @@ function Msme() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/all/user`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/user`,
           {
             method: "GET",
             headers: {
@@ -1789,7 +1789,7 @@ function Msme() {
         console.log("This is my formdata", formData);
 
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/create`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/create`,
           {
             method: "POST",
 
@@ -1914,7 +1914,7 @@ function Msme() {
     try {
       setIsSubmitting(true);
       const response = await fetch(
-        `http://uat-api.erongored.com.na/msme/admin/single/${id}`,
+        `${process.env.REACT_APP_BASE_URL}/msme/admin/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -2336,7 +2336,7 @@ function Msme() {
             try {
               setIsSubmitting(true);
               const response = await fetch(
-                `http://uat-api.erongored.com.na/msme/admin/status/${updatingDetails.id}`,
+                `${process.env.REACT_APP_BASE_URL}/msme/admin/status/${updatingDetails.id}`,
                 {
                   method: "PUT",
                   headers: {
@@ -2494,7 +2494,7 @@ function Msme() {
           formData.append("removeImage3", removeImage3);
         }
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/update/${updatingDetails.id}`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/update/${updatingDetails.id}`,
           {
             method: "PUT",
 
@@ -2515,7 +2515,7 @@ function Msme() {
             try {
               setIsSubmitting(true);
               const response = await fetch(
-                `http://uat-api.erongored.com.na/msme/admin/status/${updatingDetails.id}`,
+                `${process.env.REACT_APP_BASE_URL}/msme/admin/status/${updatingDetails.id}`,
                 {
                   method: "PUT",
                   headers: {
@@ -2653,7 +2653,7 @@ function Msme() {
           try {
             setIsSubmitting(true);
             const response = await fetch(
-              `http://uat-api.erongored.com.na/msme/admin/status/${updatingDetails.id}`,
+              `${process.env.REACT_APP_BASE_URL}/msme/admin/status/${updatingDetails.id}`,
               {
                 method: "PUT",
                 headers: {
@@ -2742,7 +2742,7 @@ function Msme() {
           try {
             setIsSubmitting(true);
             const response = await fetch(
-              `http://uat-api.erongored.com.na/msme/admin/block/${updatingDetails.id}`,
+              `${process.env.REACT_APP_BASE_URL}/msme/admin/block/${updatingDetails.id}`,
               {
                 method: "PUT",
                 headers: {
@@ -2830,7 +2830,7 @@ function Msme() {
           try {
             setIsSubmitting(true);
             const response = await fetch(
-              `http://uat-api.erongored.com.na/msme/admin/block/${updatingDetails.id}`,
+              `${process.env.REACT_APP_BASE_URL}/msme/admin/block/${updatingDetails.id}`,
               {
                 method: "PUT",
                 headers: {
@@ -2911,7 +2911,7 @@ function Msme() {
         try {
           setsendingNotification(true);
           const response = await fetch(
-            `http://uat-api.erongored.com.na/notifications/admin/create/single/${updatingDetails.id}`,
+            `${process.env.REACT_APP_BASE_URL}/notifications/admin/create/single/${updatingDetails.id}`,
             {
               method: "POST",
               headers: {
@@ -7129,7 +7129,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo
                                       ?.businessLogo === businessLogoDetails
-                                      ? `http://uat-api.erongored.com.na/msmes/${businessLogoDetails}`
+                                      ? `${process.env.REACT_APP_BASE_URL}/msmes/${businessLogoDetails}`
                                       : businessLogoDetails
                                   }
                                   className=" img-responsive img-thumbnail"
@@ -7218,7 +7218,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo?.image1 ===
                                     image1Details
-                                      ? `http://uat-api.erongored.com.na/msmes/${image1Details}`
+                                      ? `${process.env.REACT_APP_BASE_URL}/msmes/${image1Details}`
                                       : image1Details
                                   }
                                   className=" img-responsive img-thumbnail"
@@ -7307,7 +7307,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo?.image2 ===
                                     image2Details
-                                      ? `http://uat-api.erongored.com.na/msmes/${image2Details}`
+                                      ? `${process.env.REACT_APP_BASE_URL}/msmes/${image2Details}`
                                       : image2Details
                                   }
                                   className=" img-responsive img-thumbnail"
@@ -7396,7 +7396,7 @@ function Msme() {
                                   src={
                                     updatingDetails?.additionalInfo?.image3 ===
                                     image3Details
-                                      ? `http://uat-api.erongored.com.na/msmes/${image3Details}`
+                                      ? `${process.env.REACT_APP_BASE_URL}/msmes/${image3Details}`
                                       : image3Details
                                   }
                                   className=" img-responsive img-thumbnail"

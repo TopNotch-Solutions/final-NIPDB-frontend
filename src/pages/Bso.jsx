@@ -132,7 +132,7 @@ function Bso() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/bso/admin/count`,
+          `${process.env.REACT_APP_BASE_URL}/bso/admin/count`,
           {
             method: "GET",
             headers: {
@@ -174,7 +174,7 @@ function Bso() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/bso/admin/all`,
+          `${process.env.REACT_APP_BASE_URL}/bso/admin/all`,
           {
             method: "GET",
             headers: {
@@ -333,7 +333,7 @@ function Bso() {
         formData.append("bso-image", file);
         formData.append("website", website);
         const response = await fetch(
-          `http://uat-api.erongored.com.na/bso/admin/create`,
+          `${process.env.REACT_APP_BASE_URL}/bso/admin/create`,
           {
             method: "POST",
 
@@ -454,7 +454,7 @@ function Bso() {
     try {
       dispatch(toggleIsSubmittingTrue());
       const response = await fetch(
-        `http://uat-api.erongored.com.na/bso/admin/single/${id}`,
+        `${process.env.REACT_APP_BASE_URL}/bso/admin/single/${id}`,
         {
           method: "GET",
           headers: {
@@ -519,7 +519,7 @@ function Bso() {
             setIsSubmitting(true);
             dispatch(toggleIsSubmittingTrue());
             const response = await fetch(
-              `http://uat-api.erongored.com.na/bso/admin/delete/${id}`,
+              `${process.env.REACT_APP_BASE_URL}/bso/admin/delete/${id}`,
               {
                 method: "DELETE",
                 headers: {
@@ -601,7 +601,7 @@ function Bso() {
           formData.append("bso-image", fileUpdate);
           formData.append("website", websiteDetails);
           const response = await fetch(
-            `http://uat-api.erongored.com.na/bso/admin/update/${updatingDetails.id}`,
+            `${process.env.REACT_APP_BASE_URL}/bso/admin/update/${updatingDetails.id}`,
             {
               method: "PUT",
 
@@ -1360,7 +1360,7 @@ function Bso() {
                           <img
                             src={
                               updatingDetails.logo === logoDetails
-                                ? `http://uat-api.erongored.com.na/bsos/${logoDetails}`
+                                ? `${process.env.REACT_APP_BASE_URL}/bsos/${logoDetails}`
                                 : logoDetails
                             }
                             className=" img-responsive img-thumbnail"
