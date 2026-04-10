@@ -34,7 +34,7 @@ const Topbar = ({ OpenSidebar }) => {
     const fetchAllAdminNotificationsCount = async () => {
       try {
         const response = await fetch(
-          `http://uat-api.erongored.com.na/notifications/admin/totalNotificationCount`,
+          `${process.env.REACT_APP_BASE_URL}/notifications/admin/totalNotificationCount`,
           {
             method: "GET",
             headers: {
@@ -66,7 +66,7 @@ const Topbar = ({ OpenSidebar }) => {
   const handleLogout = async () => {
     try {
       const response = await fetch(
-        `http://uat-api.erongored.com.na/auth/admin/logout`,
+        `${process.env.REACT_APP_BASE_URL}/auth/admin/logout`,
         {
           method: "GET",
           headers: {

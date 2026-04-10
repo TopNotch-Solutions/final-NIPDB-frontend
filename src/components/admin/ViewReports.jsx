@@ -13,7 +13,7 @@ const ViewReports = ({ selectedRow }) => {
     useEffect(() => {
       if (selectedRow) {
         const fetchData = async () => {
-          fetch(`http://uat-api.erongored.com.na/contracts/staffContracts`)
+          fetch(`${process.env.REACT_APP_BASE_URL}/contracts/staffContracts`)
             .then((res) => res.json())
             .then((data) => setData(data))
             .catch((err) => console.log(err));

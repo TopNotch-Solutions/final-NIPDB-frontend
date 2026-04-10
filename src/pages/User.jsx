@@ -131,7 +131,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/system/all/system-users`,
+          `${process.env.REACT_APP_BASE_URL}/system/all/system-users`,
           {
             method: "GET",
             headers: {
@@ -173,7 +173,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/system/all/super-admin-count`,
+          `${process.env.REACT_APP_BASE_URL}/system/all/super-admin-count`,
           {
             method: "GET",
             headers: {
@@ -215,7 +215,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/system/all/admin-count`,
+          `${process.env.REACT_APP_BASE_URL}/system/all/admin-count`,
           {
             method: "GET",
             headers: {
@@ -257,7 +257,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/system/all/app-user-count`,
+          `${process.env.REACT_APP_BASE_URL}/system/all/app-user-count`,
           {
             method: "GET",
             headers: {
@@ -298,7 +298,7 @@ function User() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/system/all/admin/list`,
+          `${process.env.REACT_APP_BASE_URL}/system/all/admin/list`,
           {
             method: "GET",
             headers: {
@@ -339,7 +339,7 @@ function User() {
   const handleUpdate = async (email) => {
     try {
       const response = await fetch(
-        `http://uat-api.erongored.com.na/auth/admin/update/email`,
+        `${process.env.REACT_APP_BASE_URL}/auth/admin/update/email`,
         {
           method: "POST",
           headers: {
@@ -407,7 +407,7 @@ function User() {
             setIsSubmitting(true);
 
             const response = await fetch(
-              `http://uat-api.erongored.com.na/auth/admin/delete`,
+              `${process.env.REACT_APP_BASE_URL}/auth/admin/delete`,
               {
                 method: "DELETE",
                 headers: {
@@ -471,7 +471,7 @@ function User() {
             setIsSubmitting(true);
 
             const response = await fetch(
-              `http://uat-api.erongored.com.na/auth/admin/delete`,
+              `${process.env.REACT_APP_BASE_URL}/auth/admin/delete`,
               {
                 method: "DELETE",
                 headers: {
@@ -731,7 +731,7 @@ function User() {
             role: roleDetails,
           };
           const response = await fetch(
-            `http://uat-api.erongored.com.na/auth/admin/update/user/details/${updatingDetails.id}`,
+            `${process.env.REACT_APP_BASE_URL}/auth/admin/update/user/details/${updatingDetails.id}`,
             {
               method: "PUT",
               headers: {
@@ -812,7 +812,7 @@ function User() {
         };
 
         const response = await fetch(
-          `http://uat-api.erongored.com.na/auth/admin/signup`,
+          `${process.env.REACT_APP_BASE_URL}/auth/admin/signup`,
           {
             method: "POST",
             headers: {

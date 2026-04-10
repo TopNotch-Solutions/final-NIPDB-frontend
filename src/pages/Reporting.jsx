@@ -39,7 +39,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/all/approved`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/approved`,
           {
             method: "GET",
             headers: {
@@ -80,7 +80,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/all/pending`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/pending`,
           {
             method: "GET",
             headers: {
@@ -121,7 +121,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/all/rejected`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/rejected`,
           {
             method: "GET",
             headers: {
@@ -162,7 +162,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/msme/admin/all/blocked`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/blocked`,
           {
             method: "GET",
             headers: {
@@ -203,7 +203,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/bso/admin/all/download`,
+          `${process.env.REACT_APP_BASE_URL}/bso/admin/all/download`,
           {
             method: "GET",
             headers: {
@@ -245,7 +245,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `http://uat-api.erongored.com.na/system/all/admin/list/download`,
+          `${process.env.REACT_APP_BASE_URL}/system/all/admin/list/download`,
           {
             method: "GET",
             headers: {
