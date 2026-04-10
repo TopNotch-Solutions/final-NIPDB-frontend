@@ -507,7 +507,7 @@ function Dashboard() {
             <div className="col-12 p-4 shadow rounded-2">
               <div className="d-flex justify-content-between">
                 <Tooltip title="Registered MSMEs" className="pointer">
-                  <p className="text">Registered MSMEs</p>
+                  <p className="text"><Registered></Registered> MSMEs</p>
                 </Tooltip>
               </div>
               <div className="d-flex justify-content-start">

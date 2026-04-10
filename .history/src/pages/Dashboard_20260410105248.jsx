@@ -35,7 +35,7 @@ import { updateToken } from "../redux/reducers/authReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import handleAuthFailure from "../utils/handleAuthFailure";
-import LineChartCard from '../components/LineChartCard';
+import LineChartCard from "../components/LineChartCard";
 
 ChartJS.register(
   CategoryScale,
@@ -44,7 +44,7 @@ ChartJS.register(
   LineElement,
   Title,
   RCTooltip,
-  RCLegend
+  RCLegend,
 );
 
 function Dashboard() {
@@ -70,7 +70,7 @@ function Dashboard() {
   const [lineData, setLineData] = useState([]);
 
   const currentUser = useSelector((state) => state.auth.user);
-  const serverToken = useSelector((state) => state.server.serverToken)
+  const serverToken = useSelector((state) => state.server.serverToken);
   const tokenHeader = currentUser.token;
 
   const datamy = lineData;
@@ -80,16 +80,16 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://uat-api.erongored.com.na/msme/admin/monthly/registeration",
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/monthly/registeration`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
             //
-          }
+          },
         );
 
         const data = await response.json();
@@ -118,16 +118,16 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://uat-api.erongored.com.na/msme/admin/totalCount",
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/totalCount`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
-           // 
-          }
+            //
+          },
         );
 
         const data = await response.json();
@@ -137,7 +137,7 @@ function Dashboard() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -161,16 +161,16 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://uat-api.erongored.com.na/msme/admin/pendingCount",
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/pendingCount`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
             //
-          }
+          },
         );
 
         const data = await response.json();
@@ -180,7 +180,7 @@ function Dashboard() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -204,16 +204,16 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://uat-api.erongored.com.na/msme/admin/rejectedCount",
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/rejectedCount`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
             //
-          }
+          },
         );
 
         const data = await response.json();
@@ -223,7 +223,7 @@ function Dashboard() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -247,16 +247,16 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://uat-api.erongored.com.na/msme/admin/approvedCount",
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/approvedCount`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
             //
-          }
+          },
         );
 
         const data = await response.json();
@@ -266,7 +266,7 @@ function Dashboard() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -288,15 +288,18 @@ function Dashboard() {
     const fetchMsmeAllMSME = async () => {
       try {
         dispatch(toggleIsSubmittingTrue());
-        const response = await fetch("http://uat-api.erongored.com.na/msme/admin/all", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${serverToken}`,
-            'x-access-token': `${tokenHeader}`
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${serverToken}`,
+              "x-access-token": `${tokenHeader}`,
+            },
+            //
           },
-          //
-        });
+        );
 
         const data = await response.json();
         const newTokenHeader = response.headers.get("x-access-token");
@@ -305,7 +308,7 @@ function Dashboard() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -328,16 +331,16 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          "http://uat-api.erongored.com.na/msme/admin/top5/categories",
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/top5/categories`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `${serverToken}`,
-              'x-access-token': `${tokenHeader}`
+              "x-access-token": `${tokenHeader}`,
             },
             //
-          }
+          },
         );
 
         const data = await response.json();
@@ -347,7 +350,7 @@ function Dashboard() {
           dispatch(
             updateToken({
               token: newTokenHeader,
-            })
+            }),
           );
         }
 
@@ -504,9 +507,8 @@ function Dashboard() {
             <div className="col-12 p-4 shadow rounded-2">
               <div className="d-flex justify-content-between">
                 <Tooltip title="Registered MSMEs" className="pointer">
-                  <p className="text">Registrated MSMEs</p>
+                  <p className="text">Registered MSMEs</p>
                 </Tooltip>
-                
               </div>
               <div className="d-flex justify-content-start">
                 <div className="p-1 border rounded-2 ml-2">
@@ -531,8 +533,6 @@ function Dashboard() {
                 <Tooltip title="Pending Approvals" className="pointer">
                   <p className="text">Pending Approvals</p>
                 </Tooltip>
-
-                
               </div>
               <div className="d-flex align-items-center justify-content-start text-center">
                 <div className="p-1 border rounded-2">
@@ -557,8 +557,6 @@ function Dashboard() {
                 <Tooltip title="Rejected MSMEs" className="pointer">
                   <p className="text">Rejected MSMEs</p>
                 </Tooltip>
-
-                
               </div>
               <div className="d-flex align-items-center justify-content-start text-center">
                 <div className="p-1 border rounded-2">
@@ -601,10 +599,7 @@ function Dashboard() {
             alignItems="center"
             justifyContent="center"
           >
-            <LineChartCard 
-              data={datamy} 
-              isLoading={!lineData} 
-            />
+            <LineChartCard data={datamy} isLoading={!lineData} />
           </Box>
           <Box
             marginTop={"10px"}
