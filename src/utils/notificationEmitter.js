@@ -4,7 +4,13 @@
 const listeners = [];
 
 export const notify = (data) => {
-  listeners.forEach((cb) => cb(data));
+  listeners.forEach((cb) => {
+    try {
+      cb(data);
+    } catch (err) {
+      console.error("Notification listener error:", err);
+    }
+  });
 };
 
 export const onNotification = (cb) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -27,8 +27,6 @@ function App() {
     setOpenSidebarToggle(!openSidebarToggle);
   };
   let sidebar = useSelector((state) => state.sidebar.isSidebarOpen);
-  let currentUser = useSelector((state) => state.auth.user);
-  const isAuthenticated = currentUser ? true : false;
 
   return (
     <Router>

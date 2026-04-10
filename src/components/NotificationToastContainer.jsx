@@ -10,6 +10,19 @@ let toastIdCounter = 0;
 const NotificationToastContainer = () => {
   const [toasts, setToasts] = useState([]);
   const permissionRequested = useRef(false);
+  // Track dismiss timeout IDs so we can clear them on unmount.
+  const dismissTimeoutsRef = useRef(new Map());
+  const mountedRef = useRef(true);
+
+  // Clean up all pending dismiss timeouts on unmount.
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      dismissTimeoutsRef.current.forEach((tid) => clearTimeout(tid));
+      dismissTimeoutsRef.current.clear();
+    };
+  }, []);
 
   // Request browser notification permission on first user gesture.
   useEffect(() => {
@@ -44,9 +57,13 @@ const NotificationToastContainer = () => {
       prev.map((t) => (t.id === id ? { ...t, dismissing: true } : t)),
     );
     // Remove after fade-out animation completes (300ms).
-    setTimeout(() => {
-      setToasts((prev) => prev.filter((t) => t.id !== id));
+    const tid = setTimeout(() => {
+      dismissTimeoutsRef.current.delete(id);
+      if (mountedRef.current) {
+        setToasts((prev) => prev.filter((t) => t.id !== id));
+      }
     }, 300);
+    dismissTimeoutsRef.current.set(id, tid);
   }, []);
 
   // Subscribe to the module-level emitter.
@@ -55,8 +72,13 @@ const NotificationToastContainer = () => {
       const id = ++toastIdCounter;
 
       // In-app toast — instant, no delay.
+      // Trim to MAX_VISIBLE on insert so non-rendered toasts
+      // don't accumulate in state indefinitely.
       setToasts((prev) => {
         const next = [...prev, { id, data, createdAt: Date.now() }];
+        if (next.length > MAX_VISIBLE) {
+          return next.slice(next.length - MAX_VISIBLE);
+        }
         return next;
       });
 
@@ -81,11 +103,9 @@ const NotificationToastContainer = () => {
     return unsubscribe;
   }, []);
 
-  const visibleToasts = toasts.slice(-MAX_VISIBLE);
-
   return (
     <div className="notification-toast-container">
-      {visibleToasts.map((toast) => (
+      {toasts.map((toast) => (
         <Toast
           key={toast.id}
           toast={toast}
