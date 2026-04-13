@@ -54,6 +54,7 @@ function Bso() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const inputRef = useRef();
+  const excelInputRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [file, setFile] = useState(null);
@@ -734,6 +735,103 @@ function Bso() {
   const handleCameraClick = () => {
     inputRef.current.click();
   };
+
+  const handleUploadClick = () => {
+    excelInputRef.current.click();
+  };
+
+  const handleExcelFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    excelInputRef.current.value = "";
+
+    if (!selectedFile) return;
+
+    const allowedExtensions = /\.(xlsx|xls)$/i;
+    const validMimeTypes = [
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "application/vnd.ms-excel",
+    ];
+
+    if (
+      !allowedExtensions.test(selectedFile.name) ||
+      !validMimeTypes.includes(selectedFile.type)
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid File",
+        html: `<p>Please upload a valid Excel file (.xlsx or .xls).</p>
+               <p style="margin-top:8px;font-size:13px;color:#666;">Expected columns: <b>Name</b>, <b>Type</b>, <b>Contact number</b>, <b>Website</b>, <b>Email</b>, <b>Description</b></p>`,
+      });
+      return;
+    }
+
+    handleExcelUpload(selectedFile);
+  };
+
+  const handleExcelUpload = async (file) => {
+    try {
+      setIsSubmitting(true);
+      dispatch(toggleIsSubmittingTrue());
+
+      const formData = new FormData();
+      formData.append("bso-sheet", file);
+
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/bso/admin/create-from-sheet`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `${serverToken}`,
+            "x-access-token": `${tokenHeader}`,
+          },
+          body: formData,
+        },
+      );
+
+      const data = await response.json();
+
+      if (response.status === 201) {
+        let html = `<p>${data.data.inserted} BSO(s) inserted successfully.</p>`;
+        if (data.data.skippedCount > 0) {
+          html += `<p style="margin-top:8px;"><b>${data.data.skippedCount} row(s) skipped:</b></p>`;
+          html += `<div style="max-height:150px;overflow-y:auto;text-align:left;font-size:13px;margin-top:4px;">`;
+          data.data.skipped.forEach((s) => {
+            html += `<p style="margin:2px 0;">Row ${s.row}: ${s.reason}</p>`;
+          });
+          html += `</div>`;
+        }
+        Swal.fire({
+          icon: "success",
+          title: "BSOs Imported Successfully",
+          html,
+        });
+      } else if (response.status === 400) {
+        Swal.fire({
+          icon: "error",
+          title: "Import Failed",
+          text: data.message,
+        });
+      } else if (response.status === 409) {
+        Swal.fire({
+          icon: "warning",
+          title: "Conflict",
+          text: data.message,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Server Error",
+          text: "Something went wrong. Please try again later.",
+        });
+      }
+    } catch (error) {
+      handleAuthFailure({ dispatch, navigate, type: "network" });
+    } finally {
+      setIsSubmitting(false);
+      dispatch(toggleIsSubmittingfalse());
+    }
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -814,6 +912,19 @@ function Bso() {
                       <div onClick={handleOpen}>
                         <MyButton text="Add BSO" />
                       </div>
+                      <div
+                        onClick={handleUploadClick}
+                        style={{ marginLeft: "10px" }}
+                      >
+                        <MyButton text="Upload BSO" />
+                      </div>
+                      <input
+                        type="file"
+                        accept=".xlsx,.xls"
+                        style={{ display: "none" }}
+                        ref={excelInputRef}
+                        onChange={handleExcelFileChange}
+                      />
                     </>
                   )}
                 </div>
