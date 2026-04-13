@@ -18,11 +18,11 @@ const UpdateButton = ({ onClick }) => {
         borderRadius: "5px",
         cursor: "pointer",
         marginRight: "10px",
-        fontFamily:"Montserrat, sans-serif",
+        fontFamily: "Montserrat, sans-serif",
         width: isSmallScreen ? "40%" : "40%",
       }}
     >
-      Update
+      Edit
     </Button>
   );
 };
