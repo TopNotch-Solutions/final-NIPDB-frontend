@@ -96,6 +96,7 @@ function Bso() {
   const [updatingFail, setUpdatingFail] = useState("");
   const [updatingDetails, setUpdatingDetails] = useState([]);
   const [bsoList, setBsoList] = useState([]);
+  const [bsosFetched, setBsosFetched] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [openModel, setOpenModel] = useState(false);
   const [openModelEdit, setOpenModelEdit] = useState(false);
@@ -158,12 +159,15 @@ function Bso() {
         if (response.ok) {
           dispatch(toggleIsSubmittingfalse());
           setTotalBsos(data.data);
+          setBsosFetched(true);
         } else {
           dispatch(toggleIsSubmittingfalse());
+          setBsosFetched(true);
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
         dispatch(toggleIsSubmittingfalse());
+        setBsosFetched(true);
       }
     };
 
@@ -930,7 +934,19 @@ function Bso() {
                 </div>
                 <div className="col-12 mt-1">
                   <p className="list-groupp">BSO List</p>
-                  {totalBsos ? (
+                  {!bsosFetched ? (
+                    <div
+                      className="d-flex justify-content-center align-items-center"
+                      style={{ height: 500, width: "100%" }}
+                    >
+                      <div style={{ textAlign: "center" }}>
+                        <CircularProgress color="inherit" />
+                        <p className="p-4 text-secondary">
+                          Just a moment, we're getting things ready...
+                        </p>
+                      </div>
+                    </div>
+                  ) : totalBsos ? (
                     <>
                       <Box sx={{ height: 500, width: "100%" }}>
                         <DataGrid
@@ -982,9 +998,11 @@ function Bso() {
                         style={{ height: 500, width: "100%" }}
                       >
                         <div style={{ textAlign: "center" }}>
-                          <CircularProgress color="inherit" />
-                          <p className="p-4 text-secondary">
-                            Just a moment, we’re getting things ready...
+                          <p
+                            className="text-secondary"
+                            style={{ fontSize: "16px" }}
+                          >
+                            No BSOs found.
                           </p>
                         </div>
                       </div>
