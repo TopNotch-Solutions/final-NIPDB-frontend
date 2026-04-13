@@ -619,6 +619,9 @@ function User() {
     {
       value: "Admin",
     },
+    {
+      value: "Viewer"
+    }
   ];
 
   const fields1 = [
