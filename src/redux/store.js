@@ -46,7 +46,7 @@ const safeStorage = {
 const persistConfig = {
   key: "root",
   storage: safeStorage,
-  whitelist: ["auth", "server", "authentication", "userId"],
+  whitelist: ["auth", "server", "authentication", "userId", "sidebar"],
   transforms: [authTransform],
   debug: true,
 };
