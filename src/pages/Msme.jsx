@@ -1,10 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IconButton, useTheme, useMediaQuery } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import {
-  toggleIsSubmittingTrue,
-  toggleIsSubmittingfalse,
-} from "../redux/reducers/submittingReducer";
 import Select from "react-select";
 import { Switch } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
@@ -233,6 +229,7 @@ function Msme() {
   const [sundayFrom, setSundayFrom] = useState("");
   const [sundayTo, setSundayTo] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [refreshCounter, setRefreshCounter] = useState(0);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchQueryPending, setSearchQueryPending] = useState("");
@@ -487,7 +484,6 @@ function Msme() {
   useEffect(() => {
     const fetchTotalCount = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/msme/admin/totalCount`,
           {
@@ -512,24 +508,21 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setTotalRegistration(data.count);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchTotalCount();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
 
   useEffect(() => {
     const fetchPendingCount = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/msme/admin/pendingCount`,
           {
@@ -554,24 +547,21 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setPendingRegistration(data.count);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchPendingCount();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
 
   useEffect(() => {
     const fetchRejectedCount = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/msme/admin/rejectedCount`,
           {
@@ -596,24 +586,21 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setRejectedRegistration(data.count);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchRejectedCount();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
 
   useEffect(() => {
     const fetchApprovedCount = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/msme/admin/approvedCount`,
           {
@@ -638,23 +625,20 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setIApprovedRegistration(data.count);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchApprovedCount();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
   useEffect(() => {
     const fetchIncompleteCount = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/msme/admin/incompleteCount`,
           {
@@ -679,24 +663,21 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setIncompleteRegistration(data.count);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchIncompleteCount();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
 
   useEffect(() => {
     const fetchMsmeAllMSME = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/msme/admin/all`,
           {
@@ -721,23 +702,20 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setAllMSMEList(data.data);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchMsmeAllMSME();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
   useEffect(() => {
     const fetchMsmePendingMSME = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/msme/admin/all/pending`,
           {
@@ -761,24 +739,21 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setPendingMSMEList(data.data);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchMsmePendingMSME();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
 
   useEffect(() => {
     const fetchMsmeRejectedMSME = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/msme/admin/all/rejected`,
           {
@@ -803,24 +778,21 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setRejectedMSMEList(data.data);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchMsmeRejectedMSME();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
 
   useEffect(() => {
     const fetchMsmeApprovedMSME = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/msme/admin/all/approved`,
           {
@@ -845,24 +817,21 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setApprovedMSMEList(data.data);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchMsmeApprovedMSME();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
 
   useEffect(() => {
     const fetchMsmeIncompleteMSME = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/msme/admin/all/incomplete`,
           {
@@ -887,23 +856,20 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setIncompleteMSMEList(data.data);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchMsmeIncompleteMSME();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
   useEffect(() => {
     const fetchAllRegions = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/region/admin/all`,
           {
@@ -928,24 +894,21 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setRegionList(data.data);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchAllRegions();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
 
   useEffect(() => {
     const fetchAllTowns = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/town/admin/all`,
           {
@@ -969,23 +932,20 @@ function Msme() {
           );
         }
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setTownList(data.data);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchAllTowns();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
   useEffect(() => {
     const fetchAllPrimaryIndustryList = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/primaryIndustry/admin/all`,
           {
@@ -1010,23 +970,20 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setPrimaryIndustryList(data.data);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchAllPrimaryIndustryList();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
   useEffect(() => {
     const fetchAllSeconaryList = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/secondaryIndustry/admin/all`,
           {
@@ -1051,23 +1008,20 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setSecondaryList(data.data);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchAllSeconaryList();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
   useEffect(() => {
     const fetchAllUser = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/msme/admin/all/user`,
           {
@@ -1092,20 +1046,17 @@ function Msme() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setAllUserList(data.data);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
         handleAuthFailure({ dispatch, navigate, type: "network" });
       }
     };
 
     fetchAllUser();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
 
   const fields1 = [
     {
@@ -1805,6 +1756,7 @@ function Msme() {
         if (response.ok) {
           setOpenModel(false);
           setIsSubmitting(false);
+          setRefreshCounter((c) => c + 1);
           Swal.fire({
             position: "center",
             icon: "success",
@@ -2389,6 +2341,7 @@ function Msme() {
               handleAuthFailure({ dispatch, navigate, type: "network" });
             } finally {
               setIsSubmitting(false);
+              setRefreshCounter((c) => c + 1);
             }
           } else {
             setOpenModelView(true);
@@ -2586,10 +2539,12 @@ function Msme() {
               handleAuthFailure({ dispatch, navigate, type: "network" });
             } finally {
               setIsSubmitting(false);
+              setRefreshCounter((c) => c + 1);
               setUpdate(false);
             }
           } else {
             setIsSubmitting(false);
+            setRefreshCounter((c) => c + 1);
             Swal.fire({
               position: "center",
               icon: "success",
@@ -2717,6 +2672,7 @@ function Msme() {
             handleAuthFailure({ dispatch, navigate, type: "network" });
           } finally {
             setIsSubmitting(false);
+            setRefreshCounter((c) => c + 1);
           }
         } else {
           setOpenModelView(true);
@@ -2805,6 +2761,7 @@ function Msme() {
             handleAuthFailure({ dispatch, navigate, type: "network" });
           } finally {
             setIsSubmitting(false);
+            setRefreshCounter((c) => c + 1);
           }
         } else {
           setOpenModelView(true);
@@ -2894,6 +2851,7 @@ function Msme() {
             handleAuthFailure({ dispatch, navigate, type: "network" });
           } finally {
             setIsSubmitting(false);
+            setRefreshCounter((c) => c + 1);
           }
         } else {
           setOpenModelView(true);

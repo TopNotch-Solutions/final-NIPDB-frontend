@@ -4,10 +4,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import "../assets/css/msme.css";
 import StickyNote2Icon from "@mui/icons-material/StickyNote2";
-import {
-  toggleIsSubmittingTrue,
-  toggleIsSubmittingfalse,
-} from "../redux/reducers/submittingReducer";
 import Box from "@mui/material/Box";
 import { CgCloseR } from "react-icons/cg";
 import { DataGrid } from "@mui/x-data-grid";
@@ -89,6 +85,7 @@ function User() {
   const [roleDetails, setRoleDetails] = useState("");
   const [roleDetailsError, setRoleDetailsError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [refreshCounter, setRefreshCounter] = useState(0);
   const [updatingDetails, setUpdatingDetails] = useState([]);
 
   const [updatingFail, setUpdatingFail] = useState("");
@@ -129,7 +126,6 @@ function User() {
   useEffect(() => {
     const fetchTotalCount = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/system/all/system-users`,
           {
@@ -154,24 +150,21 @@ function User() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setTotalSystemUsers(data.count);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchTotalCount();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
 
   useEffect(() => {
     const fetchPendingCount = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/system/all/super-admin-count`,
           {
@@ -196,24 +189,21 @@ function User() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setTotalSuperUser(data.count);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchPendingCount();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
 
   useEffect(() => {
     const fetchRejectedCount = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/system/all/admin-count`,
           {
@@ -238,24 +228,21 @@ function User() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setTotalAdmins(data.count);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchRejectedCount();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
 
   useEffect(() => {
     const fetchApprovedCount = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/system/all/app-user-count`,
           {
@@ -280,23 +267,20 @@ function User() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setTotalAppUsers(data.count);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
+        // Network error
       }
     };
 
     fetchApprovedCount();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
   useEffect(() => {
     const fetchApprovedCount = async () => {
       try {
-        dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/system/all/admin/list`,
           {
@@ -321,20 +305,17 @@ function User() {
         }
 
         if (response.ok) {
-          dispatch(toggleIsSubmittingfalse());
           setAdminList(data.data);
         } else {
-          dispatch(toggleIsSubmittingfalse());
           handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
       } catch (error) {
-        dispatch(toggleIsSubmittingfalse());
         handleAuthFailure({ dispatch, navigate, type: "network" });
       }
     };
 
     fetchApprovedCount();
-  }, [isSubmitting]);
+  }, [refreshCounter]);
 
   const handleUpdate = async (email) => {
     try {
@@ -517,6 +498,7 @@ function User() {
             handleAuthFailure({ dispatch, navigate, type: "network" });
           } finally {
             setIsSubmitting(false);
+            setRefreshCounter((c) => c + 1);
           }
         }
       });
@@ -620,8 +602,8 @@ function User() {
       value: "Admin",
     },
     {
-      value: "Viewer"
-    }
+      value: "Viewer",
+    },
   ];
 
   const fields1 = [
@@ -763,6 +745,7 @@ function User() {
           if (response.ok) {
             setOpenModelEditing(false);
             setIsSubmitting(false);
+            setRefreshCounter((c) => c + 1);
             Swal.fire({
               position: "center",
               icon: "success",
