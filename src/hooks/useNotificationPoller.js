@@ -75,7 +75,8 @@ const useNotificationPoller = ({ onListUpdated, onCountUpdated } = {}) => {
 
       // Refresh JWT from response header (safe even on non-OK responses).
       const newToken = response.headers.get("x-access-token");
-      if (newToken) {
+      if (newToken && newToken !== tokenHeaderRef.current) {
+        tokenHeaderRef.current = newToken;
         dispatchRef.current(updateToken({ token: newToken }));
       }
 
