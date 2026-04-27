@@ -1886,8 +1886,6 @@ function Msme() {
             token: newTokenHeader,
           }),
         );
-      } else {
-        handleAuthFailure({ dispatch, navigate, type: "auth" });
       }
       if (response.ok) {
         setIsSubmitting(false);
@@ -2312,8 +2310,6 @@ function Msme() {
                     token: newTokenHeader,
                   }),
                 );
-              } else {
-                handleAuthFailure({ dispatch, navigate, type: "auth" });
               }
 
               if (response.ok) {

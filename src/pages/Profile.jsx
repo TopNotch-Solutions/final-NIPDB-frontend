@@ -166,8 +166,6 @@ function Profile() {
             token: newTokenHeader,
           }),
         );
-      } else {
-        handleAuthFailure({ dispatch, navigate, type: "auth" });
       }
       if (!response.ok) {
         setIsSubmitting(false);
@@ -242,8 +240,6 @@ function Profile() {
               token: newTokenHeader,
             }),
           );
-        } else {
-          handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
 
         if (response.ok) {
@@ -330,8 +326,6 @@ function Profile() {
                 token: newTokenHeader,
               }),
             );
-          } else {
-            handleAuthFailure({ dispatch, navigate, type: "auth" });
           }
 
           if (response.ok) {

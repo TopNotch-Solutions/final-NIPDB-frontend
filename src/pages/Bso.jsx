@@ -479,8 +479,6 @@ function Bso() {
             token: newTokenHeader,
           }),
         );
-      } else {
-        handleAuthFailure({ dispatch, navigate, type: "auth" });
       }
 
       if (response.ok) {
@@ -543,8 +541,6 @@ function Bso() {
                   token: newTokenHeader,
                 }),
               );
-            } else {
-              handleAuthFailure({ dispatch, navigate, type: "auth" });
             }
 
             if (response.ok) {
