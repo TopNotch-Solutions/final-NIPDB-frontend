@@ -278,6 +278,7 @@ function User() {
 
     fetchApprovedCount();
   }, [refreshCounter]);
+
   useEffect(() => {
     const fetchApprovedCount = async () => {
       try {
@@ -344,8 +345,6 @@ function User() {
             token: newTokenHeader,
           }),
         );
-      } else {
-        handleAuthFailure({ dispatch, navigate, type: "auth" });
       }
 
       if (response.ok) {
@@ -410,8 +409,6 @@ function User() {
                   token: newTokenHeader,
                 }),
               );
-            } else {
-              handleAuthFailure({ dispatch, navigate, type: "auth" });
             }
             if (response.ok) {
               dispatch(toggleSidebarfalse());
@@ -474,8 +471,6 @@ function User() {
                   token: newTokenHeader,
                 }),
               );
-            } else {
-              handleAuthFailure({ dispatch, navigate, type: "auth" });
             }
             if (response.ok) {
               Swal.fire({
@@ -738,8 +733,6 @@ function User() {
                 token: newTokenHeader,
               }),
             );
-          } else {
-            handleAuthFailure({ dispatch, navigate, type: "auth" });
           }
 
           if (response.ok) {
@@ -820,8 +813,6 @@ function User() {
               token: newTokenHeader,
             }),
           );
-        } else {
-          handleAuthFailure({ dispatch, navigate, type: "auth" });
         }
 
         if (response.ok) {
