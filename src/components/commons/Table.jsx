@@ -8,18 +8,12 @@ function Table() {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
-  const [employeeData, setEmployeeData] = useState([]);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BASE_URL}/devices/staffHandsets`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((err) => console.log(err));
-
-    // fetch("http://41.219.71.27:3001/staffmember")
-    //   .then((res) => res.json())
-    //   .then((data) => setEmployeeData(data))
-    //   .catch((err) => console.log(err));
   }, []);
 
   const columns = [
