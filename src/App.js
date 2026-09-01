@@ -14,6 +14,7 @@ import Msme from "./pages/Msme";
 import User from "./pages/User";
 import Notifications from "./pages/Notifications";
 import Reporting from "./pages/Reporting";
+import UserReports from "./pages/UserReports";
 import Profile from "./pages/Profile";
 import { useSelector } from "react-redux";
 import AdminRoute from "./AdminRoute";
@@ -62,6 +63,7 @@ function App() {
                     <Route path="/notifications" element={<Notifications />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/reporting" element={<Reporting />} />
+                    <Route path="/user-reports" element={<UserReports />} />
                   </Route>
                   <Route path="/submit" element={<SubmitEmail />} />
                   <Route path="/reset-password" element={<ForgotPassword />} />
