@@ -176,10 +176,15 @@ function UserReports() {
 
       if (response.ok) {
         setUnreadCount(data.data?.count ?? 0);
+      } else {
+        handleAuthFailure({ dispatch, navigate, type: "auth" });
       }
 
       return newTokenHeader || activeToken;
     } catch (error) {
+      // The count is only ever fetched alongside a list, and that call owns
+      // network-error reporting — a second modal here would just double up
+      // on the same outage.
       return activeToken;
     }
   };
@@ -231,6 +236,13 @@ function UserReports() {
 
       if (!getResponse.ok) {
         setIsOpening(false);
+        // Only an expired/rejected session ends the session. A single
+        // missing or forbidden report should not eject the admin from the
+        // whole portal.
+        if (getResponse.status === 401 || getResponse.status === 403) {
+          handleAuthFailure({ dispatch, navigate, type: "auth" });
+          return;
+        }
         await Swal.fire({
           position: "center",
           icon: "error",
@@ -264,23 +276,26 @@ function UserReports() {
       }
 
       // The GET payload predates the PUT, so it still says read: false.
-      // Prefer the PUT's own updated report; otherwise merge the read state
-      // in from what we know locally.
-      setSingleReport(
-        putResponse.ok && putData?.data?.id
-          ? putData.data
-          : {
-              ...getData.data,
-              read: true,
-              readAt: getData.data?.readAt || new Date().toISOString(),
-              readByAdmin: getData.data?.readByAdmin || {
-                id: currentUser.id,
-                firstName: currentUser.firstName,
-                lastName: currentUser.lastName,
-                email: currentUser.email,
-              },
-            },
-      );
+      // Only claim the report is read when the PUT actually succeeded —
+      // otherwise show the server's own (still unread) state rather than
+      // synthesising a read state the backend rejected.
+      if (!putResponse.ok) {
+        setSingleReport(getData.data);
+      } else if (putData?.data?.id) {
+        setSingleReport(putData.data);
+      } else {
+        setSingleReport({
+          ...getData.data,
+          read: true,
+          readAt: getData.data?.readAt || new Date().toISOString(),
+          readByAdmin: getData.data?.readByAdmin || {
+            id: currentUser.id,
+            firstName: currentUser.firstName,
+            lastName: currentUser.lastName,
+            email: currentUser.email,
+          },
+        });
+      }
 
       setOpenModelView(true);
       setIsOpening(false);
@@ -550,7 +565,9 @@ function UserReports() {
         >
           <Box sx={isSmallScreen ? mobileStyle : largeStyle}>
             <div className="d-flex justify-content-between align-items-center border-bottom pb-2">
-              <h4 className="m-0">Report Details</h4>
+              <h4 className="m-0" id="modal-modal-title">
+                Report Details
+              </h4>
               <Tooltip title="Close">
                 <div>
                   <CgCloseR
@@ -567,6 +584,7 @@ function UserReports() {
 
             <Grid
               container
+              id="modal-modal-description"
               spacing={{ xs: 1, md: 2 }}
               columns={{ xs: 12, sm: 12, md: 12 }}
               style={{ marginTop: "10px" }}
