@@ -10,6 +10,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import Tooltip from "@mui/material/Tooltip";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +25,7 @@ const menuItems = [
   { id: 5, title: "Manage Content", icon: AssignmentIcon, path: "/Content" },
   { id: 6, title: "Notifications", icon: NotificationsIcon, path: "/Notifications" },
   { id: 7, title: "Reporting", icon: PictureAsPdfIcon, path: "/Reporting" },
+  { id: 9, title: "User Reports", icon: ReportProblemIcon, path: "/user-reports" },
   { id: 8, title: "Profile", icon: AccountCircleIcon, path: "/Profile" },
 ];
 
