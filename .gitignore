@@ -28,3 +28,12 @@ yarn-error.log*
 
 # claude
 CLAUDE.md
+.claude/
+PRODUCT.md
+
+# impeccable design skill — installed per-machine via `npx impeccable install`
+.agent/
+.cursor/
+.gemini/
+.impeccable/
+

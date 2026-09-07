@@ -488,129 +488,77 @@ function Dashboard() {
       <p className="msme">Dashboard</p>
       <p>View and manage all System Performance and Analytics</p>
 
-      <Box className="" justifyContent={"space-evenly"}>
-        <Box
-          display="grid"
-          gridTemplateColumns={
-            isSmallScreen ? "repeat(1, 1fr)" : "repeat(12, 1fr)"
-          }
-          //gridAutoRows="270px"
-          gap={isSmallScreen ? "0px" : "10px"}
-        >
-          <Box
-            marginTop={"10px"}
-            gridColumn={isSmallScreen ? "span 12" : "span 3"}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <div className="col-12 p-4 shadow rounded-2">
-              <div className="d-flex justify-content-between">
+      <div className="stat-grid">
+          <div className="stat-tile">
+              <div className="stat-tile__label">
                 <Tooltip title="Registered MSMEs" className="pointer">
                   <p className="text">Registered MSMEs</p>
                 </Tooltip>
               </div>
-              <div className="d-flex justify-content-start">
-                <div className="p-1 border rounded-2 ml-2">
+              <div className="stat-tile__value">
+                <div className="stat-tile__icon">
                   <StickyNote2Icon sx={{ color: "rgba(21, 78, 138, 1)" }} />
                 </div>
                 <Tooltip title={totalRegisteration}>
-                  <p className="digit text pointer">{totalRegisteration}</p>
+                  <p className="stat-tile__digit pointer">{totalRegisteration}</p>
                 </Tooltip>
               </div>
-            </div>
-          </Box>
+                        </div>
 
-          <Box
-            marginTop={"10px"}
-            gridColumn={isSmallScreen ? "span 12" : "span 3"}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <div className="col-12 p-4 shadow rounded-2">
-              <div className="d-flex justify-content-between">
+          <div className="stat-tile">
+              <div className="stat-tile__label">
                 <Tooltip title="Pending Approvals" className="pointer">
                   <p className="text">Pending Approvals</p>
                 </Tooltip>
               </div>
-              <div className="d-flex align-items-center justify-content-start text-center">
-                <div className="p-1 border rounded-2">
-                  <StickyNote2Icon sx={{ color: "rgba(0, 149, 71, 1)" }} />
+              <div className="stat-tile__value">
+                <div className="stat-tile__icon">
+                  <StickyNote2Icon sx={{ color: "var(--color-brand-text)" }} />
                 </div>
                 <Tooltip title={pendingRegisteration}>
-                  <p className="digit text pointer">{pendingRegisteration}</p>
+                  <p className="stat-tile__digit pointer">{pendingRegisteration}</p>
                 </Tooltip>
               </div>
-            </div>
-          </Box>
+                        </div>
 
-          <Box
-            marginTop={"10px"}
-            gridColumn={isSmallScreen ? "span 12" : "span 3"}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <div className="col-12 p-4 shadow rounded-2">
-              <div className="d-flex justify-content-between">
+          <div className="stat-tile">
+              <div className="stat-tile__label">
                 <Tooltip title="Rejected MSMEs" className="pointer">
                   <p className="text">Rejected MSMEs</p>
                 </Tooltip>
               </div>
-              <div className="d-flex align-items-center justify-content-start text-center">
-                <div className="p-1 border rounded-2">
+              <div className="stat-tile__value">
+                <div className="stat-tile__icon">
                   <StickyNote2Icon sx={{ color: "rgba(210, 31, 53, 1)" }} />
                 </div>
                 <Tooltip title={rejectedRegisteration}>
-                  <p className="digit text pointer">{rejectedRegisteration}</p>
+                  <p className="stat-tile__digit pointer">{rejectedRegisteration}</p>
                 </Tooltip>
               </div>
-            </div>
-          </Box>
+                        </div>
 
-          <Box
-            marginTop={"10px"}
-            gridColumn={isSmallScreen ? "span 12" : "span 3"}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <div className="col-12 p-4 shadow rounded-2">
-              <div className="d-flex justify-content-between">
+          <div className="stat-tile">
+              <div className="stat-tile__label">
                 <Tooltip title="Approved Registrations" className="pointer">
                   <p className="text">Approved Registrations</p>
                 </Tooltip>
               </div>
-              <div className="d-flex align-items-center justify-content-start text-center">
-                <div className="p-1 border rounded-2">
+              <div className="stat-tile__value">
+                <div className="stat-tile__icon">
                   <StickyNote2Icon sx={{ color: "rgba(251, 177, 34, 1)" }} />
                 </div>
                 <Tooltip title={approvedRegisteration}>
-                  <p className="digit text pointer">{approvedRegisteration}</p>
+                  <p className="stat-tile__digit pointer">{approvedRegisteration}</p>
                 </Tooltip>
               </div>
-            </div>
-          </Box>
-          <Box
-            marginTop={"10px"}
-            gridColumn={isSmallScreen ? "span 12" : "span 7"}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
+          </div>
+      </div>
+
+      <div className="chart-grid">
             <LineChartCard data={datamy} isLoading={!lineData} />
-          </Box>
-          <Box
-            marginTop={"10px"}
-            gridColumn={isSmallScreen ? "span 12" : "span 5"}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <div className="col-12 p-4 shadow rounded-2">
-              <div className="d-flex justify-content-between align-items-center border-bottom ">
-                <h6 className="header-padding">Top 5 performing categories</h6>
+            <div className="chart-panel">
+              <div className="chart-panel__header">
+                <h6 className="chart-panel__title">Top 5 performing categories</h6>
               </div>
               {topCategory ? (
                 <>
@@ -722,12 +670,9 @@ function Dashboard() {
                 </>
               )}
             </div>
-          </Box>
+      </div>
 
-          <Box
-            gridColumn={isSmallScreen ? "span 12" : "span 12"}
-            gridRow="span 3"
-          >
+      <div>
             <div className="col-12 listing-msme p-4 shadow rounded-3 mb-4">
               <div className="col-12 mt-1">
                 <p className="list-groupp">All MSME List</p>
@@ -739,7 +684,7 @@ function Dashboard() {
                         columns={columns}
                         sx={{
                           "& .MuiDataGrid-root": {
-                            fontFamily: "Montserrat, sans-serif",
+                            fontFamily: "var(--font-sans)",
                           },
                           "& .status-pending": {
                             color: "rgb(234, 156, 0)",
@@ -752,15 +697,15 @@ function Dashboard() {
                           },
                           "& .MuiDataGrid-columnHeaders": {
                             fontWeight: 800,
-                            fontFamily: "Montserrat, sans-serif",
+                            fontFamily: "var(--font-sans)",
                           },
                           "& .MuiDataGrid-columnHeaderTitle": {
                             fontWeight: 600,
-                            fontFamily: "Montserrat, sans-serif",
+                            fontFamily: "var(--font-sans)",
                           },
                           "& .MuiDataGrid-cell": {
                             fontWeight: 400,
-                            fontFamily: "Montserrat, sans-serif",
+                            fontFamily: "var(--font-sans)",
                           },
                         }}
                         initialState={{
@@ -794,9 +739,7 @@ function Dashboard() {
                 )}
               </div>
             </div>
-          </Box>
-        </Box>{" "}
-      </Box>
+      </div>
     </div>
   );
 }

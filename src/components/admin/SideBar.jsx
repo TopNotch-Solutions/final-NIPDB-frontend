@@ -58,9 +58,6 @@ const Sidebar = ({ openSidebarToggle, OpenSidebar }) => {
   return (
     <aside
       className={`sidebar-container ${openSidebarToggle ? "sidebar-responsive" : ""}`}
-      style={{
-        width: "280px"
-      }}
     >
       <div className="sidebar-header">
         <div className="sidebar-brand">

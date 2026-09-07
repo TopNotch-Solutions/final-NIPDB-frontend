@@ -1,88 +1,78 @@
-.wapper-topbar{
-    margin-right: 10px;
-    margin-left: 10px;
-    padding-top: 10px;
-    text-align: center;
-}
-.wapper-topbar-line{
+/* ==========================================================================
+   Top bar
 
-    display: flex;
-    align-items: center;
-    margin-left: auto 10px auto 10px;
-    
-}
-.text-bold{
-    font-weight: bold;
-  }
-.username-text{
-    font-weight: bold;
-    font-size: 17px;
-}
-.role-text{
-    margin-top: -23px;
-    font-size: 13px;
-}
-
-
-@media (max-width: 576px) {
-    .mtop{
-        margin-right: 10px;
-    }
-}
+   Dropped from the previous version: `.wapper-topbar`, `.wapper-topbar-line`,
+   `.username-text`, `.role-text` (a -23px margin hack), `.mtop` and a local
+   `.text-bold` — none were rendered by TopBar.jsx. Also dropped the
+   `backdrop-filter: blur(10px)`, which sat on an opaque bar that overlays no
+   scrolling content, so it cost a compositing layer and bought nothing.
+   ========================================================================== */
 
 .topbar-container {
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.95) !important;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: var(--topbar-height);
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .topbar-logo {
-  height: 48px;
+  height: 44px;
   width: auto;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
+  display: block;
 }
+
+/* ------------------------------------------------------------ notification */
 
 .notification-icon {
-  transition: transform 0.2s ease;
+  display: inline-flex;
+  cursor: pointer;
 }
 
-.notification-icon:hover {
-  transform: scale(1.1);
-}
+/* --------------------------------------------------------------- identity */
 
 .user-info {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 0 12px;
-  border-right: 1px solid #eee;
+  gap: var(--space-3);
+  padding-right: var(--space-4);
+  border-right: 1px solid var(--color-border);
 }
 
 .user-details {
   text-align: right;
-  line-height: 1.2;
+  line-height: var(--leading-tight);
 }
 
 .user-name {
   margin: 0;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #333;
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
 }
 
 .user-role {
   margin: 0;
-  font-size: 0.8rem;
-  color: #666;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
 }
 
 .user-avatar {
   cursor: pointer;
-  transition: transform 0.2s ease;
+  border-radius: var(--radius-full);
+  transition: box-shadow var(--duration) var(--ease-out);
 }
 
 .user-avatar:hover {
-  transform: scale(1.05);
+  box-shadow: 0 0 0 3px var(--color-brand-ring);
 }
+
+/* --------------------------------------------------------------- dropdown */
 
 .user-dropdown .dropdown-toggle {
   padding: 0;
@@ -92,48 +82,50 @@
 }
 
 .user-dropdown .dropdown-toggle::after {
-  color: #666;
+  color: var(--color-text-muted);
 }
 
 .dropdown-menu {
-  padding: 8px;
-  border-radius: 8px;
-  border: none;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   min-width: 200px;
+  padding: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
 }
 
 .dropdown-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  color: #333;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3);
+  color: var(--color-text);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--duration) var(--ease-out),
+              color var(--duration) var(--ease-out);
 }
 
-.dropdown-item:hover {
-  background-color: #f5f5f5;
-  color: #1976d2;
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: var(--color-brand-tint);
+  color: var(--color-brand-text);
 }
 
 .dropdown-item svg {
-  font-size: 1.1rem;
+  flex-shrink: 0;
+  font-size: 1.05rem;
 }
 
-@media (max-width: 576px) {
-  .notification-icon {
-    margin-right: 8px;
-  }
-  
-  .user-info {
-    display: none;
-  }
-}
+/* ------------------------------------------------------------- responsive */
 
 @media (max-width: 768px) {
   .topbar-container {
-    padding: 0.5rem 1rem;
+    padding: var(--space-3) var(--space-4);
+  }
+}
+
+@media (max-width: 576px) {
+  .user-info {
+    display: none;
   }
 }

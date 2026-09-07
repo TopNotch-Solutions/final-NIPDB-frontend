@@ -48,21 +48,21 @@ const largeStyle = {
 };
 
 const dataGridStyle = {
-  "& .MuiDataGrid-root": { fontFamily: "Montserrat, sans-serif" },
+  "& .MuiDataGrid-root": { fontFamily: "var(--font-sans)" },
   "& .status-pending": { color: "rgb(234, 156, 0)" },
   "& .status-rejected": { color: "red" },
   "& .status-approved": { color: "green" },
   "& .MuiDataGrid-columnHeaders": {
     fontWeight: 800,
-    fontFamily: "Montserrat, sans-serif",
+    fontFamily: "var(--font-sans)",
   },
   "& .MuiDataGrid-columnHeaderTitle": {
     fontWeight: 600,
-    fontFamily: "Montserrat, sans-serif",
+    fontFamily: "var(--font-sans)",
   },
   "& .MuiDataGrid-cell": {
     fontWeight: 400,
-    fontFamily: "Montserrat, sans-serif",
+    fontFamily: "var(--font-sans)",
   },
 };
 
@@ -382,12 +382,12 @@ function UserReports() {
 
     return (
       <div className="col-12 mt-1">
-        <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
+        <div className="list-toolbar mt-4">
+          <p className="list-toolbar__title">{heading}</p>
+          <div className="list-toolbar__actions">
           <Box
             className="app-search-bar"
             display="flex"
-            width="320px"
-            marginRight="10px"
           >
             <InputBase
               className="app-search-input"
@@ -401,8 +401,8 @@ function UserReports() {
             </IconButton>
           </Box>
         </div>
+        </div>
 
-        <p className="list-groupp">{heading}</p>
 
         {!fetched ? (
           <div
@@ -493,12 +493,12 @@ function UserReports() {
               <div className="col-12 mb-4 listing-msme p-4 shadow rounded-3 mb-4">
                 <div className="container-fluid">
                   <div className="row justify-content-center">
-                    <div className="col-12 col-lg-12 col-xxl-9 mx-auto border d-flex flex-wrap justify-content-between p-1">
+                    <div className="tab-strip">
                       <button
                         className={
                           buttonActive === 1
-                            ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                            : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                            ? "btn btn-success"
+                            : "btn button-grey"
                         }
                         onClick={() => handleTabChange(1)}
                         style={{ border: "none" }}
@@ -508,8 +508,8 @@ function UserReports() {
                       <button
                         className={
                           buttonActive === 2
-                            ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                            : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                            ? "btn btn-success"
+                            : "btn button-grey"
                         }
                         onClick={() => handleTabChange(2)}
                         style={{ border: "none" }}
@@ -519,8 +519,8 @@ function UserReports() {
                       <button
                         className={
                           buttonActive === 3
-                            ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                            : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                            ? "btn btn-success"
+                            : "btn button-grey"
                         }
                         onClick={() => handleTabChange(3)}
                         style={{ border: "none" }}

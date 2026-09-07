@@ -1,9 +1,12 @@
-.myButton{
-    width: 200px;
-    font-family: "Montserrat", sans-serif;
+/* Shared action button width. The font-family declaration is gone — the UI
+   face is inherited from the base layer via --font-sans. */
+
+.myButton {
+  width: 200px;
 }
-@media screen and (max-width:575px) {
-    .myButton{
-        width: 120px;
-    }
+
+@media screen and (max-width: 575px) {
+  .myButton {
+    width: 120px;
+  }
 }

@@ -848,50 +848,33 @@ function Bso() {
         <p className="msme">Manage BSOs</p>
         <p>View, search, and manage all BSO listings.</p>
 
-        <Box className="" justifyContent={"space-evenly"}>
-          <Box
-            display="grid"
-            gridTemplateColumns={
-              isSmallScreen ? "repeat(1, 1fr)" : "repeat(12, 1fr)"
-            }
-            gridAutoRows="140px"
-            gap={isSmallScreen ? "0px" : "10px"}
-          >
-            <Box
-              marginTop={"10px"}
-              gridColumn={isSmallScreen ? "span 12" : "span 3"}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <div className="col-12 p-4 shadow rounded-2">
-                <div className="d-flex justify-content-between">
+        <div className="stat-grid">
+            <div className="stat-tile">
+                <div className="stat-tile__label">
                   <Tooltip title="Total BSOs" className="pointer">
                     <p className="text">Total BSOs</p>
                   </Tooltip>
                 </div>
-                <div className="d-flex justify-content-start">
-                  <div className="p-1 border rounded-2 ml-2">
+                <div className="stat-tile__value">
+                  <div className="stat-tile__icon">
                     <StickyNote2Icon sx={{ color: "rgba(21, 78, 138, 1)" }} />
                   </div>
                   <Tooltip title={totalBsos}>
-                    <p className="digit text pointer">{totalBsos}</p>
+                    <p className="stat-tile__digit pointer">{totalBsos}</p>
                   </Tooltip>
                 </div>
-              </div>
-            </Box>
+                            </div>
 
-            <Box
-              gridColumn={isSmallScreen ? "span 12" : "span 12"}
-              gridRow="span 3"
-            >
+        </div>
+
+        <div>
               <div className="col-12 mb-4 listing-msme p-4 shadow rounded-3 mb-4">
-                <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
+                <div className="list-toolbar mt-4">
+                  <p className="list-toolbar__title">BSO List</p>
+                  <div className="list-toolbar__actions">
                   <Box
                     className="app-search-bar"
                     display="flex"
-                    width="320px"
-                    marginRight="10px"
                   >
                     <InputBase
                       className="app-search-input"
@@ -928,8 +911,8 @@ function Bso() {
                     </>
                   )}
                 </div>
+                </div>
                 <div className="col-12 mt-1">
-                  <p className="list-groupp">BSO List</p>
                   {!bsosFetched ? (
                     <div
                       className="d-flex justify-content-center align-items-center"
@@ -950,7 +933,7 @@ function Bso() {
                           columns={columns}
                           sx={{
                             "& .MuiDataGrid-root": {
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .status-pending": {
                               color: "rgb(234, 156, 0)",
@@ -963,15 +946,15 @@ function Bso() {
                             },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaderTitle": {
                               fontWeight: 600,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-cell": {
                               fontWeight: 400,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                           }}
                           initialState={{
@@ -1006,9 +989,7 @@ function Bso() {
                   )}
                 </div>
               </div>
-            </Box>
-          </Box>{" "}
-        </Box>
+        </div>
         <Modal
           open={openModel}
           onClose={handleClose}
@@ -1200,7 +1181,7 @@ function Bso() {
                           </div>
                           <img
                             src={logo}
-                            className=" img-responsive img-thumbnail"
+                            className=" img-fluid img-thumbnail"
                             alt=""
                           />
                           <input
@@ -1488,7 +1469,7 @@ function Bso() {
                                 ? `${process.env.REACT_APP_BASE_URL}/bsos/${logoDetails}`
                                 : logoDetails
                             }
-                            className=" img-responsive img-thumbnail"
+                            className=" img-fluid img-thumbnail"
                             alt=""
                           />
                           <input

@@ -1,403 +1,53 @@
-.digit{
-    margin: auto 0 auto 10px;
-    font-size: 23px;
-    font-weight: 600;
-}
-.list-group{
-    font-size: 23px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px rgba(0, 0, 0, 0.25)
-}
-.pointer{
-  cursor: pointer;
+/* ==========================================================================
+   MSME page (also imported by User, Content and UserReports)
+
+   Removed from the previous version:
+   - The entire "Modal Styles", "Select Styles", "Modal Buttons", "Stepper"
+     and "File Input" blocks (~140 lines): .modal-input, .modal-label,
+     .modal-button*, .modal-select, .modal-textarea, .modal-form-field,
+     .modal-stepper, .file-input*. No JSX in the project renders any of them.
+   - A verbatim second copy of the form, react-select and search-bar systems
+     that also lives in App.css.
+   - `.list-group`, which overrode Bootstrap's component with a 23px
+     text-shadowed heading; the markup actually says `list-groupp`.
+   - `.model`, whose declarations were quoted JS strings ('50%', '2px solid
+     #000') that CSS could not parse, so the rule did nothing.
+   - `label > span { color: red }`, an unscoped global that coloured every
+     span inside every label on every page.
+   - `.text-bold` / `.digit` / `.status-*` / `.pointer` / `.text` /
+     `.msme-table` / `.custom-button` / `.button-grey` / `.animated-*`
+     duplicates, now single definitions in App.css.
+   ========================================================================== */
+
+.msme {
   width: fit-content;
-  height: fit-content;
-}
-.msme{
-    width: fit-content;
-    font-weight: 700;
-}
-.text-boldd{
-  font-weight: 700;
-}
-input::placeholder,
-input,
-textarea,
-.submission,
-.back,
-.btn,
-textarea::placeholder,
-.react-select__menu,
-.react-select__option,
-.react-select__option--is-selected,
-.react-select__placeholder,
-.react-select__single-value,
-select
-{
-  font-family: "Montserrat", sans-serif;
-}
-.text-bold{
-  font-weight: 500;
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
 }
 
-.msme-table{
-    overflow-x: auto;
-}
-/* reduce the padding on different screens */
-.listing-msme{ 
-    margin-top: 60px;
-}
-.custom-button{
-    border: none;
-    color: white;
-    background: rgba(0, 149, 71, 1);
-    border-radius: 5px;
-}
-.text {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%; /* Ensures the text doesn't exceed the container width */
-  }
-  .status-pending {
-    color: rgb(234, 156, 0);
-  }
-  
-  .status-rejected {
-    color: rgba(221, 44, 33, 1);
-  }
-  
-  .status-approved {
-    color: rgba(0, 149, 71, 1);
-  }
-  .pointer{
-    cursor: pointer;
-  }
-.model{
-    position: 'absolute';
-  top: '50%';
-  left: '50%';
-  transform: translate(-50%, -50%);
-  width: 400;
-  background-color: 'background.paper';
-  border: '2px solid #000';
-  box-shadow: 24;
-  padding: 4;
-}
-.button-grey{
-  background-color: rgb(244, 241, 241);
-}
-.button-grey:hover{
-  border: 1px solid rgb(225, 223, 223);
-}
-.animated-success {
-  margin-top: -30px;
-  color: green;
-  font-weight: bold;
-  animation: fadeIn 0.5s ease-in-out;
-}
-.animated-danger {
-  margin-top: -10px;
-  color: red;
-  font-weight: bold;
-  animation: fadeIn 0.5s ease-in-out;
+/* Standoff above the record tables. */
+.listing-msme {
+  margin-top: var(--space-10);
 }
 
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-label > span{
-  color: red;
-}
-.modelButtonn{
+.modelButtonn {
   width: 170px;
 }
 
-  @media screen and (max-width:991px) {
-    .listing-msme{ 
-        margin-top: 30px;
-    }
+@media screen and (max-width: 991px) {
+  .listing-msme {
+    margin-top: var(--space-6);
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .listing-msme {
+    margin-top: var(--space-3);
   }
 
-  @media screen and (max-width:575px) {
-    .listing-msme{ 
-        margin-top: 10px;
-    }
-    .custom-button{
-        font-size: 15px;
-    }
-  }
-
-/* Modal Styles */
-.modal-form-field {
-  margin-bottom: 1.5rem;
-}
-
-.modal-input {
-  height: 48px;
-  border-radius: 8px;
-  border: 1.5px solid #e0e0e0;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  width: 100%;
-  transition: all 0.2s ease-in-out;
-}
-
-.modal-input:focus {
-  outline: none;
-  border-color: #009547;
-  box-shadow: 0 0 0 3px rgba(0, 149, 71, 0.1);
-}
-
-.modal-input.error {
-  border-color: #dd2c21;
-  background-color: rgba(221, 44, 33, 0.02);
-}
-
-.modal-input.error:focus {
-  box-shadow: 0 0 0 3px rgba(221, 44, 33, 0.1);
-}
-
-.modal-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #2d3748;
-}
-
-.modal-label span {
-  color: #dd2c21;
-  margin-left: 4px;
-}
-
-.error-message {
-  color: #dd2c21;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  line-height: 1.35;
-  font-weight: 500;
-}
-
-.error-message::before {
-  content: "!";
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: rgba(221, 44, 33, 0.12);
-  border: 1px solid rgba(221, 44, 33, 0.25);
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.modal-textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-/* Select Styles */
-.modal-select {
-  height: 48px;
-  border-radius: 8px;
-}
-
-.modal-select .react-select__control {
-  height: 48px;
-  border: 1.5px solid #e0e0e0;
-}
-
-.modal-select .react-select__control:hover {
-  border-color: #009547;
-}
-
-.modal-select .react-select__control--is-focused {
-  border-color: #009547;
-  box-shadow: 0 0 0 3px rgba(0, 149, 71, 0.1);
-}
-
-/* Modal Buttons */
-.modal-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
-}
-
-.modal-button {
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.2s ease-in-out;
-}
-
-.modal-button-primary {
-  background-color: #009547;
-  color: white;
-  border: none;
-}
-
-.modal-button-primary:hover {
-  background-color: #007a3b;
-}
-
-.modal-button-secondary {
-  background-color: #f3f4f6;
-  color: #4b5563;
-  border: none;
-}
-
-.modal-button-secondary:hover {
-  background-color: #e5e7eb;
-}
-
-/* Stepper Styles */
-.modal-stepper {
-  margin-bottom: 2rem;
-}
-
-.modal-stepper .MuiStepLabel-label {
-  font-weight: 600;
-}
-
-/* File Input Styles */
-.file-input-wrapper {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.file-input {
-  height: 48px;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  cursor: pointer;
-}
-
-.file-input-label {
-  height: 48px;
-  border: 1.5px dashed #e0e0e0;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #6b7280;
-  transition: all 0.2s ease-in-out;
-}
-
-.file-input-label:hover {
-  border-color: #009547;
-  color: #009547;
-}
-
-/* Modern MSME form enhancements */
-.form-group > label {
-  font-weight: 600;
-  color: #111827;
-  margin-bottom: 0.45rem !important;
-  letter-spacing: 0.1px;
-}
-
-.form-group > label > span {
-  color: #dc2626;
-  margin-left: 2px;
-}
-
-.form-control.place-holder,
-.form-select,
-.modern-select {
-  min-height: 46px;
-  border-radius: 10px;
-  border: 1px solid #d7deea;
-  padding: 0.65rem 0.85rem;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-  background: #fff;
-}
-
-textarea.form-control.place-holder {
-  min-height: 120px;
-  border-radius: 10px;
-}
-
-.form-control.place-holder:hover,
-.form-select:hover,
-.modern-select:hover {
-  border-color: #9fb2cd;
-}
-
-.form-control.place-holder:focus,
-.form-select:focus,
-.modern-select:focus {
-  border-color: #009547;
-  box-shadow: 0 0 0 3px rgba(0, 149, 71, 0.12);
-  outline: none;
-}
-
-.form-control.place-holder::placeholder,
-textarea.form-control.place-holder::placeholder {
-  color: #98a2b3;
-  font-size: 0.92rem;
-}
-
-.react-select__control {
-  min-height: 46px !important;
-  border-radius: 10px !important;
-  border: 1px solid #d7deea !important;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
-}
-
-.react-select__control--is-focused {
-  border-color: #009547 !important;
-  box-shadow: 0 0 0 3px rgba(0, 149, 71, 0.12) !important;
-}
-
-.react-select__placeholder {
-  color: #98a2b3 !important;
-}
-
-/* Manage MSME search bar modern style */
-.msme-search-bar {
-  align-items: center;
-  background: #ffffff;
-  border: 1px solid #d7deea;
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.msme-search-bar:focus-within {
-  border-color: #009547;
-  box-shadow: 0 0 0 3px rgba(0, 149, 71, 0.12), 0 4px 14px rgba(15, 23, 42, 0.06);
-}
-
-.msme-search-input {
-  font-size: 0.95rem;
-}
-
-.msme-search-input input::placeholder {
-  color: #98a2b3;
-  opacity: 1;
-}
-
-.msme-search-btn {
-  color: #009547 !important;
-}
-
-.msme-search-btn:hover {
-  background: rgba(0, 149, 71, 0.08) !important;
-}
-
-@media screen and (max-width:575px) {
-  .msme-search-bar {
-    width: 100% !important;
-    margin-right: 0 !important;
+  .custom-button {
+    font-size: var(--text-base);
   }
 }

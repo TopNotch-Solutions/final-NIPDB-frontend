@@ -104,7 +104,12 @@ const NotificationToastContainer = () => {
   }, []);
 
   return (
-    <div className="notification-toast-container">
+    <div
+      className="notification-toast-container"
+      role="status"
+      aria-live="polite"
+      aria-relevant="additions"
+    >
       {toasts.map((toast) => (
         <Toast
           key={toast.id}

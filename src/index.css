@@ -1,35 +1,171 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('./assets/css/tokens.css');
 
-html, 
+/* ==========================================================================
+   Base layer
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
 body,
-#root,
-h1,
-p,
-.app,
-.content {
+#root {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Montserrat',
-    sans-serif;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+  background-color: var(--color-canvas);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-  font-family: "Montserrat", sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
-.content {
-  font-weight: 400; 
+/* Headings carry the type scale rather than browser defaults. More space above
+   a heading than below it, so a heading binds to the content it introduces. */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 var(--space-3);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+  text-wrap: balance;
 }
 
-.header {
-  font-weight: 600;
+h1 { font-size: var(--text-2xl); }
+h2 { font-size: var(--text-xl); }
+h3 { font-size: var(--text-lg); }
+h4 { font-size: var(--text-md); }
+h5, h6 { font-size: var(--text-base); }
+
+p {
+  margin: 0 0 var(--space-3);
 }
 
-.title {
-  font-weight: 800;
+/* ==========================================================================
+   Browser surfaces — the parts we did not draw still belong to the design
+   ========================================================================== */
+
+::selection {
+  background-color: var(--green-100);
+  color: var(--green-900);
 }
+
+:root {
+  accent-color: var(--color-brand);
+  caret-color: var(--color-brand);
+  scrollbar-color: var(--neutral-300) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--neutral-300);
+  border: 2px solid transparent;
+  background-clip: content-box;
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--neutral-400);
+}
+
+/* One focus ring for the whole application. Keyboard users see it; pointer
+   users do not. Never remove it without replacing it. */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+a {
+  color: var(--color-brand-text);
+  text-decoration-color: var(--green-200);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Records are read by scanning a column of numbers. Lining tabular figures
+   keep digits in a vertical rule instead of drifting row to row. */
+table,
+.MuiDataGrid-root,
+.tabular-nums {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+/* Form controls inherit the UI face rather than the platform default. */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+}
+
+/* ==========================================================================
+   App shell primitives (kept from the previous base layer)
+   ========================================================================== */
 
 .app {
   display: flex;
   position: relative;
+}
+
+.content {
+  font-weight: var(--weight-regular);
+}
+
+.header {
+  font-weight: var(--weight-semibold);
+}
+
+.title {
+  font-weight: var(--weight-bold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

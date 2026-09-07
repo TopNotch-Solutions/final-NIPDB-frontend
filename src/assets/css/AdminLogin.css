@@ -1,29 +1,42 @@
+/* ==========================================================================
+   Login / OTP / password reset
+
+   Shared with AdminLogin.jsx, SubmitEmail.jsx and ForgotPassword.jsx.
+
+   The green was spelled #009548 here and #009547 everywhere else — two
+   values one unit apart, which is a typo rather than a decision. Both now
+   resolve to the brand token.
+   ========================================================================== */
+
 .login-container {
   min-height: 100vh;
-  background-color: #fdfafa;
+  background-color: var(--color-canvas);
 }
 
 .login-wrapper {
   display: grid;
-  grid-template-columns: 2fr 1.5fr;
+  grid-template-columns: 1fr;
   min-height: 100vh;
 }
 
+/* The brand panel appears only when there is room for it to mean something. */
 .login-logo-section {
   display: none;
-  background-color: #ffffff;
   place-items: center;
+  padding: var(--space-12);
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-border);
 }
 
 .login-logo {
-  max-width: 80%;
+  max-width: 70%;
   height: auto;
 }
 
 .login-form-section {
   display: grid;
   place-items: center;
-  padding: 2rem;
+  padding: var(--space-8);
 }
 
 .login-form-wrapper {
@@ -31,67 +44,93 @@
   max-width: 440px;
 }
 
-.login-title {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  text-align: center;
-  margin-bottom: 12px;
+/* Single-column variant used by the OTP and password-reset screens, which
+   have no brand panel. */
+.login-wrapper-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-8);
 }
 
-.login-card {
-  background: white;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+.login-wrapper-centered .login-form-section {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.login-wrapper-centered .login-card {
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------- copy */
+
+.login-title {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+  text-align: center;
+  text-wrap: balance;
 }
 
 .auth-form h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
 }
 
 .auth-subtitle {
-  color: #666;
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-8);
+  color: var(--color-text-muted);
 }
 
+/* ------------------------------------------------------------------- card */
+
+.login-card {
+  padding: var(--space-8);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+/* ------------------------------------------------------------------ field */
+
 .form-field {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-6);
 }
 
 .form-field label {
   display: block;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  color: #374151;
+  margin-bottom: var(--space-2);
+  font-weight: var(--weight-medium);
+  color: var(--color-text);
 }
 
 .form-field input {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  transition: all 0.2s;
+  min-height: 46px;
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  transition: border-color var(--duration) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out);
+}
+
+.form-field input::placeholder {
+  color: var(--color-text-subtle);
 }
 
 .form-field input:focus {
   outline: none;
-  border-color: #009548;
-  box-shadow: 0 0 0 3px rgba(0, 149, 72, 0.1);
-}
-
-.error-input {
-  border-color: #dc2626 !important;
-}
-
-.error-message {
-  color: #dc2626;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-  display: block;
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px var(--color-brand-ring);
 }
 
 .password-input {
@@ -100,141 +139,174 @@
 
 .toggle-password {
   position: absolute;
-  right: 1rem;
+  right: var(--space-4);
   top: 50%;
   transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  color: var(--color-text-muted);
   background: none;
   border: none;
-  color: #6b7280;
   cursor: pointer;
-  padding: 0;
+  transition: color var(--duration) var(--ease-out);
 }
+
+.toggle-password:hover {
+  color: var(--color-text);
+}
+
+/* ----------------------------------------------------------------- actions */
 
 .form-actions {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
 .remember-me {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: #374151;
+  gap: var(--space-2);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  cursor: pointer;
 }
 
 .forgot-password {
-  color: #009548;
+  padding: 0;
+  font-weight: var(--weight-medium);
+  color: var(--color-brand-text);
   background: none;
   border: none;
-  padding: 0;
-  font-weight: 500;
+  border-radius: var(--radius-sm);
   cursor: pointer;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .submit-button {
   width: 100%;
-  padding: 0.875rem;
-  background-color: #009548;
-  color: white;
+  min-height: 48px;
+  padding: var(--space-3);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-invert);
+  background-color: var(--color-brand-solid);
   border: none;
-  border-radius: 8px;
-  font-weight: 600;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color var(--duration) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out);
 }
 
-.submit-button:hover {
-  background-color: #007a3d;
+.submit-button:hover:not(:disabled) {
+  background-color: var(--color-brand-solid-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.submit-button:active:not(:disabled) {
+  background-color: var(--green-800);
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .submit-button:disabled {
-  background-color: #9ca3af;
+  background-color: var(--neutral-300);
+  color: var(--neutral-600);
   cursor: not-allowed;
 }
 
 .back-button {
   width: 100%;
-  padding: 0.875rem;
-  background-color: #154e8a;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  margin-top: 1rem;
+  min-height: 48px;
+  margin-top: var(--space-4);
+  padding: var(--space-3);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color var(--duration) var(--ease-out),
+              border-color var(--duration) var(--ease-out);
 }
 
 .back-button:hover {
-  background-color: #0f3d6b;
+  background-color: var(--color-surface-sunken);
+  border-color: var(--neutral-400);
 }
 
+/* ------------------------------------------------------------------ error */
+
+.error-input {
+  border-color: var(--color-danger) !important;
+}
+
+/* ---------------------------------------------------------------- loading */
+
 .loader {
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top: 3px solid white;
-  width: 24px;
-  height: 24px;
-  animation: spin 1s linear infinite;
+  width: 22px;
+  height: 22px;
   margin: 0 auto;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  border-top-color: var(--color-text-invert);
+  border-radius: var(--radius-full);
+  animation: spin 700ms linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .loader {
+    animation-duration: 1.6s;
+  }
+}
+
+/* ------------------------------------------------------------- responsive */
+
 @media (min-width: 1024px) {
+  .login-wrapper {
+    grid-template-columns: 2fr 1.5fr;
+  }
+
   .login-logo-section {
     display: grid;
   }
 }
 
-@media (max-width: 1023px) {
-  .login-wrapper {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (max-width: 640px) {
   .login-card {
-    padding: 1.5rem;
+    padding: var(--space-6);
   }
-  
+
   .login-form-section {
-    padding: 1rem;
+    padding: var(--space-4);
   }
-}
 
-/* Add this new class for centered layout */
-.login-wrapper-centered {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 2rem;
-}
+  .form-actions {
+    flex-wrap: wrap;
+  }
 
-/* Update the login-form-section for centered layout */
-.login-wrapper-centered .login-form-section {
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-/* Adjust card width for centered layout */
-.login-wrapper-centered .login-card {
-  width: 100%;
-}
-
-/* Responsive adjustments */
-@media (max-width: 640px) {
   .login-wrapper-centered {
-    padding: 1rem;
+    padding: var(--space-4);
   }
-  
+
   .login-wrapper-centered .login-form-section {
     max-width: 100%;
   }

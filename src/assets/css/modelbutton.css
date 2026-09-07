@@ -1,6 +1,5 @@
-.modelButton{
-    width: 120px;
+/* Modal action button width. `.text-bold` moved to App.css. */
+
+.modelButton {
+  width: 120px;
 }
-.text-bold{
-    font-weight: bold;
-  }

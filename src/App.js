@@ -35,23 +35,20 @@ function App() {
       <NotificationToastContainer />
       <div className="App">
         <div className="content">
-          <div className="d-flex" style={{ display: "flex", height: "100vh" }}>
+          <div className="main-container">
             {sidebar && (
               <Sidebar
                 openSidebarToggle={openSidebarToggle}
                 OpenSidebar={OpenSidebar}
               />
             )}
-            <div
-              style={{
-                flexGrow: 1,
-                display: "flex",
-                flexDirection: "column",
-                borderBottom: "1px solid rgba(255, 255, 255, 1)",
-              }}
-            >
-              <div>{sidebar && <Topbar OpenSidebar={OpenSidebar} />}</div>
-              <div style={{ flexGrow: 1, overflow: "auto" }}>
+            <div className="right-container">
+              {sidebar && (
+                <div className="topbar-wrapper">
+                  <Topbar OpenSidebar={OpenSidebar} />
+                </div>
+              )}
+              <div className="page-content">
                 <Routes>
                   <Route path="/" element={<AdminLogin />} />
                   <Route element={<AdminRoute />}>

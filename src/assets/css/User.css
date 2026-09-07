@@ -1,7 +1,12 @@
-.error-div{
-    background-color: rgb(227, 91, 91);
-    color: white;
+/* ==========================================================================
+   Users page
+
+   `.text-bold` moved to App.css. `.error-div` now uses the shared danger
+   tokens instead of a one-off rgb() that appeared nowhere else.
+   ========================================================================== */
+
+.error-div {
+  color: var(--color-text-invert);
+  background-color: var(--color-danger);
+  border-radius: var(--radius-sm);
 }
-.text-bold{
-    font-weight: bold;
-  }
