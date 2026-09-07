@@ -424,6 +424,17 @@ body {
 .status-rejected { color: var(--color-danger-text); }
 .status-approved { color: var(--color-success-text); }
 
+/* Inside a DataGrid the status class lands on the cell itself, and MUI's own
+   `.MuiDataGrid-root .MuiDataGrid-cell` rule (specificity 0,2,0) outranks the
+   plain `.status-*` selector above for font-weight. It sets no colour, which
+   is why the colours apply and the weight did not. Three classes deep clears
+   it without reaching for !important. */
+.MuiDataGrid-root .MuiDataGrid-cell.status-pending,
+.MuiDataGrid-root .MuiDataGrid-cell.status-rejected,
+.MuiDataGrid-root .MuiDataGrid-cell.status-approved {
+  font-weight: var(--weight-semibold);
+}
+
 /* ==========================================================================
    Form system
    ========================================================================== */

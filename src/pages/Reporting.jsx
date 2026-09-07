@@ -1351,15 +1351,6 @@ function Reporting() {
                             "& .MuiDataGrid-root": {
                               fontFamily: "var(--font-sans)",
                             },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
-                            },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
                               fontFamily: "var(--font-sans)",
@@ -1411,15 +1402,6 @@ function Reporting() {
                           sx={{
                             "& .MuiDataGrid-root": {
                               fontFamily: "var(--font-sans)",
-                            },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
                             },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
@@ -1475,15 +1457,6 @@ function Reporting() {
                             "& .MuiDataGrid-root": {
                               fontFamily: "var(--font-sans)",
                             },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
-                            },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
                               fontFamily: "var(--font-sans)",
@@ -1537,15 +1510,6 @@ function Reporting() {
                             "& .MuiDataGrid-root": {
                               fontFamily: "var(--font-sans)",
                             },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
-                            },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
                               fontFamily: "var(--font-sans)",
@@ -1595,15 +1559,6 @@ function Reporting() {
                           sx={{
                             "& .MuiDataGrid-root": {
                               fontFamily: "var(--font-sans)",
-                            },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
                             },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
@@ -1656,15 +1611,6 @@ function Reporting() {
                           sx={{
                             "& .MuiDataGrid-root": {
                               fontFamily: "var(--font-sans)",
-                            },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
                             },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
@@ -1719,15 +1665,6 @@ function Reporting() {
                           sx={{
                             "& .MuiDataGrid-root": {
                               fontFamily: "var(--font-sans)",
-                            },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
                             },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
