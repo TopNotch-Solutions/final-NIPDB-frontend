@@ -1,3 +1,58 @@
+/* ==========================================================================
+   Shared application system.
+
+   This file owns every pattern used on more than one page: the app shell, the
+   form system, the button system, search bars, section headings and status
+   text. Page stylesheets own only what is genuinely local to that page.
+
+   All values come from tokens.css. If you need a new one, add it there.
+   ========================================================================== */
+
+/* ==========================================================================
+   Bootstrap bridge
+
+   index.css is imported before Bootstrap, so Bootstrap's own `body` rule wins
+   the cascade and the app rendered in Bootstrap's default system stack rather
+   than the UI face. Rather than fight that with specificity, point Bootstrap's
+   variables at the tokens: every Bootstrap component then inherits the same
+   type, colour and radius as everything else.
+
+   This file is imported after Bootstrap in App.js, which is what makes it work.
+   ========================================================================== */
+
+:root {
+  --bs-body-font-family: var(--font-sans);
+  --bs-body-font-size: var(--text-base);
+  --bs-body-line-height: var(--leading-body);
+  --bs-body-color: var(--color-text);
+  --bs-body-bg: var(--color-canvas);
+  --bs-border-color: var(--color-border);
+  --bs-border-radius: var(--radius-md);
+  --bs-border-radius-sm: var(--radius-sm);
+  --bs-border-radius-lg: var(--radius-lg);
+  --bs-secondary-color: var(--color-text-muted);
+
+  --bs-primary: var(--color-brand-solid);
+  --bs-primary-rgb: 0, 122, 59;
+  --bs-link-color: var(--color-brand-text);
+  --bs-link-hover-color: var(--color-brand-active);
+  --bs-link-color-rgb: 0, 122, 59;
+
+  --bs-success: var(--color-brand-solid);
+  --bs-danger: var(--color-danger);
+  --bs-warning: var(--color-warning);
+  --bs-info: var(--color-info);
+}
+
+body {
+  font-family: var(--font-sans);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* ==========================================================================
+   App shell
+   ========================================================================== */
+
 .App {
   width: 100%;
   height: 100vh;
@@ -7,96 +62,487 @@
   height: 100%;
 }
 
+/* Fixed-height shell: the sidebar and topbar stay put and only .page-content
+   scrolls. Changing this to min-height makes the whole document scroll. */
 .main-container {
   display: flex;
   height: 100vh;
-}
-
-.sidebar-container {
-  height: 100%;
-  flex-shrink: 0;
-  position: sticky;
-  top: 0;
 }
 
 .right-container {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  min-width: 0; /* lets wide tables scroll instead of stretching the shell */
   overflow: hidden;
 }
 
 .topbar-wrapper {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: var(--z-topbar);
 }
 
+/* Pages own their own inner padding, so this stays a bare scroll container. */
 .page-content {
   flex-grow: 1;
   overflow: auto;
-  padding: 20px;
+  background-color: var(--color-canvas);
 }
 
-/* Global modern form system */
-.form-group > label {
+/* ==========================================================================
+   Surfaces
+   ========================================================================== */
+
+/* Card-like panel background. Used across Profile and MSME detail sections,
+   where it previously resolved to nothing at all. */
+.b-g {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+}
+
+.panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   Stat tiles
+
+   The four counters above each list. They are genuinely equivalent, so they
+   get one uniform size rather than each sizing to its own content: equal
+   columns, one min-height, one padding, and content pinned to the top and
+   bottom edges so the numbers sit on a common baseline across all four.
+   ========================================================================== */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+  align-items: stretch;
+  margin-top: var(--space-4);
+}
+
+/* Dashboard's analytics row: a wide trend panel beside a narrower breakdown.
+   Same surface treatment as the tiles so the page reads as one system. */
+.chart-grid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--space-4);
+  align-items: stretch;
+  margin-top: var(--space-4);
+}
+
+.chart-panel {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.chart-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Replaces `.header-padding`, which the markup referenced but no stylesheet
+   ever defined. */
+.chart-panel__title {
+  margin: 0;
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+}
+
+@media screen and (max-width: 1199px) {
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 132px;
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--duration) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out);
+}
+
+.stat-tile:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+/* Label row. Fixed height keeps the value row aligned even when one label
+   wraps to two lines. */
+.stat-tile__label {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
+}
+
+.stat-tile__value {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.stat-tile__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.stat-tile__digit {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: var(--color-text);
+}
+
+@media screen and (max-width: 1199px) {
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .stat-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+}
+
+/* ==========================================================================
+   Tab strip (segmented control)
+
+   Was `d-flex flex-wrap justify-content-between` with `flex-grow-1` on each
+   button. `flex-grow-1` only sets grow — the basis stays `auto`, so every tab
+   was sized by its own label and the widths never matched. With five tabs the
+   last one ("Incomplete Registration") wrapped to a second line and, being
+   alone on that line with grow enabled, stretched the full container width.
+
+   `grid-auto-flow: column` + `grid-auto-columns: 1fr` gives equal segments on
+   one row for any number of tabs, so nothing wraps and nothing stretches.
+   ========================================================================== */
+
+.tab-strip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/* Beat Bootstrap's `.btn` margin utilities so the gap is the only spacing.
+   The explicit font-size matters: Bootstrap's `.btn` default is 1rem, which
+   left the longest label ("Incomplete Registration") needing 181px inside a
+   184px cell — it clipped on the boundary. At the base step it needs ~158px
+   and the segment has real headroom. 16px was oversized for a segmented
+   control anyway. */
+.tab-strip > .btn {
+  width: 100%;
+  min-width: 0;
+  margin: 0 !important;
+  padding: var(--space-3) var(--space-2);
+  font-size: var(--text-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Fold before the labels start clipping rather than after. Measured against
+   the longest label: five segments stay legible down to ~1400px, below which
+   the cell is narrower than "Incomplete Registration" needs.
+
+   Each step keeps the columns equal, so a short final row leaves an empty
+   cell instead of stretching one tab across the full width. */
+@media screen and (max-width: 1399px) {
+  .tab-strip {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .tab-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .tab-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   List toolbar
+
+   The list heading, the search field and the primary action are one group.
+   They previously sat in two stacked containers — the search row in a
+   narrower `col-xxl-9 mx-auto` box (centred, so its right edge did not line
+   up with the full-width table below it) and the heading in a separate
+   `col-12` underneath. That is what made the search bar read as hanging in
+   the middle of the panel.
+   ========================================================================== */
+
+.list-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.list-toolbar__title {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+
+.list-toolbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+/* The search field keeps a comfortable width but yields before the buttons
+   do when the row runs out of room. */
+.list-toolbar__actions .app-search-bar,
+.list-toolbar__actions .msme-search-bar {
+  display: flex;
+  width: clamp(200px, 28vw, 320px);
+  margin: 0 !important;
+}
+
+.list-toolbar__actions .btn,
+.list-toolbar__actions .myButton,
+.list-toolbar__actions .MuiButton-root {
+  flex-shrink: 0;
+  margin: 0 !important;
+}
+
+@media screen and (max-width: 767px) {
+  .list-toolbar__actions {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .list-toolbar__actions .app-search-bar,
+  .list-toolbar__actions .msme-search-bar {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Section headings
+
+   `list-groupp` labels the record tables on nine pages ("All MSME List",
+   "BSO List", …). It had no rule anywhere, so every one of those headings
+   rendered as an unstyled paragraph.
+   ========================================================================== */
+
+.list-groupp {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+
+.section-title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   Weight utilities
+
+   `.text-bold` was declared in eight stylesheets with two different weights,
+   so which one won depended on bundler import order. One definition each.
+   ========================================================================== */
+
+.text-bold {
+  font-weight: var(--weight-semibold);
+}
+
+.text-boldd {
+  font-weight: var(--weight-semibold);
+}
+
+/* ==========================================================================
+   Status text — one definition, contrast-checked
+   ========================================================================== */
+
+.status-pending,
+.status-rejected,
+.status-approved {
+  font-weight: var(--weight-semibold);
+}
+
+.status-pending  { color: var(--color-warning-text); }
+.status-rejected { color: var(--color-danger-text); }
+.status-approved { color: var(--color-success-text); }
+
+/* Inside a DataGrid the status class lands on the cell itself, and MUI's own
+   `.MuiDataGrid-root .MuiDataGrid-cell` rule (specificity 0,2,0) outranks the
+   plain `.status-*` selector above for font-weight. It sets no colour, which
+   is why the colours apply and the weight did not. Three classes deep clears
+   it without reaching for !important. */
+.MuiDataGrid-root .MuiDataGrid-cell.status-pending,
+.MuiDataGrid-root .MuiDataGrid-cell.status-rejected,
+.MuiDataGrid-root .MuiDataGrid-cell.status-approved {
+  font-weight: var(--weight-semibold);
+}
+
+/* ==========================================================================
+   Form system
+   ========================================================================== */
+
+.form-group > label,
+.modal-label {
   display: block;
-  margin-bottom: 0.45rem;
-  font-weight: 600;
-  color: #111827;
-  letter-spacing: 0.1px;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
 }
 
-.form-group > label > span {
-  color: #dc2626;
+/* A bare <span> inside a <label> is this project's required-field marker —
+   103 of them across the forms, only 72 of which sit inside a .form-group,
+   so the rule has to be this broad to reach them all.
+
+   `.remember-me` is the one label that wraps a span of real copy rather than
+   an asterisk, and it was rendering "Remember me" in red on the sign-in
+   screen. Excluding it fixes that. The durable fix is an explicit
+   `<span className="required">*</span>` at all 103 call sites, at which point
+   this selector can be narrowed to `.required`. */
+label:not(.remember-me) > span {
+  margin-left: 2px;
+  color: var(--color-danger-text);
+}
+
+.required {
+  margin-left: 2px;
+  color: var(--color-danger-text);
 }
 
 .form-control.place-holder,
 .form-select,
-.modern-select {
+.modern-select,
+.modal-input {
+  width: 100%;
   min-height: 46px;
-  border-radius: 10px;
-  border: 1px solid #d7deea;
-  padding: 0.65rem 0.85rem;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-  background: #fff;
+  padding: var(--space-3) var(--space-3);
+  font-size: var(--text-md);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition: border-color var(--duration) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out);
 }
 
-textarea.form-control.place-holder {
+textarea.form-control.place-holder,
+.modal-textarea {
   min-height: 120px;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
+  resize: vertical;
 }
 
 .form-control.place-holder:hover,
 .form-select:hover,
-.modern-select:hover {
-  border-color: #9fb2cd;
+.modern-select:hover,
+.modal-input:hover {
+  border-color: var(--neutral-400);
 }
 
 .form-control.place-holder:focus,
 .form-select:focus,
-.modern-select:focus {
-  border-color: #009547;
-  box-shadow: 0 0 0 3px rgba(0, 149, 71, 0.12);
+.modern-select:focus,
+.modal-input:focus {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px var(--color-brand-ring);
   outline: none;
 }
 
 .form-control.place-holder::placeholder,
-textarea.form-control.place-holder::placeholder {
-  color: #98a2b3;
-  font-size: 0.92rem;
+textarea.form-control.place-holder::placeholder,
+.modal-input::placeholder {
+  color: var(--color-text-subtle);
+  font-size: var(--text-base);
 }
 
+.form-control.place-holder:disabled,
+.modal-input:disabled {
+  background-color: var(--color-surface-sunken);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.error-input,
+.modal-input.error {
+  border-color: var(--color-danger) !important;
+  background-color: var(--color-danger-tint);
+}
+
+.error-input:focus,
+.modal-input.error:focus {
+  box-shadow: 0 0 0 3px var(--color-danger-ring);
+}
+
+/* ---------------------------------------------------------------- messages */
+
 .error-message {
-  color: #dd2c21;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
   display: flex;
   align-items: center;
-  gap: 6px;
-  line-height: 1.35;
-  font-weight: 500;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  color: var(--color-danger-text);
 }
 
 .error-message::before {
@@ -104,17 +550,85 @@ textarea.form-control.place-holder::placeholder {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: 16px;
   height: 16px;
-  border-radius: 50%;
-  background: rgba(221, 44, 33, 0.12);
-  border: 1px solid rgba(221, 44, 33, 0.25);
-  font-size: 11px;
-  font-weight: 700;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-danger-text);
+  background: var(--color-danger-tint);
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-full);
 }
 
-/* Global modern button system (preserve existing colors) */
-button,
+/* The success counterpart was used in Msme.jsx but never defined. */
+.success-message {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  color: var(--color-success-text);
+}
+
+.success-message::before {
+  content: "\2713";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-success-text);
+  background: var(--color-success-tint);
+  border: 1px solid var(--color-success);
+  border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   react-select
+   ========================================================================== */
+
+.react-select__control {
+  min-height: 46px !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--color-border-strong) !important;
+  box-shadow: var(--shadow-xs) !important;
+}
+
+.react-select__control:hover {
+  border-color: var(--neutral-400) !important;
+}
+
+.react-select__control--is-focused {
+  border-color: var(--color-brand) !important;
+  box-shadow: 0 0 0 3px var(--color-brand-ring) !important;
+}
+
+.react-select__placeholder {
+  color: var(--color-text-subtle) !important;
+}
+
+.react-select__option--is-selected {
+  background-color: var(--color-brand) !important;
+}
+
+.react-select__option--is-focused:not(.react-select__option--is-selected) {
+  background-color: var(--color-brand-tint) !important;
+  color: var(--color-text) !important;
+}
+
+/* ==========================================================================
+   Button system
+
+   Icon buttons are excluded: they are circular by design and a 10px radius
+   with a 40px min-height turns them into rounded squares.
+   ========================================================================== */
+
 .btn,
 .custom-button,
 .modal-button,
@@ -123,14 +637,16 @@ button,
 .submission,
 .back,
 .MuiButton-root {
-  border-radius: 10px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.2px;
   min-height: 40px;
-  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  border-radius: var(--radius-md);
+  transition: transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out),
+              background-color var(--duration) var(--ease-out),
+              filter var(--duration) var(--ease-out);
 }
 
-button:hover,
 .btn:hover,
 .custom-button:hover,
 .modal-button:hover,
@@ -140,10 +656,9 @@ button:hover,
 .back:hover,
 .MuiButton-root:hover {
   transform: translateY(-1px);
-  filter: brightness(0.98);
+  box-shadow: var(--shadow-sm);
 }
 
-button:active,
 .btn:active,
 .custom-button:active,
 .modal-button:active,
@@ -153,56 +668,255 @@ button:active,
 .back:active,
 .MuiButton-root:active {
   transform: translateY(0);
+  box-shadow: none;
 }
 
-button:focus-visible,
-.btn:focus-visible,
-.custom-button:focus-visible,
-.modal-button:focus-visible,
-.modelButton:focus-visible,
-.modelButtonn:focus-visible,
-.submission:focus-visible,
-.back:focus-visible,
-.MuiButton-root:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 149, 71, 0.18);
+.btn:disabled,
+.custom-button:disabled,
+.modal-button:disabled,
+.MuiButton-root:disabled {
+  transform: none;
+  box-shadow: none;
+  cursor: not-allowed;
 }
 
-/* Global search bar system */
-.app-search-bar {
+/* Primary action. Uses --color-brand-solid rather than the literal brand
+   green: a white label on #009547 is 3.9:1, below the 4.5:1 floor. */
+.custom-button,
+.modal-button-primary,
+.btn-success {
+  color: var(--color-text-invert);
+  background: var(--color-brand-solid);
+  border: 1px solid var(--color-brand-solid);
+}
+
+.custom-button:hover,
+.modal-button-primary:hover,
+.btn-success:hover {
+  background: var(--color-brand-solid-hover);
+  border-color: var(--color-brand-solid-hover);
+  color: var(--color-text-invert);
+}
+
+.custom-button:active,
+.modal-button-primary:active,
+.btn-success:active {
+  background: var(--green-800);
+  border-color: var(--green-800);
+}
+
+.modal-button-secondary {
+  color: var(--color-text);
+  background-color: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+}
+
+.modal-button-secondary:hover {
+  background-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.button-grey {
+  background-color: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+}
+
+.button-grey:hover {
+  background-color: var(--color-border);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+/* ==========================================================================
+   Search bar
+   ========================================================================== */
+
+.app-search-bar,
+.msme-search-bar {
   align-items: center;
-  background: #ffffff;
-  border: 1px solid #d7deea;
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition: border-color var(--duration) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out);
 }
 
-.app-search-bar:focus-within {
-  border-color: #009547;
-  box-shadow: 0 0 0 3px rgba(0, 149, 71, 0.12), 0 4px 14px rgba(15, 23, 42, 0.06);
+.app-search-bar:focus-within,
+.msme-search-bar:focus-within {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px var(--color-brand-ring);
 }
 
-.app-search-input {
-  font-size: 0.95rem;
+.app-search-input,
+.msme-search-input {
+  font-size: var(--text-md);
 }
 
-.app-search-input input::placeholder {
-  color: #98a2b3;
+.app-search-input input::placeholder,
+.msme-search-input input::placeholder {
+  color: var(--color-text-subtle);
   opacity: 1;
 }
 
-.app-search-btn {
-  color: #009547 !important;
+.app-search-btn,
+.msme-search-btn {
+  color: var(--color-brand-text) !important;
 }
 
-.app-search-btn:hover {
-  background: rgba(0, 149, 71, 0.08) !important;
+.app-search-btn:hover,
+.msme-search-btn:hover {
+  background: var(--color-brand-tint) !important;
 }
 
 @media screen and (max-width: 575px) {
-  .app-search-bar {
+  .app-search-bar,
+  .msme-search-bar {
     width: 100% !important;
     margin-right: 0 !important;
   }
+}
+
+/* ==========================================================================
+   Data grid
+   ========================================================================== */
+
+.MuiDataGrid-root {
+  border-color: var(--color-border) !important;
+  border-radius: var(--radius-lg) !important;
+  font-family: var(--font-sans) !important;
+}
+
+.MuiDataGrid-columnHeaders {
+  background-color: var(--color-surface-sunken);
+  font-weight: var(--weight-semibold);
+}
+
+.MuiDataGrid-columnHeaderTitle {
+  font-weight: var(--weight-semibold) !important;
+  color: var(--color-text);
+}
+
+.MuiDataGrid-row:hover {
+  background-color: var(--color-surface-hover) !important;
+}
+
+.MuiDataGrid-cell:focus,
+.MuiDataGrid-cell:focus-within,
+.MuiDataGrid-columnHeader:focus,
+.MuiDataGrid-columnHeader:focus-within {
+  outline: 2px solid var(--color-brand) !important;
+  outline-offset: -2px;
+}
+
+/* ==========================================================================
+   Avatar + image upload
+
+   Used on Profile, Msme, Bso and Content. It previously lived in both
+   bso.css and profile.css as two near-identical copies, with a third
+   near-miss selector (`.circularr-image`) that nothing ever rendered.
+   ========================================================================== */
+
+.circular-image {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-sunken);
+}
+
+.profileI {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-full);
+}
+
+/* Camera / clear affordance pinned to the avatar. Two spellings exist in the
+   markup (`camera-top` on Profile, `camera-topp` on Msme/Bso/Content); both
+   resolve here rather than to two drifting rules. */
+.camera-top,
+.camera-topp {
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  border: 1px solid var(--color-border-strong);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out);
+}
+
+.camera-top:hover,
+.camera-topp:hover {
+  transform: scale(1.06);
+  box-shadow: var(--shadow-md);
+}
+
+@media only screen and (max-width: 576px) {
+  .circular-image {
+    width: 130px;
+    height: 130px;
+  }
+
+  .camera-top,
+  .camera-topp {
+    top: 4px;
+    right: 4px;
+  }
+}
+
+/* ==========================================================================
+   Utilities retained from the page stylesheets
+   ========================================================================== */
+
+.pointer {
+  cursor: pointer;
+  width: fit-content;
+  height: fit-content;
+}
+
+.text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.msme-table {
+  overflow-x: auto;
+}
+
+.digit {
+  margin: auto 0 auto var(--space-3);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+}
+
+.error-text {
+  color: var(--color-danger-text);
+}
+
+.animated-success {
+  color: var(--color-success-text);
+  font-weight: var(--weight-semibold);
+  animation: fadeIn var(--duration-slow) var(--ease-out);
+}
+
+.animated-danger {
+  color: var(--color-danger-text);
+  font-weight: var(--weight-semibold);
+  animation: fadeIn var(--duration-slow) var(--ease-out);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

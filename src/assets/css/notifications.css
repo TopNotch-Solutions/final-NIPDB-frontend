@@ -1,14 +1,19 @@
-.text-counter{
-    margin-top: -15px;
+/* ==========================================================================
+   Notifications page
+
+   `.text-bold` moved to App.css.
+   ========================================================================== */
+
+.text-counter {
+  margin-top: calc(var(--space-4) * -1);
 }
-.my-border{
-    padding-bottom: 20px;
+
+.my-border {
+  padding-bottom: var(--space-5);
 }
-.text-bold{
-    font-weight: bold;
-  }
+
 @media only screen and (max-width: 576px) {
-    .my-border{
-        padding-bottom: 5px;
-    }
+  .my-border {
+    padding-bottom: var(--space-1);
+  }
 }

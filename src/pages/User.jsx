@@ -870,124 +870,83 @@ function User() {
           <p className="msme">Manage Users</p>
           <p>View, search and manage all System users</p>
 
-          <Box className="" justifyContent={"space-evenly"}>
-            <Box
-              display="grid"
-              gridTemplateColumns={
-                isSmallScreen ? "repeat(1, 1fr)" : "repeat(12, 1fr)"
-              }
-              gridAutoRows="140px"
-              gap={isSmallScreen ? "0px" : "10px"}
-            >
-              <Box
-                marginTop={"10px"}
-                gridColumn={isSmallScreen ? "span 12" : "span 3"}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <div className="col-12 p-4 shadow rounded-2">
-                  <div className="d-flex justify-content-between">
+          <div className="stat-grid">
+              <div className="stat-tile">
+                  <div className="stat-tile__label">
                     <Tooltip title="Total Users" className="pointer">
                       <p className="text">Total Users</p>
                     </Tooltip>
                   </div>
-                  <div className="d-flex justify-content-start">
-                    <div className="p-1 border rounded-2 ml-2">
+                  <div className="stat-tile__value">
+                    <div className="stat-tile__icon">
                       <StickyNote2Icon sx={{ color: "rgba(21, 78, 138, 1)" }} />
                     </div>
                     <Tooltip title={totalSystemUsers}>
-                      <p className="digit text pointer">{totalSystemUsers}</p>
+                      <p className="stat-tile__digit pointer">{totalSystemUsers}</p>
                     </Tooltip>
                   </div>
-                </div>
-              </Box>
+                                </div>
 
-              <Box
-                marginTop={"10px"}
-                gridColumn={isSmallScreen ? "span 12" : "span 3"}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <div className="col-12 p-4 shadow rounded-2">
-                  <div className="d-flex justify-content-between">
+              <div className="stat-tile">
+                  <div className="stat-tile__label">
                     <Tooltip title="Super admins" className="pointer">
                       <p className="text">Super Admins</p>
                     </Tooltip>
                   </div>
-                  <div className="d-flex align-items-center justify-content-start text-center">
-                    <div className="p-1 border rounded-2">
-                      <StickyNote2Icon sx={{ color: "rgba(0, 149, 71, 1)" }} />
+                  <div className="stat-tile__value">
+                    <div className="stat-tile__icon">
+                      <StickyNote2Icon sx={{ color: "var(--color-brand-text)" }} />
                     </div>
                     <Tooltip title={totalSuperUser}>
-                      <p className="digit text pointer">{totalSuperUser}</p>
+                      <p className="stat-tile__digit pointer">{totalSuperUser}</p>
                     </Tooltip>
                   </div>
-                </div>
-              </Box>
+                                </div>
 
-              <Box
-                marginTop={"10px"}
-                gridColumn={isSmallScreen ? "span 12" : "span 3"}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <div className="col-12 p-4 shadow rounded-2">
-                  <div className="d-flex justify-content-between">
+              <div className="stat-tile">
+                  <div className="stat-tile__label">
                     <Tooltip title="Admins" className="pointer">
                       <p className="text">Admins</p>
                     </Tooltip>
                   </div>
-                  <div className="d-flex align-items-center justify-content-start text-center">
-                    <div className="p-1 border rounded-2">
+                  <div className="stat-tile__value">
+                    <div className="stat-tile__icon">
                       <StickyNote2Icon sx={{ color: "rgba(210, 31, 53, 1)" }} />
                     </div>
                     <Tooltip title={totalAdmins}>
-                      <p className="digit text pointer">{totalAdmins}</p>
+                      <p className="stat-tile__digit pointer">{totalAdmins}</p>
                     </Tooltip>
                   </div>
-                </div>
-              </Box>
+                                </div>
 
-              <Box
-                marginTop={"10px"}
-                gridColumn={isSmallScreen ? "span 12" : "span 3"}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <div className="col-12 p-4 shadow rounded-2">
-                  <div className="d-flex justify-content-between">
+              <div className="stat-tile">
+                  <div className="stat-tile__label">
                     <Tooltip title="Mobile App Users" className="pointer">
                       <p className="text">Mobile App Users</p>
                     </Tooltip>
                   </div>
-                  <div className="d-flex align-items-center justify-content-start text-center">
-                    <div className="p-1 border rounded-2">
+                  <div className="stat-tile__value">
+                    <div className="stat-tile__icon">
                       <StickyNote2Icon
                         sx={{ color: "rgba(251, 177, 34, 1)" }}
                       />
                     </div>
                     <Tooltip title={totalAppUsers}>
-                      <p className="digit text pointer">{totalAppUsers}</p>
+                      <p className="stat-tile__digit pointer">{totalAppUsers}</p>
                     </Tooltip>
                   </div>
-                </div>
-              </Box>
+                                </div>
 
-              <Box
-                gridColumn={isSmallScreen ? "span 12" : "span 12"}
-                gridRow="span 3"
-              >
+          </div>
+
+          <div>
                 <div className="col-12 mb-4 listing-msme p-4 shadow rounded-3 mb-4">
-                  <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
+                  <div className="list-toolbar mt-4">
+                    <p className="list-toolbar__title">Admin List</p>
+                    <div className="list-toolbar__actions">
                     <Box
                       className="app-search-bar"
                       display="flex"
-                      width="320px"
-                      marginRight="10px"
                     >
                       <InputBase
                         className="app-search-input"
@@ -1011,8 +970,8 @@ function User() {
                       </>
                     )}
                   </div>
+                  </div>
                   <div className="col-12 mt-1">
-                    <p className="list-groupp">Admin List</p>
                     {adminList ? (
                       <>
                         <Box sx={{ height: 500, width: "100%" }}>
@@ -1021,28 +980,19 @@ function User() {
                             columns={columns}
                             sx={{
                               "& .MuiDataGrid-root": {
-                                fontFamily: "Montserrat, sans-serif",
-                              },
-                              "& .status-pending": {
-                                color: "rgb(234, 156, 0)",
-                              },
-                              "& .status-rejected": {
-                                color: "red",
-                              },
-                              "& .status-approved": {
-                                color: "green",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-columnHeaders": {
                                 fontWeight: 800,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-columnHeaderTitle": {
                                 fontWeight: 600,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-cell": {
                                 fontWeight: 400,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                             }}
                             initialState={{
@@ -1075,9 +1025,7 @@ function User() {
                     )}
                   </div>
                 </div>
-              </Box>
-            </Box>{" "}
-          </Box>
+          </div>
           <Modal
             open={openModel}
             onClose={handleClose}

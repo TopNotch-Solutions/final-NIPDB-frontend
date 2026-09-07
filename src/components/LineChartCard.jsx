@@ -9,7 +9,7 @@ const LineChartCard = ({ data, isLoading }) => {
 
   if (isLoading) {
     return (
-      <div className="col-12 p-4 shadow rounded-2" style={{ width: '100%' }}>
+      <div className="chart-panel">
         <div className="d-flex justify-content-center align-items-center" style={{ height: 301 }}>
           <div style={{ textAlign: "center" }}>
             <CircularProgress color="inherit" />
@@ -20,17 +20,14 @@ const LineChartCard = ({ data, isLoading }) => {
   }
 
   return (
-    <div className="col-12 p-4 shadow rounded-2" style={{ width: '100%' }}>
-      <div className="d-flex justify-content-between align-items-center border-bottom">
-        <h6>MSMEs Registration</h6>
-        <div className="d-flex justify-content-center align-items-center" style={{ gap: '20px' }}>
+    <div className="chart-panel">
+      <div className="chart-panel__header">
+        <h6 className="chart-panel__title">MSMEs Registration</h6>
+        <div className="legend-container">
           {legendItems.map(({ color, label }) => (
-            <div key={label} className="d-flex align-items-center">
-              <div 
-                className="circle"
-                style={{ backgroundColor: color, width: 10, height: 10, borderRadius: '50%', marginRight: '8px' }}
-              />
-              <p className="small-padding mb-0">{label}</p>
+            <div key={label} className="legend-item">
+              <span className="legend-dot" style={{ backgroundColor: color }} />
+              <span className="legend-label">{label}</span>
             </div>
           ))}
         </div>

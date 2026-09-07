@@ -3239,15 +3239,7 @@ function Msme() {
           <p className="msme">Manage MSMEs</p>
           <p>View, search and manage all MSME registrations and listing</p>
 
-          <Box className="" justifyContent={"space-evenly"}>
-            <Box
-              display="grid"
-              gridTemplateColumns={
-                isSmallScreen ? "repeat(1, 1fr)" : "repeat(12, 1fr)"
-              }
-              gridAutoRows="140px"
-              gap={isSmallScreen ? "0px" : "10px"}
-            >
+          <div className="stat-grid">
               {/* <Box
                 marginTop={"10px"}
                 gridColumn={isSmallScreen ? "span 12" : "span 3"}
@@ -3263,104 +3255,74 @@ function Msme() {
                     <ArrowForwardIosIcon />
                   </div>
                   <div className="d-flex justify-content-start">
-                    <div className="p-1 border rounded-2 ml-2">
+                    <div className="p-1 border rounded-2 ms-2">
                       <StickyNote2Icon sx={{ color: "rgba(21, 78, 138, 1)" }} />
                     </div>
                     <Tooltip title={totalRegisteration}>
-                      <p className="digit text pointer">{totalRegisteration}</p>
+                      <p className="stat-tile__digit pointer">{totalRegisteration}</p>
                     </Tooltip>
                   </div>
                 </div>
               </Box> */}
 
-              <Box
-                marginTop={"10px"}
-                gridColumn={isSmallScreen ? "span 12" : "span 3"}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <div className="col-12 p-4 shadow rounded-2">
-                  <div className="d-flex justify-content-between">
+              <div className="stat-tile">
+                  <div className="stat-tile__label">
                     <Tooltip title="Pending Approvals" className="pointer">
                       <p className="text">Pending Approvals</p>
                     </Tooltip>
                   </div>
-                  <div className="d-flex align-items-center justify-content-start text-center">
-                    <div className="p-1 border rounded-2">
+                  <div className="stat-tile__value">
+                    <div className="stat-tile__icon">
                       <StickyNote2Icon
                         sx={{ color: "rgba(251, 177, 34, 1)" }}
                       />
                     </div>
                     <Tooltip title={pendingRegisteration}>
-                      <p className="digit text pointer">
+                      <p className="stat-tile__digit pointer">
                         {pendingRegisteration}
                       </p>
                     </Tooltip>
                   </div>
                 </div>
-              </Box>
 
-              <Box
-                marginTop={"10px"}
-                gridColumn={isSmallScreen ? "span 12" : "span 3"}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <div className="col-12 p-4 shadow rounded-2">
-                  <div className="d-flex justify-content-between">
+              <div className="stat-tile">
+                  <div className="stat-tile__label">
                     <Tooltip title="Rejected MSMEs" className="pointer">
                       <p className="text">Rejected MSMEs</p>
                     </Tooltip>
                   </div>
-                  <div className="d-flex align-items-center justify-content-start text-center">
-                    <div className="p-1 border rounded-2">
+                  <div className="stat-tile__value">
+                    <div className="stat-tile__icon">
                       <StickyNote2Icon sx={{ color: "rgba(210, 31, 53, 1)" }} />
                     </div>
                     <Tooltip title={rejectedRegisteration}>
-                      <p className="digit text pointer">
+                      <p className="stat-tile__digit pointer">
                         {rejectedRegisteration}
                       </p>
                     </Tooltip>
                   </div>
                 </div>
-              </Box>
 
-              <Box
-                marginTop={"10px"}
-                gridColumn={isSmallScreen ? "span 12" : "span 3"}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <div className="col-12 p-4 shadow rounded-2">
-                  <div className="d-flex justify-content-between">
+              <div className="stat-tile">
+                  <div className="stat-tile__label">
                     <Tooltip title="Approved Registrations" className="pointer">
                       <p className="text">Approved Registrations</p>
                     </Tooltip>
                   </div>
-                  <div className="d-flex align-items-center justify-content-start text-center">
-                    <div className="p-1 border rounded-2">
-                      <StickyNote2Icon sx={{ color: "rgba(0, 149, 71, 1)" }} />
+                  <div className="stat-tile__value">
+                    <div className="stat-tile__icon">
+                      <StickyNote2Icon sx={{ color: "var(--color-brand-text)" }} />
                     </div>
                     <Tooltip title={approvedRegisteration}>
-                      <p className="digit text pointer">
+                      <p className="stat-tile__digit pointer">
                         {approvedRegisteration}
                       </p>
                     </Tooltip>
                   </div>
                 </div>
-              </Box>
-              <Box
-                marginTop={"10px"}
-                gridColumn={isSmallScreen ? "span 12" : "span 3"}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <div className="col-12 p-4 shadow rounded-2">
-                  <div className="d-flex justify-content-between">
+
+              <div className="stat-tile">
+                  <div className="stat-tile__label">
                     <Tooltip
                       title="Incomplete Registrations"
                       className="pointer"
@@ -3368,32 +3330,27 @@ function Msme() {
                       <p className="text">Incomplete Registrations</p>
                     </Tooltip>
                   </div>
-                  <div className="d-flex align-items-center justify-content-start text-center">
-                    <div className="p-1 border rounded-2">
+                  <div className="stat-tile__value">
+                    <div className="stat-tile__icon">
                       <StickyNote2Icon sx={{ color: "rgba(21, 78, 138, 1)" }} />
                     </div>
                     <Tooltip title={incompleteRegisteration}>
-                      <p className="digit text pointer">
+                      <p className="stat-tile__digit pointer">
                         {incompleteRegisteration}
                       </p>
                     </Tooltip>
                   </div>
                 </div>
-              </Box>
+          </div>
 
-              <Box
-                gridColumn={isSmallScreen ? "span 12" : "span 12"}
-                gridRow="span 3"
-              >
+          <div>
                 <div className="col-12 mb-4 listing-msme p-4 shadow rounded-3 mb-4">
-                  <div className="container-fluid">
-                    <div className="row justify-content-center">
-                      <div className="col-12 col-lg-12 col-xxl-10 mx-auto border d-flex flex-wrap justify-content-between p-1">
+                  <div className="tab-strip">
                         <button
                           className={
                             buttonActive === 1
-                              ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                              : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                              ? "btn btn-success"
+                              : "btn button-grey"
                           }
                           onClick={() => {
                             setButonActive(1);
@@ -3405,8 +3362,8 @@ function Msme() {
                         <button
                           className={
                             buttonActive === 2
-                              ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                              : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                              ? "btn btn-success"
+                              : "btn button-grey"
                           }
                           onClick={() => {
                             setButonActive(2);
@@ -3418,8 +3375,8 @@ function Msme() {
                         <button
                           className={
                             buttonActive === 5
-                              ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                              : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                              ? "btn btn-success"
+                              : "btn button-grey"
                           }
                           onClick={() => {
                             setButonActive(5);
@@ -3431,8 +3388,8 @@ function Msme() {
                         <button
                           className={
                             buttonActive === 3
-                              ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                              : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                              ? "btn btn-success"
+                              : "btn button-grey"
                           }
                           onClick={() => {
                             setButonActive(3);
@@ -3444,8 +3401,8 @@ function Msme() {
                         <button
                           className={
                             buttonActive === 4
-                              ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                              : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                              ? "btn btn-success"
+                              : "btn button-grey"
                           }
                           onClick={() => {
                             setButonActive(4);
@@ -3454,18 +3411,16 @@ function Msme() {
                         >
                           Incomplete Registration
                         </button>
-                      </div>
-                    </div>
                   </div>
 
                   {buttonActive === 1 && (
                     <>
-                      <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
+                      <div className="list-toolbar mt-4">
+                        <p className="list-toolbar__title">All MSME List</p>
+                        <div className="list-toolbar__actions">
                         <Box
                           className="msme-search-bar"
                           display="flex"
-                          width="320px"
-                          marginRight="10px"
                         >
                           <InputBase
                             className="msme-search-input"
@@ -3489,8 +3444,8 @@ function Msme() {
                           </>
                         )}
                       </div>
+                      </div>
                       <div className="col-12 mt-1">
-                        <p className="list-groupp">All MSME List</p>
                         {allMSMEList ? (
                           <>
                             <Box sx={{ height: 500, width: "100%" }}>
@@ -3498,28 +3453,19 @@ function Msme() {
                                 rows={filteredRows}
                                 sx={{
                                   "& .MuiDataGrid-root": {
-                                    fontFamily: "Montserrat, sans-serif",
-                                  },
-                                  "& .status-pending": {
-                                    color: "rgb(234, 156, 0)",
-                                  },
-                                  "& .status-rejected": {
-                                    color: "red",
-                                  },
-                                  "& .status-approved": {
-                                    color: "green",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                   "& .MuiDataGrid-columnHeaders": {
                                     fontWeight: 800,
-                                    fontFamily: "Montserrat, sans-serif",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                   "& .MuiDataGrid-columnHeaderTitle": {
                                     fontWeight: 600,
-                                    fontFamily: "Montserrat, sans-serif",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                   "& .MuiDataGrid-cell": {
                                     fontWeight: 400,
-                                    fontFamily: "Montserrat, sans-serif",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                 }}
                                 columns={columns}
@@ -3556,12 +3502,12 @@ function Msme() {
                   )}
                   {buttonActive === 2 && (
                     <>
-                      <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
+                      <div className="list-toolbar mt-4">
+                        <p className="list-toolbar__title">Pending MSME List</p>
+                        <div className="list-toolbar__actions">
                         <Box
                           className="msme-search-bar"
                           display="flex"
-                          width="320px"
-                          marginRight="10px"
                         >
                           <InputBase
                             className="msme-search-input"
@@ -3587,8 +3533,8 @@ function Msme() {
                           </>
                         )}
                       </div>
+                      </div>
                       <div className="col-12 mt-1">
-                        <p className="list-groupp">Pending MSME List</p>
                         {pendingMSMEList ? (
                           <>
                             <Box sx={{ height: 500, width: "100%" }}>
@@ -3597,28 +3543,19 @@ function Msme() {
                                 columns={columns}
                                 sx={{
                                   "& .MuiDataGrid-root": {
-                                    fontFamily: "Montserrat, sans-serif",
-                                  },
-                                  "& .status-pending": {
-                                    color: "rgb(234, 156, 0)",
-                                  },
-                                  "& .status-rejected": {
-                                    color: "red",
-                                  },
-                                  "& .status-approved": {
-                                    color: "green",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                   "& .MuiDataGrid-columnHeaders": {
                                     fontWeight: 800,
-                                    fontFamily: "Montserrat, sans-serif",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                   "& .MuiDataGrid-columnHeaderTitle": {
                                     fontWeight: 600,
-                                    fontFamily: "Montserrat, sans-serif",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                   "& .MuiDataGrid-cell": {
                                     fontWeight: 400,
-                                    fontFamily: "Montserrat, sans-serif",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                 }}
                                 initialState={{
@@ -3654,12 +3591,12 @@ function Msme() {
                   )}
                   {buttonActive === 3 && (
                     <>
-                      <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
+                      <div className="list-toolbar mt-4">
+                        <p className="list-toolbar__title">Rejected MSME List</p>
+                        <div className="list-toolbar__actions">
                         <Box
                           className="msme-search-bar"
                           display="flex"
-                          width="320px"
-                          marginRight="10px"
                         >
                           <InputBase
                             className="msme-search-input"
@@ -3685,8 +3622,8 @@ function Msme() {
                           </>
                         )}
                       </div>
+                      </div>
                       <div className="col-12 mt-1">
-                        <p className="list-groupp">Rejected MSME List</p>
                         {rejectedMSMEList ? (
                           <>
                             <Box sx={{ height: 500, width: "100%" }}>
@@ -3695,28 +3632,19 @@ function Msme() {
                                 columns={columns}
                                 sx={{
                                   "& .MuiDataGrid-root": {
-                                    fontFamily: "Montserrat, sans-serif",
-                                  },
-                                  "& .status-pending": {
-                                    color: "rgb(234, 156, 0)",
-                                  },
-                                  "& .status-rejected": {
-                                    color: "red",
-                                  },
-                                  "& .status-approved": {
-                                    color: "green",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                   "& .MuiDataGrid-columnHeaders": {
                                     fontWeight: 800,
-                                    fontFamily: "Montserrat, sans-serif",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                   "& .MuiDataGrid-columnHeaderTitle": {
                                     fontWeight: 600,
-                                    fontFamily: "Montserrat, sans-serif",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                   "& .MuiDataGrid-cell": {
                                     fontWeight: 400,
-                                    fontFamily: "Montserrat, sans-serif",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                 }}
                                 initialState={{
@@ -3752,12 +3680,12 @@ function Msme() {
                   )}
                   {buttonActive === 4 && (
                     <>
-                      <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
+                      <div className="list-toolbar mt-4">
+                        <p className="list-toolbar__title">Incomplete MSME List</p>
+                        <div className="list-toolbar__actions">
                         <Box
                           className="msme-search-bar"
                           display="flex"
-                          width="320px"
-                          marginRight="10px"
                         >
                           <InputBase
                             className="msme-search-input"
@@ -3783,36 +3711,27 @@ function Msme() {
                           </>
                         )}
                       </div>
+                      </div>
                       <div className="col-12 mt-1">
-                        <p className="list-groupp">Incomplete MSME List</p>
                         <Box sx={{ height: 500, width: "100%" }}>
                           <DataGrid
                             rows={rowsIncompleteFiltered}
                             columns={columns}
                             sx={{
                               "& .MuiDataGrid-root": {
-                                fontFamily: "Montserrat, sans-serif",
-                              },
-                              "& .status-pending": {
-                                color: "rgb(234, 156, 0)",
-                              },
-                              "& .status-rejected": {
-                                color: "red",
-                              },
-                              "& .status-approved": {
-                                color: "green",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-columnHeaders": {
                                 fontWeight: 800,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-columnHeaderTitle": {
                                 fontWeight: 600,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-cell": {
                                 fontWeight: 400,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                             }}
                             initialState={{
@@ -3832,12 +3751,12 @@ function Msme() {
                   )}
                   {buttonActive === 5 && (
                     <>
-                      <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
+                      <div className="list-toolbar mt-4">
+                        <p className="list-toolbar__title">Approved MSME List</p>
+                        <div className="list-toolbar__actions">
                         <Box
                           className="msme-search-bar"
                           display="flex"
-                          width="320px"
-                          marginRight="10px"
                         >
                           <InputBase
                             className="msme-search-input"
@@ -3863,8 +3782,8 @@ function Msme() {
                           </>
                         )}
                       </div>
+                      </div>
                       <div className="col-12 mt-1">
-                        <p className="list-groupp">Approved MSME List</p>
                         {approvedMSMEList ? (
                           <>
                             <Box sx={{ height: 500, width: "100%" }}>
@@ -3873,28 +3792,19 @@ function Msme() {
                                 columns={columns}
                                 sx={{
                                   "& .MuiDataGrid-root": {
-                                    fontFamily: "Montserrat, sans-serif",
-                                  },
-                                  "& .status-pending": {
-                                    color: "rgb(234, 156, 0)",
-                                  },
-                                  "& .status-rejected": {
-                                    color: "red",
-                                  },
-                                  "& .status-approved": {
-                                    color: "green",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                   "& .MuiDataGrid-columnHeaders": {
                                     fontWeight: 800,
-                                    fontFamily: "Montserrat, sans-serif",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                   "& .MuiDataGrid-columnHeaderTitle": {
                                     fontWeight: 600,
-                                    fontFamily: "Montserrat, sans-serif",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                   "& .MuiDataGrid-cell": {
                                     fontWeight: 400,
-                                    fontFamily: "Montserrat, sans-serif",
+                                    fontFamily: "var(--font-sans)",
                                   },
                                 }}
                                 initialState={{
@@ -3929,9 +3839,7 @@ function Msme() {
                     </>
                   )}
                 </div>
-              </Box>
-            </Box>{" "}
-          </Box>
+          </div>
           <Modal
             open={openModel}
             onClose={handleClose}
@@ -5530,7 +5438,7 @@ function Msme() {
                                 </div>
                                 <img
                                   src={image1}
-                                  className=" img-responsive img-thumbnail"
+                                  className=" img-fluid img-thumbnail"
                                   alt=""
                                 />
                                 <input
@@ -5611,7 +5519,7 @@ function Msme() {
                                 </div>
                                 <img
                                   src={businessLogo}
-                                  className=" img-responsive img-thumbnail"
+                                  className=" img-fluid img-thumbnail"
                                   alt=""
                                 />
                                 <input
@@ -5694,7 +5602,7 @@ function Msme() {
                                 </div>
                                 <img
                                   src={image2}
-                                  className=" img-responsive img-thumbnail"
+                                  className=" img-fluid img-thumbnail"
                                   alt=""
                                 />
                                 <input
@@ -5775,7 +5683,7 @@ function Msme() {
                                 </div>
                                 <img
                                   src={image3}
-                                  className=" img-responsive img-thumbnail"
+                                  className=" img-fluid img-thumbnail"
                                   alt=""
                                 />
                                 <input
@@ -7086,7 +6994,7 @@ function Msme() {
                                       ? `${process.env.REACT_APP_BASE_URL}/msmes/${businessLogoDetails}`
                                       : businessLogoDetails
                                   }
-                                  className=" img-responsive img-thumbnail"
+                                  className=" img-fluid img-thumbnail"
                                   alt=""
                                 />
                                 <input
@@ -7175,7 +7083,7 @@ function Msme() {
                                       ? `${process.env.REACT_APP_BASE_URL}/msmes/${image1Details}`
                                       : image1Details
                                   }
-                                  className=" img-responsive img-thumbnail"
+                                  className=" img-fluid img-thumbnail"
                                   alt=""
                                 />
                                 <input
@@ -7264,7 +7172,7 @@ function Msme() {
                                       ? `${process.env.REACT_APP_BASE_URL}/msmes/${image2Details}`
                                       : image2Details
                                   }
-                                  className=" img-responsive img-thumbnail"
+                                  className=" img-fluid img-thumbnail"
                                   alt=""
                                 />
                                 <input
@@ -7353,7 +7261,7 @@ function Msme() {
                                       ? `${process.env.REACT_APP_BASE_URL}/msmes/${image3Details}`
                                       : image3Details
                                   }
-                                  className=" img-responsive img-thumbnail"
+                                  className=" img-fluid img-thumbnail"
                                   alt=""
                                 />
                                 <input

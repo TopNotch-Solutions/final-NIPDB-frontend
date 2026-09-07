@@ -84,28 +84,18 @@ const Topbar = ({ OpenSidebar }) => {
     }
   };
   return (
-    <Box
-      className="topbar-container"
-      sx={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "0.75rem 1.5rem",
-        background: "white",
-        boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-        position: "sticky",
-        top: 0,
-        zIndex: 1000,
-      }}
-    >
+    <Box className="topbar-container">
       <div className="topbar-left">
         <Box display="flex" alignItems="center" gap={2}>
           <div className="d-none d-lg-block">
             <img src={logo} alt="logo" className="topbar-logo" />
           </div>
           <div className="d-block d-lg-none">
-            <IconButton onClick={OpenSidebar} sx={{ color: "#009547" }}>
+            <IconButton
+              onClick={OpenSidebar}
+              aria-label="Open navigation menu"
+              sx={{ color: "var(--color-brand-text)" }}
+            >
               <MenuIcon />
             </IconButton>
           </div>
@@ -121,7 +111,14 @@ const Topbar = ({ OpenSidebar }) => {
               navigate("/notifications");
             }}
           >
-            <IconButton sx={{ color: "#666" }}>
+            <IconButton
+              aria-label={
+                allNotificationsCount > 0
+                  ? `Notifications, ${allNotificationsCount} unread`
+                  : "Notifications"
+              }
+              sx={{ color: "var(--color-text-muted)" }}
+            >
               {allNotificationsCount > 0 ? (
                 <Badge
                   badgeContent={allNotificationsCount}
@@ -158,9 +155,11 @@ const Topbar = ({ OpenSidebar }) => {
           ) : (
             <Avatar
               sx={{
-                bgcolor: "#1976d2",
+                bgcolor: "var(--color-brand-surface)",
                 width: 40,
                 height: 40,
+                fontSize: "var(--text-base)",
+                fontWeight: 600,
               }}
             >{`${firstLetter}${secondLetter}`}</Avatar>
           )}

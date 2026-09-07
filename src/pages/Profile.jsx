@@ -442,7 +442,7 @@ function Profile() {
                     </div>
                     <img
                       src={selectedFile ? newProfilePic : profilePic || profile}
-                      className="circular-image img-responsive img-thumbnail"
+                      className="circular-image img-fluid img-thumbnail"
                       alt=""
                     />
                     <input
@@ -702,7 +702,7 @@ function Profile() {
                       }}
                     />
                     <span
-                      className="show-password mt-1 position-absolute translate-middle-y pr-4"
+                      className="show-password mt-1 position-absolute translate-middle-y pe-4"
                       onClick={() => setNewPasswordShown(!newPasswordShown)}
                       style={{ cursor: "pointer" }}
                     >
@@ -734,7 +734,7 @@ function Profile() {
                       }}
                     />
                     <span
-                      className="show-password mt-1 position-absolute translate-middle-y pr-4"
+                      className="show-password mt-1 position-absolute translate-middle-y pe-4"
                       onClick={() =>
                         setConfirmPasswordShown(!confirmPasswordShown)
                       }

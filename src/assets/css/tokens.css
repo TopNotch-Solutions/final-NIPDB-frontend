@@ -1,0 +1,181 @@
+/* ==========================================================================
+   Design tokens — single source of truth for the IN4MSME admin.
+
+   Everything visual resolves here. Page stylesheets and MUI `sx` props should
+   reference these variables rather than restating literal values, so a change
+   lands in one place instead of fourteen.
+
+   Brand note: --green-500 (#009547) is the locked NIPDB brand green. It is the
+   primary action and identity colour. It is NOT used for small text on white,
+   where it measures 3.9:1 and fails WCAG AA — --color-brand-text is the
+   accessible counterpart for that job.
+   ========================================================================== */
+
+:root {
+  /* ---------------------------------------------------------------- brand */
+  --green-50:  #e8f6ee;
+  --green-100: #c6e9d5;
+  --green-200: #94d7b3;
+  --green-300: #5cc08c;
+  --green-400: #17a55f;
+  --green-500: #009547; /* locked brand green */
+  --green-600: #007a3b;
+  --green-700: #00632f;
+  --green-800: #004d24;
+  --green-900: #00381a;
+
+  /* --------------------------------------------------------------- neutral */
+  --neutral-0:   #ffffff;
+  --neutral-25:  #fbfcfd;
+  --neutral-50:  #f8fafc;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-300: #cbd5e1;
+  --neutral-400: #94a3b8;
+  --neutral-500: #64748b;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-800: #1e293b;
+  --neutral-900: #0f172a;
+
+  /* --------------------------------------------------------------- surface */
+  --color-canvas:         var(--neutral-50);
+  --color-surface:        var(--neutral-0);
+  --color-surface-sunken: var(--neutral-100);
+  --color-surface-hover:  var(--neutral-50);
+  --color-border:         var(--neutral-200);
+  --color-border-strong:  var(--neutral-300);
+
+  /* ------------------------------------------------------------------ text */
+  --color-text:         var(--neutral-800);
+  --color-text-muted:   var(--neutral-500);
+  --color-text-subtle:  var(--neutral-400);
+  --color-text-invert:  var(--neutral-0);
+
+  /* ----------------------------------------------------------------- brand */
+  --color-brand:        var(--green-500);
+  --color-brand-hover:  var(--green-600);
+  --color-brand-active: var(--green-700);
+  --color-brand-text:   var(--green-600); /* 5.5:1 on white — safe for body text */
+  --color-brand-tint:   var(--green-50);
+  --color-brand-ring:   rgba(0, 149, 71, 0.24);
+
+  /* Brand greens that carry white text. White on --green-500 measures only
+     3.9:1, so it is never the background behind a white label.
+       --color-brand-solid   (5.5:1) filled controls: buttons, chips
+       --color-brand-surface (7.4:1) large fills: the sidebar rail, avatars */
+  --color-brand-solid:         var(--green-600);
+  --color-brand-solid-hover:   var(--green-700);
+  --color-brand-surface:       var(--green-700);
+  --color-brand-surface-hover: var(--green-800);
+
+  /* Secondary action colour, already in use on the login back button and the
+     view/edit/download row actions. */
+  --color-secondary:       #154e8a;
+  --color-secondary-hover: #10406f;
+
+  /* ---------------------------------------------------------------- status
+     One definition each. Previously these were declared four times across
+     Dashboard.css, Reporting.css, msme.css and profile.css with three
+     different sets of values. */
+  --color-success:       var(--green-500);
+  --color-success-text:  var(--green-600);
+  --color-success-tint:  var(--green-50);
+
+  --color-warning:       #f59e0b;
+  --color-warning-text:  #b45309; /* 4.9:1 on white; the old #ea9c00 was 2.3:1 */
+  --color-warning-tint:  #fffaeb;
+
+  --color-danger:        #d92d20;
+  --color-danger-text:   #b42318; /* 6.4:1 on white */
+  --color-danger-tint:   #fef3f2;
+  --color-danger-ring:   rgba(217, 45, 32, 0.22);
+
+  --color-info:          #1570ef;
+  --color-info-text:     #175cd3;
+  --color-info-tint:     #eff8ff;
+
+  /* ------------------------------------------------------------ typography
+     Public Sans is a workhorse UI face drawn for government interfaces: high
+     legibility at the small sizes this admin runs at, and real tabular
+     figures for the record tables. */
+  --font-sans: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-xs:   0.75rem;   /* 12px — captions, meta */
+  --text-sm:   0.8125rem; /* 13px — dense table cells */
+  --text-base: 0.875rem;  /* 14px — body */
+  --text-md:   1rem;      /* 16px — inputs, emphasis */
+  --text-lg:   1.125rem;  /* 18px — card titles */
+  --text-xl:   1.375rem;  /* 22px — section headings */
+  --text-2xl:  1.75rem;   /* 28px — page titles, stat values */
+
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  --leading-tight: 1.25;
+  --leading-snug:  1.4;
+  --leading-body:  1.55;
+
+  --tracking-tight: -0.011em;
+  --tracking-wide:  0.02em;
+
+  /* --------------------------------------------------------------- spacing */
+  --space-1:  0.25rem;  /*  4px */
+  --space-2:  0.5rem;   /*  8px */
+  --space-3:  0.75rem;  /* 12px */
+  --space-4:  1rem;     /* 16px */
+  --space-5:  1.25rem;  /* 20px */
+  --space-6:  1.5rem;   /* 24px */
+  --space-8:  2rem;     /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+
+  /* ---------------------------------------------------------------- radius */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-xl:   20px;
+  --radius-full: 999px;
+
+  /* --------------------------------------------------------------- shadows
+     Every level carries an offset and a soft blur; none is a flat halo. */
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.10), 0 2px 4px -2px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 12px 24px -6px rgba(15, 23, 42, 0.12), 0 4px 8px -4px rgba(15, 23, 42, 0.06);
+  --shadow-xl: 0 24px 48px -12px rgba(15, 23, 42, 0.18);
+
+  /* ---------------------------------------------------------------- motion */
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 120ms;
+  --duration:      180ms;
+  --duration-slow: 280ms;
+
+  /* --------------------------------------------------------------- z-index */
+  --z-sidebar:  1000;
+  --z-topbar:   1010;
+  --z-dropdown: 1050;
+  --z-modal:    1300;
+  --z-toast:    1400;
+
+  /* ---------------------------------------------------------------- layout */
+  --sidebar-width:           280px;
+  --sidebar-width-collapsed: 76px;
+  --topbar-height:           64px;
+}
+
+/* Respect an explicit OS request for less motion. The app previously animated
+   every property on every element unconditionally. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 1ms;
+    --duration:      1ms;
+    --duration-slow: 1ms;
+  }
+}

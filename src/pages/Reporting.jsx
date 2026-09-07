@@ -1349,28 +1349,19 @@ function Reporting() {
                           columns={columns}
                           sx={{
                             "& .MuiDataGrid-root": {
-                              fontFamily: "Montserrat, sans-serif",
-                            },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaderTitle": {
                               fontWeight: 600,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-cell": {
                               fontWeight: 400,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                           }}
                           initialState={{
@@ -1410,28 +1401,19 @@ function Reporting() {
                           columns={columns1}
                           sx={{
                             "& .MuiDataGrid-root": {
-                              fontFamily: "Montserrat, sans-serif",
-                            },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaderTitle": {
                               fontWeight: 600,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-cell": {
                               fontWeight: 400,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                           }}
                           initialState={{
@@ -1473,28 +1455,19 @@ function Reporting() {
                           columns={columns2}
                           sx={{
                             "& .MuiDataGrid-root": {
-                              fontFamily: "Montserrat, sans-serif",
-                            },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaderTitle": {
                               fontWeight: 600,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-cell": {
                               fontWeight: 400,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                           }}
                           initialState={{
@@ -1535,28 +1508,19 @@ function Reporting() {
                           columns={columns3}
                           sx={{
                             "& .MuiDataGrid-root": {
-                              fontFamily: "Montserrat, sans-serif",
-                            },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaderTitle": {
                               fontWeight: 600,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-cell": {
                               fontWeight: 400,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                           }}
                           initialState={{
@@ -1594,28 +1558,19 @@ function Reporting() {
                           columns={column4}
                           sx={{
                             "& .MuiDataGrid-root": {
-                              fontFamily: "Montserrat, sans-serif",
-                            },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaderTitle": {
                               fontWeight: 600,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-cell": {
                               fontWeight: 400,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                           }}
                           initialState={{
@@ -1655,28 +1610,19 @@ function Reporting() {
                           columns={columns5}
                           sx={{
                             "& .MuiDataGrid-root": {
-                              fontFamily: "Montserrat, sans-serif",
-                            },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaderTitle": {
                               fontWeight: 600,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-cell": {
                               fontWeight: 400,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                           }}
                           initialState={{
@@ -1718,28 +1664,19 @@ function Reporting() {
                           columns={columns6}
                           sx={{
                             "& .MuiDataGrid-root": {
-                              fontFamily: "Montserrat, sans-serif",
-                            },
-                            "& .status-pending": {
-                              color: "rgb(234, 156, 0)",
-                            },
-                            "& .status-rejected": {
-                              color: "red",
-                            },
-                            "& .status-approved": {
-                              color: "green",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaders": {
                               fontWeight: 800,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-columnHeaderTitle": {
                               fontWeight: 600,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                             "& .MuiDataGrid-cell": {
                               fontWeight: 400,
-                              fontFamily: "Montserrat, sans-serif",
+                              fontFamily: "var(--font-sans)",
                             },
                           }}
                           initialState={{

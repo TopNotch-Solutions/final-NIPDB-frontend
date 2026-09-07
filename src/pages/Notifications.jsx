@@ -896,12 +896,12 @@ function Notifications() {
             <div className="col-12 mb-4 listing-msme p-4 shadow rounded-3 mb-4">
               <div className="container-fluid">
                 <div className="row justify-content-center">
-                  <div className="col-12 col-lg-12 col-xxl-9 mx-auto border d-flex flex-wrap justify-content-between p-1">
+                  <div className="tab-strip">
                     <button
                       className={
                         buttonActive === 4
-                          ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                          : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                          ? "btn btn-success"
+                          : "btn button-grey"
                       }
                       onClick={() => setButonActive(4)}
                       style={{ border: "none" }}
@@ -911,8 +911,8 @@ function Notifications() {
                     <button
                       className={
                         buttonActive === 2
-                          ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                          : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                          ? "btn btn-success"
+                          : "btn button-grey"
                       }
                       onClick={() => setButonActive(2)}
                       style={{ border: "none" }}
@@ -922,8 +922,8 @@ function Notifications() {
                     <button
                       className={
                         buttonActive === 3
-                          ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                          : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                          ? "btn btn-success"
+                          : "btn button-grey"
                       }
                       onClick={() => setButonActive(3)}
                       style={{ border: "none" }}
@@ -937,12 +937,12 @@ function Notifications() {
               {buttonActive === 1 && <></>}
               {buttonActive === 2 && (
                 <>
-                  <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
+                  <div className="list-toolbar mt-4">
+                    <p className="list-toolbar__title">All Read Notification List</p>
+                    <div className="list-toolbar__actions">
                     <Box
                       className="app-search-bar"
                       display="flex"
-                      width="320px"
-                      marginRight="10px"
                     >
                       <InputBase
                         className="app-search-input"
@@ -966,8 +966,8 @@ function Notifications() {
                       </>
                     )}
                   </div>
+                  </div>
                   <div className="col-12 mt-1">
-                    <p className="list-groupp">All Read Notification List</p>
                     {allRead ? (
                       <>
                         <Box sx={{ height: 500, width: "100%" }}>
@@ -976,28 +976,19 @@ function Notifications() {
                             columns={columns}
                             sx={{
                               "& .MuiDataGrid-root": {
-                                fontFamily: "Montserrat, sans-serif",
-                              },
-                              "& .status-pending": {
-                                color: "rgb(234, 156, 0)",
-                              },
-                              "& .status-rejected": {
-                                color: "red",
-                              },
-                              "& .status-approved": {
-                                color: "green",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-columnHeaders": {
                                 fontWeight: 800,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-columnHeaderTitle": {
                                 fontWeight: 600,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-cell": {
                                 fontWeight: 400,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                             }}
                             initialState={{
@@ -1033,12 +1024,12 @@ function Notifications() {
               )}
               {buttonActive === 3 && (
                 <>
-                  <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
+                  <div className="list-toolbar mt-4">
+                    <p className="list-toolbar__title">Sent Notification List</p>
+                    <div className="list-toolbar__actions">
                     <Box
                       className="app-search-bar"
                       display="flex"
-                      width="320px"
-                      marginRight="10px"
                     >
                       <InputBase
                         className="app-search-input"
@@ -1062,8 +1053,8 @@ function Notifications() {
                       </>
                     )}
                   </div>
+                  </div>
                   <div className="col-12 mt-1">
-                    <p className="list-groupp">Sent Notification List</p>
                     {allSent ? (
                       <>
                         <Box sx={{ height: 500, width: "100%" }}>
@@ -1072,28 +1063,19 @@ function Notifications() {
                             columns={columnSent}
                             sx={{
                               "& .MuiDataGrid-root": {
-                                fontFamily: "Montserrat, sans-serif",
-                              },
-                              "& .status-pending": {
-                                color: "rgb(234, 156, 0)",
-                              },
-                              "& .status-rejected": {
-                                color: "red",
-                              },
-                              "& .status-approved": {
-                                color: "green",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-columnHeaders": {
                                 fontWeight: 800,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-columnHeaderTitle": {
                                 fontWeight: 600,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-cell": {
                                 fontWeight: 400,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                             }}
                             initialState={{
@@ -1129,12 +1111,12 @@ function Notifications() {
               )}
               {buttonActive === 4 && (
                 <>
-                  <div className="col-12 col-lg-12 col-xxl-9 mx-auto mt-4 d-flex justify-content-end">
+                  <div className="list-toolbar mt-4">
+                    <p className="list-toolbar__title">All Unread Notifications List</p>
+                    <div className="list-toolbar__actions">
                     <Box
                       className="app-search-bar"
                       display="flex"
-                      width="320px"
-                      marginRight="10px"
                     >
                       <InputBase
                         className="app-search-input"
@@ -1158,8 +1140,8 @@ function Notifications() {
                       </>
                     )}
                   </div>
+                  </div>
                   <div className="col-12 mt-1">
-                    <p className="list-groupp">All Unread Notifications List</p>
                     {allAdminNotifications ? (
                       <>
                         <Box sx={{ height: 500, width: "100%" }}>
@@ -1168,28 +1150,19 @@ function Notifications() {
                             columns={columns}
                             sx={{
                               "& .MuiDataGrid-root": {
-                                fontFamily: "Montserrat, sans-serif",
-                              },
-                              "& .status-pending": {
-                                color: "rgb(234, 156, 0)",
-                              },
-                              "& .status-rejected": {
-                                color: "red",
-                              },
-                              "& .status-approved": {
-                                color: "green",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-columnHeaders": {
                                 fontWeight: 800,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-columnHeaderTitle": {
                                 fontWeight: 600,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                               "& .MuiDataGrid-cell": {
                                 fontWeight: 400,
-                                fontFamily: "Montserrat, sans-serif",
+                                fontFamily: "var(--font-sans)",
                               },
                             }}
                             initialState={{
@@ -1260,12 +1233,12 @@ function Notifications() {
 
           <div className="container-fluid mt-md-4">
             <div className="row justify-content-center">
-              <div className="col-12 col-lg-12 col-xxl-9 mx-auto border d-flex flex-wrap justify-content-between p-1">
+              <div className="tab-strip">
                 <button
                   className={
                     notificationActive === "All"
-                      ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                      : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                      ? "btn btn-success"
+                      : "btn button-grey"
                   }
                   onClick={() => {
                     setNotificationActive("All");
@@ -1276,8 +1249,8 @@ function Notifications() {
                 <button
                   className={
                     notificationActive === "Business"
-                      ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                      : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                      ? "btn btn-success"
+                      : "btn button-grey"
                   }
                   onClick={() => {
                     setNotificationActive("Business");
@@ -1288,8 +1261,8 @@ function Notifications() {
                 {/* <button
                   className={
                     notificationActive === "Single"
-                      ? "btn btn-success m-1 p-2 p-xl-3 flex-grow-1"
-                      : "btn button-grey m-1 p-2 p-xl-3 flex-grow-1"
+                      ? "btn btn-success"
+                      : "btn button-grey"
                   }
                   onClick={() => {
                     setNotificationActive("Single");
