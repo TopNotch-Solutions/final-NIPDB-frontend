@@ -34,6 +34,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebarfalse } from "../redux/reducers/sidebarReducer";
 import { login } from "../redux/reducers/authReducer";
 import handleAuthFailure from "../utils/handleAuthFailure";
+import { LIST_FETCH_LIMIT } from "../utils/listFetchLimit";
 import { RemoveWhiteSpaces } from "../utils/removeWhiteSpaces";
 import { convert24To12Hour } from "../utils/timeConvertion";
 import { validateTimeRangeOrClosed } from "../utils/validateTime";
@@ -122,15 +123,12 @@ function Msme() {
   const [fileImage2, setFileImage2] = useState(null);
   const [fileImage3, setFileImage3] = useState(null);
 
-  const [totalRegisteration, setTotalRegistration] = useState("");
   const [pendingRegisteration, setPendingRegistration] = useState("");
   const [rejectedRegisteration, setRejectedRegistration] = useState("");
-  const [incompleteRegisteration, setIncompleteRegistration] = useState("");
   const [allMSMEList, setAllMSMEList] = useState([]);
   const [pendingMSMEList, setPendingMSMEList] = useState([]);
   const [rejectedMSMEList, setRejectedMSMEList] = useState([]);
   const [approvedMSMEList, setApprovedMSMEList] = useState([]);
-  const [incompleteMSMEList, setIncompleteMSMEList] = useState([]);
   const [approvedRegisteration, setIApprovedRegistration] = useState("");
   const [stepperCounter, setStepperCounter] = useState(0);
   const [buttonActive, setButonActive] = useState(1);
@@ -235,7 +233,6 @@ function Msme() {
   const [searchQueryPending, setSearchQueryPending] = useState("");
   const [searchQueryApproved, setSearchQueryApproved] = useState("");
   const [searchQueryRejected, setSearchQueryRejected] = useState("");
-  const [searchQueryIncomplete, setSearchQueryIncomplete] = useState("");
   const [updatingDetails, setUpdatingDetails] = useState([]);
   const [numberOfDaysOpenError, setNumberOfDaysOpenError] = useState("");
   const [openModel, setOpenModel] = useState(false);
@@ -482,45 +479,6 @@ function Msme() {
     return `${hours}:${minutes} ${period}`;
   }
   useEffect(() => {
-    const fetchTotalCount = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/totalCount`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `${serverToken}`,
-              "x-access-token": `${tokenHeader}`,
-            },
-          },
-        );
-
-        const data = await response.json();
-        const newTokenHeader = response.headers.get("x-access-token");
-
-        if (newTokenHeader) {
-          dispatch(
-            updateToken({
-              token: newTokenHeader,
-            }),
-          );
-        }
-
-        if (response.ok) {
-          setTotalRegistration(data.count);
-        } else {
-          handleAuthFailure({ dispatch, navigate, type: "auth" });
-        }
-      } catch (error) {
-        // Network error
-      }
-    };
-
-    fetchTotalCount();
-  }, [refreshCounter]);
-
-  useEffect(() => {
     const fetchPendingCount = async () => {
       try {
         const response = await fetch(
@@ -637,49 +595,10 @@ function Msme() {
     fetchApprovedCount();
   }, [refreshCounter]);
   useEffect(() => {
-    const fetchIncompleteCount = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/incompleteCount`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `${serverToken}`,
-              "x-access-token": `${tokenHeader}`,
-            },
-          },
-        );
-
-        const data = await response.json();
-        const newTokenHeader = response.headers.get("x-access-token");
-
-        if (newTokenHeader) {
-          dispatch(
-            updateToken({
-              token: newTokenHeader,
-            }),
-          );
-        }
-
-        if (response.ok) {
-          setIncompleteRegistration(data.count);
-        } else {
-          handleAuthFailure({ dispatch, navigate, type: "auth" });
-        }
-      } catch (error) {
-        // Network error
-      }
-    };
-
-    fetchIncompleteCount();
-  }, [refreshCounter]);
-
-  useEffect(() => {
     const fetchMsmeAllMSME = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all?limit=${LIST_FETCH_LIMIT}`,
           {
             method: "GET",
             headers: {
@@ -717,7 +636,7 @@ function Msme() {
     const fetchMsmePendingMSME = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/pending`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/pending?limit=${LIST_FETCH_LIMIT}`,
           {
             method: "GET",
             headers: {
@@ -755,7 +674,7 @@ function Msme() {
     const fetchMsmeRejectedMSME = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/rejected`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/rejected?limit=${LIST_FETCH_LIMIT}`,
           {
             method: "GET",
             headers: {
@@ -794,7 +713,7 @@ function Msme() {
     const fetchMsmeApprovedMSME = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/approved`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/approved?limit=${LIST_FETCH_LIMIT}`,
           {
             method: "GET",
             headers: {
@@ -827,45 +746,6 @@ function Msme() {
     };
 
     fetchMsmeApprovedMSME();
-  }, [refreshCounter]);
-
-  useEffect(() => {
-    const fetchMsmeIncompleteMSME = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/incomplete`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `${serverToken}`,
-              "x-access-token": `${tokenHeader}`,
-            },
-          },
-        );
-
-        const data = await response.json();
-        const newTokenHeader = response.headers.get("x-access-token");
-
-        if (newTokenHeader) {
-          dispatch(
-            updateToken({
-              token: newTokenHeader,
-            }),
-          );
-        }
-
-        if (response.ok) {
-          setIncompleteMSMEList(data.data);
-        } else {
-          handleAuthFailure({ dispatch, navigate, type: "auth" });
-        }
-      } catch (error) {
-        // Network error
-      }
-    };
-
-    fetchMsmeIncompleteMSME();
   }, [refreshCounter]);
   useEffect(() => {
     const fetchAllRegions = async () => {
@@ -1950,27 +1830,6 @@ function Msme() {
       handleAuthFailure({ dispatch, navigate, type: "network" });
     }
   };
-  const rowsIncomplete = incompleteMSMEList.map((msme) => ({
-    id: msme.id,
-    registrationName: msme.registrationName,
-    email: msme?.email,
-    region: msme.region,
-    town: msme.town,
-    primaryIndustry: msme.primaryIndustry,
-    annualTurnover: msme.annualTurnOver,
-    foundersName: msme.foundersName,
-    status: msme.status,
-    isBlocked: msme.isBlocked,
-    createdAt: msme.createdAt,
-  }));
-
-  const rowsIncompleteFiltered = rowsIncomplete.filter((row) =>
-    Object.values(row).some((value) =>
-      (value ? value.toString() : "")
-        .toLowerCase()
-        .includes(searchQueryIncomplete.toLowerCase()),
-    ),
-  );
 
   const columns = [
     {
@@ -3240,30 +3099,23 @@ function Msme() {
           <p>View, search and manage all MSME registrations and listing</p>
 
           <div className="stat-grid">
-              {/* <Box
-                marginTop={"10px"}
-                gridColumn={isSmallScreen ? "span 12" : "span 3"}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <div className="col-12 p-4 shadow rounded-2">
-                  <div className="d-flex justify-content-between">
-                    <Tooltip title="Registered MSMEs" className="pointer">
-                      <p className="text">Registered MSMEs</p>
+              <div className="stat-tile">
+                  <div className="stat-tile__label">
+                    <Tooltip title="Total MSMEs" className="pointer">
+                      <p className="text">Total MSMEs</p>
                     </Tooltip>
-                    <ArrowForwardIosIcon />
                   </div>
-                  <div className="d-flex justify-content-start">
-                    <div className="p-1 border rounded-2 ms-2">
+                  <div className="stat-tile__value">
+                    <div className="stat-tile__icon">
                       <StickyNote2Icon sx={{ color: "rgba(21, 78, 138, 1)" }} />
                     </div>
-                    <Tooltip title={totalRegisteration}>
-                      <p className="stat-tile__digit pointer">{totalRegisteration}</p>
+                    <Tooltip title={allMSMEList.length}>
+                      <p className="stat-tile__digit pointer">
+                        {allMSMEList.length}
+                      </p>
                     </Tooltip>
                   </div>
                 </div>
-              </Box> */}
 
               <div className="stat-tile">
                   <div className="stat-tile__label">
@@ -3321,26 +3173,6 @@ function Msme() {
                   </div>
                 </div>
 
-              <div className="stat-tile">
-                  <div className="stat-tile__label">
-                    <Tooltip
-                      title="Incomplete Registrations"
-                      className="pointer"
-                    >
-                      <p className="text">Incomplete Registrations</p>
-                    </Tooltip>
-                  </div>
-                  <div className="stat-tile__value">
-                    <div className="stat-tile__icon">
-                      <StickyNote2Icon sx={{ color: "rgba(21, 78, 138, 1)" }} />
-                    </div>
-                    <Tooltip title={incompleteRegisteration}>
-                      <p className="stat-tile__digit pointer">
-                        {incompleteRegisteration}
-                      </p>
-                    </Tooltip>
-                  </div>
-                </div>
           </div>
 
           <div>
@@ -3397,19 +3229,6 @@ function Msme() {
                           style={{ border: "none" }}
                         >
                           Rejected Msme
-                        </button>
-                        <button
-                          className={
-                            buttonActive === 4
-                              ? "btn btn-success"
-                              : "btn button-grey"
-                          }
-                          onClick={() => {
-                            setButonActive(4);
-                          }}
-                          style={{ border: "none" }}
-                        >
-                          Incomplete Registration
                         </button>
                   </div>
 
@@ -3675,77 +3494,6 @@ function Msme() {
                             </div>
                           </>
                         )}
-                      </div>
-                    </>
-                  )}
-                  {buttonActive === 4 && (
-                    <>
-                      <div className="list-toolbar mt-4">
-                        <p className="list-toolbar__title">Incomplete MSME List</p>
-                        <div className="list-toolbar__actions">
-                        <Box
-                          className="msme-search-bar"
-                          display="flex"
-                        >
-                          <InputBase
-                            className="msme-search-input"
-                            sx={{ ml: 1.5, flex: 1 }}
-                            placeholder="Search for a incomplete"
-                            onChange={(e) =>
-                              setSearchQueryIncomplete(e.target.value)
-                            }
-                          />
-                          <IconButton
-                            type="button"
-                            className="msme-search-btn"
-                            sx={{ p: 1 }}
-                          >
-                            <SearchIcon />
-                          </IconButton>
-                        </Box>
-                        {currentUser.role === "Super admin" && (
-                          <>
-                            <div onClick={handleOpen}>
-                              <MyButton text="Add MSME" />
-                            </div>
-                          </>
-                        )}
-                      </div>
-                      </div>
-                      <div className="col-12 mt-1">
-                        <Box sx={{ height: 500, width: "100%" }}>
-                          <DataGrid
-                            rows={rowsIncompleteFiltered}
-                            columns={columns}
-                            sx={{
-                              "& .MuiDataGrid-root": {
-                                fontFamily: "var(--font-sans)",
-                              },
-                              "& .MuiDataGrid-columnHeaders": {
-                                fontWeight: 800,
-                                fontFamily: "var(--font-sans)",
-                              },
-                              "& .MuiDataGrid-columnHeaderTitle": {
-                                fontWeight: 600,
-                                fontFamily: "var(--font-sans)",
-                              },
-                              "& .MuiDataGrid-cell": {
-                                fontWeight: 400,
-                                fontFamily: "var(--font-sans)",
-                              },
-                            }}
-                            initialState={{
-                              pagination: {
-                                paginationModel: {
-                                  pageSize: 25,
-                                },
-                              },
-                            }}
-                            pageSizeOptions={[25, 50, 100]}
-                            checkboxSelection
-                            disableRowSelectionOnClick
-                          />
-                        </Box>
                       </div>
                     </>
                   )}

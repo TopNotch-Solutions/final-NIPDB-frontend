@@ -35,6 +35,7 @@ import { updateToken } from "../redux/reducers/authReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import handleAuthFailure from "../utils/handleAuthFailure";
+import { LIST_FETCH_LIMIT } from "../utils/listFetchLimit";
 import LineChartCard from "../components/LineChartCard";
 
 ChartJS.register(
@@ -289,7 +290,7 @@ function Dashboard() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all?limit=${LIST_FETCH_LIMIT}`,
           {
             method: "GET",
             headers: {

@@ -30,6 +30,7 @@ import { updateToken } from "../redux/reducers/authReducer";
 import { login } from "../redux/reducers/authReducer";
 import { toggleSidebarfalse } from "../redux/reducers/sidebarReducer";
 import handleAuthFailure from "../utils/handleAuthFailure";
+import { LIST_FETCH_LIMIT } from "../utils/listFetchLimit";
 
 const modalStyle = {
   position: "absolute",
@@ -179,7 +180,7 @@ function Bso() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/bso/admin/all`,
+          `${process.env.REACT_APP_BASE_URL}/bso/admin/all?limit=${LIST_FETCH_LIMIT}`,
           {
             method: "GET",
             headers: {

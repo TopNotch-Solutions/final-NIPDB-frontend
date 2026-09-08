@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateToken } from "../redux/reducers/authReducer";
 import handleAuthFailure from "../utils/handleAuthFailure";
+import { LIST_FETCH_LIMIT } from "../utils/listFetchLimit";
 
 function Reporting() {
   const theme = useTheme();
@@ -39,7 +40,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/approved`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/approved?limit=${LIST_FETCH_LIMIT}`,
           {
             method: "GET",
             headers: {
@@ -80,7 +81,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/pending`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/pending?limit=${LIST_FETCH_LIMIT}`,
           {
             method: "GET",
             headers: {
@@ -121,7 +122,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/rejected`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/rejected?limit=${LIST_FETCH_LIMIT}`,
           {
             method: "GET",
             headers: {
@@ -162,7 +163,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/blocked`,
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/blocked?limit=${LIST_FETCH_LIMIT}`,
           {
             method: "GET",
             headers: {
@@ -203,7 +204,7 @@ function Reporting() {
       try {
         dispatch(toggleIsSubmittingTrue());
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/bso/admin/all/download`,
+          `${process.env.REACT_APP_BASE_URL}/bso/admin/all/download?limit=${LIST_FETCH_LIMIT}`,
           {
             method: "GET",
             headers: {
