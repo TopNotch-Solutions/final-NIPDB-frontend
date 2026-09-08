@@ -8,6 +8,7 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import EastIcon from "@mui/icons-material/East";
 import "../assets/css/msme.css";
 import StickyNote2Icon from "@mui/icons-material/StickyNote2";
+import BlockIcon from "@mui/icons-material/Block";
 import Box from "@mui/material/Box";
 import { CgCloseR } from "react-icons/cg";
 import { DataGrid } from "@mui/x-data-grid";
@@ -129,7 +130,9 @@ function Msme() {
   const [pendingMSMEList, setPendingMSMEList] = useState([]);
   const [rejectedMSMEList, setRejectedMSMEList] = useState([]);
   const [approvedMSMEList, setApprovedMSMEList] = useState([]);
+  const [blockedMSMEList, setBlockedMSMEList] = useState([]);
   const [approvedRegisteration, setIApprovedRegistration] = useState("");
+  const [blockedRegisteration, setBlockedRegistration] = useState("");
   const [stepperCounter, setStepperCounter] = useState(0);
   const [buttonActive, setButonActive] = useState(1);
   const [businessRegistrationName, setBusinessRegistrationName] = useState("");
@@ -232,6 +235,7 @@ function Msme() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchQueryPending, setSearchQueryPending] = useState("");
   const [searchQueryApproved, setSearchQueryApproved] = useState("");
+  const [searchQueryBlocked, setSearchQueryBlocked] = useState("");
   const [searchQueryRejected, setSearchQueryRejected] = useState("");
   const [updatingDetails, setUpdatingDetails] = useState([]);
   const [numberOfDaysOpenError, setNumberOfDaysOpenError] = useState("");
@@ -746,6 +750,49 @@ function Msme() {
     };
 
     fetchMsmeApprovedMSME();
+  }, [refreshCounter]);
+  // There is no `blockedCount` endpoint the way there is for pending/rejected/
+  // approved, but `/all/blocked` already returns `totalRecords` — so the tile
+  // count comes off the same response as the list. When nothing is blocked the
+  // backend replies with `data: []` and no `totalRecords`, hence the fallback.
+  useEffect(() => {
+    const fetchMsmeBlockedMSME = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/msme/admin/all/blocked?limit=${LIST_FETCH_LIMIT}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${serverToken}`,
+              "x-access-token": `${tokenHeader}`,
+            },
+          },
+        );
+
+        const data = await response.json();
+        const newTokenHeader = response.headers.get("x-access-token");
+
+        if (newTokenHeader) {
+          dispatch(
+            updateToken({
+              token: newTokenHeader,
+            }),
+          );
+        }
+
+        if (response.ok) {
+          setBlockedMSMEList(data.data);
+          setBlockedRegistration(data.totalRecords ?? (data.data?.length || 0));
+        } else {
+          handleAuthFailure({ dispatch, navigate, type: "auth" });
+        }
+      } catch (error) {
+        // Network error
+      }
+    };
+
+    fetchMsmeBlockedMSME();
   }, [refreshCounter]);
   useEffect(() => {
     const fetchAllRegions = async () => {
@@ -1867,21 +1914,8 @@ function Msme() {
             return "status-rejected";
           case "Approved":
             return "status-approved";
-          default:
-            return "";
-        }
-      },
-    },
-    {
-      field: "isBlocked",
-      headerName: "Blocked",
-      width: isSmallScreen ? 100 : 120,
-      cellClassName: (params) => {
-        switch (params.value) {
-          case true:
-            return "status-rejected";
-          case false:
-            return "status-approved";
+          case "Blocked":
+            return "status-blocked";
           default:
             return "";
         }
@@ -1917,8 +1951,7 @@ function Msme() {
     primaryIndustry: msme.primaryIndustry,
     annualTurnover: msme.annualTurnover,
     foundersName: msme.founderInfo?.founderName,
-    status: msme.status,
-    isBlocked: msme.isBlocked,
+    status: msme.isBlocked ? "Blocked" : msme.status,
     createdAt: msme.createdAt,
   }));
   const filteredRows = rowsAll.filter((row) =>
@@ -1937,8 +1970,7 @@ function Msme() {
     primaryIndustry: msme.primaryIndustry,
     annualTurnover: msme.annualTurnOver,
     foundersName: msme.foundersName,
-    status: msme.status,
-    isBlocked: msme.isBlocked,
+    status: msme.isBlocked ? "Blocked" : msme.status,
     createdAt: msme.createdAt,
   }));
   const filteredRowsPending = rowsPending.filter((row) =>
@@ -1958,8 +1990,7 @@ function Msme() {
     primaryIndustry: msme.primaryIndustry,
     annualTurnover: msme.annualTurnOver,
     foundersName: msme.foundersName,
-    status: msme.status,
-    isBlocked: msme.isBlocked,
+    status: msme.isBlocked ? "Blocked" : msme.status,
     createdAt: msme.createdAt,
   }));
   const filteredRowsRejected = rowsRejected.filter((row) =>
@@ -1979,8 +2010,7 @@ function Msme() {
     primaryIndustry: msme.primaryIndustry,
     annualTurnover: msme.annualTurnOver,
     foundersName: msme.foundersName,
-    status: msme.status,
-    isBlocked: msme.isBlocked,
+    status: msme.isBlocked ? "Blocked" : msme.status,
     createdAt: msme.createdAt,
   }));
   const filteredRowsApproved = rowsApproved.filter((row) =>
@@ -1988,6 +2018,26 @@ function Msme() {
       (value ? value.toString() : "")
         .toLowerCase()
         .includes(searchQueryApproved.toLowerCase()),
+    ),
+  );
+
+  const rowsBlocked = blockedMSMEList.map((msme) => ({
+    id: msme.id,
+    registrationName: msme.registrationName,
+    email: msme?.email,
+    region: msme.region,
+    town: msme.town,
+    primaryIndustry: msme.primaryIndustry,
+    annualTurnover: msme.annualTurnOver,
+    foundersName: msme.foundersName,
+    status: msme.isBlocked ? "Blocked" : msme.status,
+    createdAt: msme.createdAt,
+  }));
+  const filteredRowsBlocked = rowsBlocked.filter((row) =>
+    Object.values(row).some((value) =>
+      (value ? value.toString() : "")
+        .toLowerCase()
+        .includes(searchQueryBlocked.toLowerCase()),
     ),
   );
 
@@ -3098,7 +3148,7 @@ function Msme() {
           <p className="msme">Manage MSMEs</p>
           <p>View, search and manage all MSME registrations and listing</p>
 
-          <div className="stat-grid">
+          <div className="stat-grid stat-grid--5">
               <div className="stat-tile">
                   <div className="stat-tile__label">
                     <Tooltip title="Total MSMEs" className="pointer">
@@ -3173,6 +3223,24 @@ function Msme() {
                   </div>
                 </div>
 
+              <div className="stat-tile">
+                  <div className="stat-tile__label">
+                    <Tooltip title="Blocked MSMEs" className="pointer">
+                      <p className="text">Blocked MSMEs</p>
+                    </Tooltip>
+                  </div>
+                  <div className="stat-tile__value">
+                    <div className="stat-tile__icon">
+                      <BlockIcon sx={{ color: "rgba(210, 31, 53, 1)" }} />
+                    </div>
+                    <Tooltip title={blockedRegisteration}>
+                      <p className="stat-tile__digit pointer">
+                        {blockedRegisteration}
+                      </p>
+                    </Tooltip>
+                  </div>
+                </div>
+
           </div>
 
           <div>
@@ -3229,6 +3297,19 @@ function Msme() {
                           style={{ border: "none" }}
                         >
                           Rejected Msme
+                        </button>
+                        <button
+                          className={
+                            buttonActive === 6
+                              ? "btn btn-success"
+                              : "btn button-grey"
+                          }
+                          onClick={() => {
+                            setButonActive(6);
+                          }}
+                          style={{ border: "none" }}
+                        >
+                          Blocked Msme
                         </button>
                   </div>
 
@@ -3537,6 +3618,95 @@ function Msme() {
                             <Box sx={{ height: 500, width: "100%" }}>
                               <DataGrid
                                 rows={filteredRowsApproved}
+                                columns={columns}
+                                sx={{
+                                  "& .MuiDataGrid-root": {
+                                    fontFamily: "var(--font-sans)",
+                                  },
+                                  "& .MuiDataGrid-columnHeaders": {
+                                    fontWeight: 800,
+                                    fontFamily: "var(--font-sans)",
+                                  },
+                                  "& .MuiDataGrid-columnHeaderTitle": {
+                                    fontWeight: 600,
+                                    fontFamily: "var(--font-sans)",
+                                  },
+                                  "& .MuiDataGrid-cell": {
+                                    fontWeight: 400,
+                                    fontFamily: "var(--font-sans)",
+                                  },
+                                }}
+                                initialState={{
+                                  pagination: {
+                                    paginationModel: {
+                                      pageSize: 25,
+                                    },
+                                  },
+                                }}
+                                pageSizeOptions={[25, 50, 100]}
+                                checkboxSelection
+                                disableRowSelectionOnClick
+                              />
+                            </Box>
+                          </>
+                        ) : (
+                          <>
+                            <div
+                              className="d-flex justify-content-center align-items-center"
+                              style={{ height: 500, width: "100%" }}
+                            >
+                              <div style={{ textAlign: "center" }}>
+                                <CircularProgress color="inherit" />
+                                <p className="p-4 text-secondary">
+                                  Just a moment, we’re getting things ready...
+                                </p>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </>
+                  )}
+                  {buttonActive === 6 && (
+                    <>
+                      <div className="list-toolbar mt-4">
+                        <p className="list-toolbar__title">Blocked MSME List</p>
+                        <div className="list-toolbar__actions">
+                        <Box
+                          className="msme-search-bar"
+                          display="flex"
+                        >
+                          <InputBase
+                            className="msme-search-input"
+                            sx={{ ml: 1.5, flex: 1 }}
+                            placeholder="Search for a blocked MSME"
+                            onChange={(e) =>
+                              setSearchQueryBlocked(e.target.value)
+                            }
+                          />
+                          <IconButton
+                            type="button"
+                            className="msme-search-btn"
+                            sx={{ p: 1 }}
+                          >
+                            <SearchIcon />
+                          </IconButton>
+                        </Box>
+                        {currentUser.role === "Super admin" && (
+                          <>
+                            <div onClick={handleOpen}>
+                              <MyButton text="Add MSME" />
+                            </div>
+                          </>
+                        )}
+                      </div>
+                      </div>
+                      <div className="col-12 mt-1">
+                        {blockedMSMEList ? (
+                          <>
+                            <Box sx={{ height: 500, width: "100%" }}>
+                              <DataGrid
+                                rows={filteredRowsBlocked}
                                 columns={columns}
                                 sx={{
                                   "& .MuiDataGrid-root": {

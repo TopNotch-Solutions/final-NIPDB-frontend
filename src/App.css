@@ -228,6 +228,19 @@ body {
   color: var(--color-text);
 }
 
+/* Manage MSME carries a fifth tile (Blocked MSMEs). One extra column at the
+   widest step, three when the tiles get tight; below 1200px it falls through
+   to the shared two-column rule below, which is declared later and wins. */
+.stat-grid--5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+@media screen and (max-width: 1399px) {
+  .stat-grid--5 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media screen and (max-width: 1199px) {
   .stat-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -416,13 +429,15 @@ body {
 
 .status-pending,
 .status-rejected,
-.status-approved {
+.status-approved,
+.status-blocked {
   font-weight: var(--weight-semibold);
 }
 
 .status-pending  { color: var(--color-warning-text); }
 .status-rejected { color: var(--color-danger-text); }
 .status-approved { color: var(--color-success-text); }
+.status-blocked  { color: var(--color-danger-text); }
 
 /* Inside a DataGrid the status class lands on the cell itself, and MUI's own
    `.MuiDataGrid-root .MuiDataGrid-cell` rule (specificity 0,2,0) outranks the
@@ -431,7 +446,8 @@ body {
    it without reaching for !important. */
 .MuiDataGrid-root .MuiDataGrid-cell.status-pending,
 .MuiDataGrid-root .MuiDataGrid-cell.status-rejected,
-.MuiDataGrid-root .MuiDataGrid-cell.status-approved {
+.MuiDataGrid-root .MuiDataGrid-cell.status-approved,
+.MuiDataGrid-root .MuiDataGrid-cell.status-blocked {
   font-weight: var(--weight-semibold);
 }
 
