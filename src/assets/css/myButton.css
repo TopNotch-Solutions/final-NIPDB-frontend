@@ -1,8 +1,20 @@
 /* Shared action button width. The font-family declaration is gone — the UI
-   face is inherited from the base layer via --font-sans. */
+   face is inherited from the base layer via --font-sans.
+
+   Height is fixed to match the adjacent search bar (.app-search-bar /
+   .msme-search-bar in App.css, also 42px) — the Bootstrap p-2/p-xl-3
+   padding classes on the button would otherwise grow taller than the
+   search bar at xl+ widths. Vertical padding is zeroed and flex centering
+   used so those utility classes only affect horizontal spacing. */
 
 .myButton {
   width: 200px;
+  height: 42px;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 575px) {

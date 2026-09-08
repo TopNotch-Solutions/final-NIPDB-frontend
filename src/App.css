@@ -739,6 +739,7 @@ textarea.form-control.place-holder::placeholder,
 .app-search-bar,
 .msme-search-bar {
   align-items: center;
+  height: 42px;
   background: var(--color-surface);
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-md);
